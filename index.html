@@ -359,7 +359,7 @@
   <button class="filter-btn active" data-filter="all">全部</button>
   <button class="filter-btn" data-filter="holo">閃卡 HOLO</button>
   <button class="filter-btn" data-filter="pokemon">寶可夢</button>
-  <button class="filter-btn" data-filter="trainer">訓練師</button>
+  <button class="filter-btn" data-filter="trainer">訓練師／道具</button>
   <button class="filter-btn" data-filter="energy">能量</button>
   <button class="filter-btn" data-filter="collected">已收藏</button>
   <button class="filter-btn" data-filter="missing">未收藏</button>
@@ -619,7 +619,7 @@ function openLightbox(card, src) {
 }
 
 function catLabel(cat) {
-  return { pokemon:'寶可夢卡', trainer:'訓練師卡', energy:'能量卡', holo:'閃卡' }[cat] || '';
+  return { pokemon:'寶可夢卡', trainer:'訓練師／道具卡', energy:'能量卡', holo:'閃卡' }[cat] || '';
 }
 
 document.getElementById('lightbox-close').addEventListener('click', () => {
