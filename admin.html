@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>後台管理 | 初代首刷寶可夢收藏</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #07070f;
+      --bg-card: #0d0d1e;
+      --border: #1e1e3a;
+      --border-holo: #c9a227;
+      --glow-holo: rgba(201,162,39,0.35);
+      --text: #d8d8ea;
+      --text-dim: #5a5a7a;
+      --gold: #c9a227;
+      --gold-light: #f0d060;
+      --blue: #4a8fff;
+      --green: #3fcf8e;
+      --red: #f06060;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: #0d0d1e;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .header-left h1 { font-size: 1.05rem; font-weight: 900; color: var(--gold); }
+    .header-left p  { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px; border: none;
+      font-family: inherit; font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-gold    { background: var(--gold); color: #000; }
+    .btn-ghost   { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+    .btn-danger  { background: var(--red);  color: #fff; }
+    .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 65px);
+    }
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding: 24px 20px;
+      background: #08081a;
+    }
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* Stats */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .stat-box.full { grid-column: 1 / -1; }
+    .stat-val  { font-size: 1.35rem; font-weight: 900; color: var(--gold); }
+    .stat-key  { font-size: 0.68rem; color: var(--text-dim); margin-top: 2px; }
+    .progress-bar { width: 100%; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius: 2px; transition: width 0.5s; }
+
+    /* Upload area */
+    .drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 28px 16px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      background: #09091d;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--blue);
+      background: rgba(74,143,255,0.05);
+    }
+    .drop-zone-icon { font-size: 2rem; margin-bottom: 8px; }
+    .drop-zone h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; }
+    .drop-zone p  { font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
+    #file-input { display: none; }
+
+    /* Upload queue */
+    .queue-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+    .queue-item {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 7px 10px; font-size: 0.75rem;
+    }
+    .queue-item .qi-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .qi-status { font-size: 0.65rem; font-weight: 700; }
+    .qi-status.pending  { color: var(--text-dim); }
+    .qi-status.matched  { color: var(--green); }
+    .qi-status.unmatched{ color: var(--red); }
+
+    /* Main panel */
+    .main {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .main-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
+    }
+    .main-header h2 { font-size: 1rem; font-weight: 900; }
+    .search-box {
+      padding: 7px 12px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text);
+      font-family: inherit; font-size: 0.82rem;
+      width: 200px; outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-box:focus { border-color: var(--blue); }
+
+    /* Card list table */
+    .card-table {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .ct-row {
+      display: grid;
+      grid-template-columns: 44px 1fr 90px 90px 70px;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.15s;
+    }
+    .ct-row:hover { border-color: #2a2a50; }
+    .ct-row.holo  { border-left: 3px solid var(--gold); }
+    .ct-row.collected { border-left-color: var(--green); }
+    .ct-row.holo.collected { border-left-color: var(--gold); }
+
+    .ct-num  { font-size: 0.7rem; color: var(--text-dim); text-align: center; }
+    .ct-name { font-size: 0.82rem; font-weight: 500; }
+    .ct-name small { display: block; font-size: 0.65rem; color: var(--text-dim); font-weight: 400; margin-top: 1px; }
+    .ct-type {
+      font-size: 0.62rem; padding: 2px 8px; border-radius: 20px;
+      border: 1px solid; text-align: center; white-space: nowrap;
+    }
+    .type-holo    { border-color: var(--gold);   color: var(--gold); }
+    .type-pokemon { border-color: #3a7fff; color: #6aabff; }
+    .type-trainer { border-color: #7a5af8; color: #a88cf8; }
+    .type-energy  { border-color: #3fcf8e; color: #3fcf8e; }
+
+    .ct-status { font-size: 0.7rem; font-weight: 700; text-align: center; }
+    .status-collected { color: var(--green); }
+    .status-missing   { color: var(--text-dim); }
+
+    .ct-actions { display: flex; gap: 5px; justify-content: flex-end; }
+
+    /* Preview thumbnail */
+    .thumb-wrap {
+      position: relative;
+      width: 32px; height: 44px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #0a0a1c;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; color: var(--text-dim);
+    }
+
+    /* Toast */
+    .toast-wrap {
+      position: fixed; bottom: 24px; right: 24px;
+      display: flex; flex-direction: column; gap: 8px;
+      z-index: 9999; pointer-events: none;
+    }
+    .toast {
+      background: #1a1a35; border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 16px;
+      font-size: 0.78rem; color: var(--text);
+      animation: slideIn 0.25s ease;
+      pointer-events: none;
+    }
+    .toast.success { border-color: var(--green); color: var(--green); }
+    .toast.error   { border-color: var(--red);   color: var(--red); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Modal */
+    .modal-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 800; align-items: center; justify-content: center;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: #0d0d20; border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px;
+      max-width: 380px; width: 90%;
+    }
+    .modal h3 { font-size: 1rem; margin-bottom: 12px; }
+    .modal p  { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+    /* GitHub guide */
+    .guide-steps { display: flex; flex-direction: column; gap: 6px; }
+    .guide-step {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px;
+      font-size: 0.8rem; line-height: 1.6;
+    }
+    .guide-step strong { color: var(--gold); }
+    .guide-step code {
+      background: #0a0a1c; border: 1px solid var(--border);
+      padding: 1px 6px; border-radius: 4px;
+      font-size: 0.75rem; color: var(--blue);
+    }
+    .step-num {
+      display: inline-block;
+      background: var(--blue); color: #fff;
+      font-size: 0.65rem; font-weight: 900;
+      width: 18px; height: 18px; border-radius: 50%;
+      text-align: center; line-height: 18px;
+      margin-right: 6px;
+    }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+    .tab {
+      padding: 10px 18px; font-size: 0.82rem; cursor: pointer;
+      border-bottom: 2px solid transparent; color: var(--text-dim);
+      background: transparent; border-top: none; border-left: none; border-right: none;
+      font-family: inherit; transition: color 0.15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <h1>後台管理</h1>
+    <p>初代首刷寶可夢收藏 · Base Set 1st Edition</p>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <a href="index.html" target="_blank"><button class="btn btn-ghost">查看前台</button></a>
+    <button class="btn btn-gold" id="btn-save-gh">儲存並部署到 GitHub</button>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">收藏統計</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-val" id="s-total">0</div><div class="stat-key">已收藏</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-missing">102</div><div class="stat-key">未收藏</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-holo">0</div><div class="stat-key">閃卡 / 16</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-common">0</div><div class="stat-key">一般 / 86</div></div>
+        <div class="stat-box full">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:0.72rem;color:var(--text-dim)">完成度</span>
+            <span style="font-size:0.72rem;color:var(--gold)" id="s-pct">0%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="s-bar"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">上傳掃描圖片</div>
+      <div class="drop-zone" id="drop-zone">
+        <div class="drop-zone-icon">📁</div>
+        <h3>拖拽圖片到此</h3>
+        <p>或點擊選擇檔案<br>支援 JPG / PNG<br>檔名格式：<strong>001.jpg</strong>（三位數卡號）</p>
+      </div>
+      <input type="file" id="file-input" multiple accept="image/*">
+    </div>
+
+    <div class="sidebar-section" id="queue-section" style="display:none;">
+      <div class="sidebar-label">上傳佇列</div>
+      <div class="queue-list" id="queue-list"></div>
+      <div style="margin-top:10px;display:flex;gap:6px;">
+        <button class="btn btn-primary" style="flex:1" id="btn-apply">套用到清單</button>
+        <button class="btn btn-ghost btn-sm" id="btn-clear-queue">清除</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="tabs">
+      <button class="tab active" data-tab="cards">卡牌清單</button>
+      <button class="tab" data-tab="guide">GitHub 部署教學</button>
+    </div>
+
+    <!-- Cards Tab -->
+    <div class="tab-panel active" id="tab-cards">
+      <div class="main-header">
+        <h2>102 張卡牌管理</h2>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <input type="text" class="search-box" id="search" placeholder="搜尋名稱...">
+          <button class="btn btn-ghost btn-sm" id="btn-show-all">全部</button>
+          <button class="btn btn-ghost btn-sm" id="btn-show-missing">未收藏</button>
+        </div>
+      </div>
+      <div class="card-table" id="card-table"></div>
+    </div>
+
+    <!-- Guide Tab -->
+    <div class="tab-panel" id="tab-guide">
+      <h2 style="margin-bottom:16px;">GitHub Pages 部署教學</h2>
+      <div class="guide-steps" id="guide-steps">
+        <div class="guide-step">
+          <span class="step-num">1</span>
+          <strong>安裝 GitHub Desktop</strong><br>
+          前往 <code>desktop.github.com</code> 下載並安裝 GitHub Desktop，然後登入你的 GitHub 帳號。
+        </div>
+        <div class="guide-step">
+          <span class="step-num">2</span>
+          <strong>建立新 Repository</strong><br>
+          點選 <code>File → New Repository</code>，命名為 <code>pokemon-collection</code>，本地路徑選擇這個資料夾（<code>pokemon-collection/</code>）。
+        </div>
+        <div class="guide-step">
+          <span class="step-num">3</span>
+          <strong>Commit 初始檔案</strong><br>
+          左側會列出所有新增的檔案。在 Summary 欄位輸入 <code>初始提交</code>，按下 <code>Commit to main</code>。
+        </div>
+        <div class="guide-step">
+          <span class="step-num">4</span>
+          <strong>Publish Repository</strong><br>
+          點選右上角 <code>Publish repository</code>，確認 <strong>Public</strong>（公開），按下 Publish。
+        </div>
+        <div class="guide-step">
+          <span class="step-num">5</span>
+          <strong>開啟 GitHub Pages</strong><br>
+          到 GitHub 網站 → 你的 repository → <code>Settings → Pages</code> → Source 選 <code>Deploy from a branch → main → / (root)</code> → 儲存。
+        </div>
+        <div class="guide-step">
+          <span class="step-num">6</span>
+          <strong>等待部署完成</strong><br>
+          約 1–2 分鐘後，網址會是：<br>
+          <code>https://你的帳號.github.io/pokemon-collection/</code>
+        </div>
+        <div class="guide-step">
+          <span class="step-num">7</span>
+          <strong>以後新增掃描圖片的流程</strong><br>
+          ① 在本後台上傳圖片並套用 → ② 開啟 GitHub Desktop → ③ 圖片和 data.json 會出現在變更清單 → ④ Commit → ⑤ Push → ⑥ 網站自動更新。
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Confirm modal -->
+<div class="modal-bg" id="modal-remove">
+  <div class="modal">
+    <h3>移除收藏確認</h3>
+    <p id="modal-remove-text">確定要將此卡牌從收藏中移除嗎？圖片檔案需要手動從 images/ 資料夾刪除。</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modal-cancel">取消</button>
+      <button class="btn btn-danger" id="modal-confirm">確認移除</button>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub modal -->
+<div class="modal-bg" id="modal-github">
+  <div class="modal">
+    <h3>儲存 data.json</h3>
+    <p>
+      點擊「下載 data.json」，將檔案覆蓋到專案資料夾中，然後透過 GitHub Desktop commit 並 push。
+    </p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modal-gh-cancel">取消</button>
+      <button class="btn btn-gold" id="modal-gh-download">下載 data.json</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+const CARDS = [
+  { id:1,  name:'胡地',          cat:'holo',    holo:true  },
+  { id:2,  name:'水箭龜',        cat:'holo',    holo:true  },
+  { id:3,  name:'吉利蛋',        cat:'holo',    holo:true  },
+  { id:4,  name:'噴火龍',        cat:'holo',    holo:true  },
+  { id:5,  name:'皮皮',          cat:'holo',    holo:true  },
+  { id:6,  name:'暴鯉龍',        cat:'holo',    holo:true  },
+  { id:7,  name:'快拳郎',        cat:'holo',    holo:true  },
+  { id:8,  name:'怪力',          cat:'holo',    holo:true  },
+  { id:9,  name:'三合一磁怪',    cat:'holo',    holo:true  },
+  { id:10, name:'超夢',          cat:'holo',    holo:true  },
+  { id:11, name:'尼多王',        cat:'holo',    holo:true  },
+  { id:12, name:'九尾',          cat:'holo',    holo:true  },
+  { id:13, name:'快泳蛙',        cat:'holo',    holo:true  },
+  { id:14, name:'雷丘',          cat:'holo',    holo:true  },
+  { id:15, name:'妙蛙花',        cat:'holo',    holo:true  },
+  { id:16, name:'閃電鳥',        cat:'holo',    holo:true  },
+  { id:17, name:'大針蜂',        cat:'pokemon', holo:false },
+  { id:18, name:'哈克龍',        cat:'pokemon', holo:false },
+  { id:19, name:'三地鼠',        cat:'pokemon', holo:false },
+  { id:20, name:'雷電獸',        cat:'pokemon', holo:false },
+  { id:21, name:'頑皮蛋',        cat:'pokemon', holo:false },
+  { id:22, name:'比比鳥',        cat:'pokemon', holo:false },
+  { id:23, name:'風速狗',        cat:'pokemon', holo:false },
+  { id:24, name:'火恐龍',        cat:'pokemon', holo:false },
+  { id:25, name:'白海獅',        cat:'pokemon', holo:false },
+  { id:26, name:'迷你龍',        cat:'pokemon', holo:false },
+  { id:27, name:'大蔥鴨',        cat:'pokemon', holo:false },
+  { id:28, name:'卡蒂狗',        cat:'pokemon', holo:false },
+  { id:29, name:'鬼斯通',        cat:'pokemon', holo:false },
+  { id:30, name:'妙蛙草',        cat:'pokemon', holo:false },
+  { id:31, name:'迷唇姊',        cat:'pokemon', holo:false },
+  { id:32, name:'勇吉拉',        cat:'pokemon', holo:false },
+  { id:33, name:'鐵殼蛹',        cat:'pokemon', holo:false },
+  { id:34, name:'豪力',          cat:'pokemon', holo:false },
+  { id:35, name:'鯉魚王',        cat:'pokemon', holo:false },
+  { id:36, name:'鴨嘴火龍',      cat:'pokemon', holo:false },
+  { id:37, name:'尼多力諾',      cat:'pokemon', holo:false },
+  { id:38, name:'蚊香蛙',        cat:'pokemon', holo:false },
+  { id:39, name:'多邊獸',        cat:'pokemon', holo:false },
+  { id:40, name:'拉達',          cat:'pokemon', holo:false },
+  { id:41, name:'小海獅',        cat:'pokemon', holo:false },
+  { id:42, name:'卡咪龜',        cat:'pokemon', holo:false },
+  { id:43, name:'凱西',          cat:'pokemon', holo:false },
+  { id:44, name:'妙蛙種子',      cat:'pokemon', holo:false },
+  { id:45, name:'綠毛蟲',        cat:'pokemon', holo:false },
+  { id:46, name:'小火龍',        cat:'pokemon', holo:false },
+  { id:47, name:'地鼠',          cat:'pokemon', holo:false },
+  { id:48, name:'嘟嘟',          cat:'pokemon', holo:false },
+  { id:49, name:'催眠貘',        cat:'pokemon', holo:false },
+  { id:50, name:'鬼斯',          cat:'pokemon', holo:false },
+  { id:51, name:'瓦斯彈',        cat:'pokemon', holo:false },
+  { id:52, name:'腕力',          cat:'pokemon', holo:false },
+  { id:53, name:'小磁怪',        cat:'pokemon', holo:false },
+  { id:54, name:'鐵甲蛹',        cat:'pokemon', holo:false },
+  { id:55, name:'尼多朗',        cat:'pokemon', holo:false },
+  { id:56, name:'大岩蛇',        cat:'pokemon', holo:false },
+  { id:57, name:'波波',          cat:'pokemon', holo:false },
+  { id:58, name:'皮卡丘',        cat:'pokemon', holo:false },
+  { id:59, name:'蚊香蝌蚪',      cat:'pokemon', holo:false },
+  { id:60, name:'小火馬',        cat:'pokemon', holo:false },
+  { id:61, name:'小拉達',        cat:'pokemon', holo:false },
+  { id:62, name:'穿山鼠',        cat:'pokemon', holo:false },
+  { id:63, name:'傑尼龜',        cat:'pokemon', holo:false },
+  { id:64, name:'寶石海星',      cat:'pokemon', holo:false },
+  { id:65, name:'海星星',        cat:'pokemon', holo:false },
+  { id:66, name:'蔓藤怪',        cat:'pokemon', holo:false },
+  { id:67, name:'霹靂電球',      cat:'pokemon', holo:false },
+  { id:68, name:'六尾',          cat:'pokemon', holo:false },
+  { id:69, name:'獨角蟲',        cat:'pokemon', holo:false },
+  { id:70, name:'皮皮玩偶',      cat:'pokemon', holo:false },
+  { id:71, name:'電腦通信',      cat:'trainer', holo:false },
+  { id:72, name:'退化噴霧劑',    cat:'trainer', holo:false },
+  { id:73, name:'冒牌的大木博士',cat:'trainer', holo:false },
+  { id:74, name:'探寶器',        cat:'trainer', holo:false },
+  { id:75, name:'迷你裙',        cat:'trainer', holo:false },
+  { id:76, name:'寶可夢飼養員',  cat:'trainer', holo:false },
+  { id:77, name:'寶可夢交換員',  cat:'trainer', holo:false },
+  { id:78, name:'神奇寶貝回收',  cat:'trainer', holo:false },
+  { id:79, name:'超級能量消除',  cat:'trainer', holo:false },
+  { id:80, name:'傷害預防',      cat:'trainer', holo:false },
+  { id:81, name:'能量回收',      cat:'trainer', holo:false },
+  { id:82, name:'萬能醫療器',    cat:'trainer', holo:false },
+  { id:83, name:'維修',          cat:'trainer', holo:false },
+  { id:84, name:'力量增強',      cat:'trainer', holo:false },
+  { id:85, name:'神奇寶貝中心',  cat:'trainer', holo:false },
+  { id:86, name:'神奇寶貝笛子',  cat:'trainer', holo:false },
+  { id:87, name:'神奇寶貝圖鑑',  cat:'trainer', holo:false },
+  { id:88, name:'大木博士',      cat:'trainer', holo:false },
+  { id:89, name:'更生劑',        cat:'trainer', holo:false },
+  { id:90, name:'超級藥水',      cat:'trainer', holo:false },
+  { id:91, name:'正輝',          cat:'trainer', holo:false },
+  { id:92, name:'能量削減',      cat:'trainer', holo:false },
+  { id:93, name:'陣風',          cat:'trainer', holo:false },
+  { id:94, name:'藥水',          cat:'trainer', holo:false },
+  { id:95, name:'神奇寶貝替換',  cat:'trainer', holo:false },
+  { id:96,  name:'兩個無色能量', cat:'energy', holo:false },
+  { id:97,  name:'格鬥能量',     cat:'energy', holo:false },
+  { id:98,  name:'火能量',       cat:'energy', holo:false },
+  { id:99,  name:'草能量',       cat:'energy', holo:false },
+  { id:100, name:'雷能量',       cat:'energy', holo:false },
+  { id:101, name:'超能能量',     cat:'energy', holo:false },
+  { id:102, name:'水能量',       cat:'energy', holo:false },
+];
+
+// ── State ──
+let collected = new Set();
+let pendingImages = []; // { file, id, name }
+let filterMode = 'all';
+let removeTarget = null;
+
+const imgId = id => `images/${String(id).padStart(3,'0')}.jpg`;
+const typeLabel = { holo:'HOLO 閃卡', pokemon:'寶可夢', trainer:'訓練師', energy:'能量' };
+const typeClass  = { holo:'type-holo', pokemon:'type-pokemon', trainer:'type-trainer', energy:'type-energy' };
+
+// ── Load ──
+async function loadData() {
+  try {
+    const res = await fetch(`./data.json?t=${Date.now()}`);
+    if (res.ok) {
+      const d = await res.json();
+      collected = new Set(d.collected || []);
+    }
+  } catch (_) {}
+  renderTable();
+  updateStats();
+}
+
+// ── Stats ──
+function updateStats() {
+  const n = collected.size;
+  const h = CARDS.filter(c => c.holo && collected.has(c.id)).length;
+  const cm = CARDS.filter(c => !c.holo && collected.has(c.id)).length;
+  document.getElementById('s-total').textContent   = n;
+  document.getElementById('s-missing').textContent = 102 - n;
+  document.getElementById('s-holo').textContent    = h;
+  document.getElementById('s-common').textContent  = cm;
+  const pct = (n / 102 * 100).toFixed(0);
+  document.getElementById('s-pct').textContent     = pct + '%';
+  document.getElementById('s-bar').style.width     = pct + '%';
+}
+
+// ── Table ──
+let searchQ = '';
+function renderTable() {
+  const table = document.getElementById('card-table');
+  table.innerHTML = '';
+  const q = searchQ.toLowerCase();
+
+  CARDS.forEach(card => {
+    const isCollected = collected.has(card.id);
+    if (filterMode === 'missing' && isCollected) return;
+    if (q && !card.name.includes(searchQ) && !String(card.id).includes(q)) return;
+
+    const row = document.createElement('div');
+    row.className = `ct-row ${card.holo ? 'holo' : ''} ${isCollected ? 'collected' : ''}`;
+
+    // Thumbnail
+    const thumb = document.createElement('div');
+    thumb.className = 'thumb-wrap';
+    if (isCollected) {
+      const img = document.createElement('img');
+      img.src = imgId(card.id);
+      img.alt = card.name;
+      img.loading = 'lazy';
+      img.onerror = () => { thumb.innerHTML = '<div class="thumb-placeholder">?</div>'; };
+      thumb.appendChild(img);
+    } else {
+      thumb.innerHTML = '<div class="thumb-placeholder">—</div>';
+    }
+
+    row.innerHTML = `
+      <div class="ct-num">No.${card.id}</div>
+      <div class="ct-name">${card.name}<small>${typeLabel[card.cat]}</small></div>
+      <div><span class="ct-type ${typeClass[card.cat]}">${typeLabel[card.cat]}</span></div>
+      <div class="ct-status ${isCollected ? 'status-collected' : 'status-missing'}">
+        ${isCollected ? '✓ 已收藏' : '— 未收藏'}
+      </div>
+      <div class="ct-actions">
+        ${isCollected
+          ? `<button class="btn btn-danger btn-sm" data-id="${card.id}" data-action="remove">移除</button>`
+          : `<button class="btn btn-ghost btn-sm" data-id="${card.id}" data-action="add">手動標記</button>`
+        }
+      </div>`;
+
+    // prepend thumbnail
+    row.insertAdjacentElement('afterbegin', thumb);
+
+    table.appendChild(row);
+  });
+
+  // delegate
+  table.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = +btn.dataset.id;
+      if (btn.dataset.action === 'add') {
+        collected.add(id);
+        saveLocal();
+        renderTable();
+        updateStats();
+        toast(`No.${id} 已標記為收藏`, 'success');
+      } else {
+        removeTarget = id;
+        document.getElementById('modal-remove-text').textContent =
+          `確定要將 No.${id} 從收藏中移除嗎？圖片檔案需要手動從 images/ 資料夾刪除。`;
+        document.getElementById('modal-remove').classList.add('open');
+      }
+    });
+  });
+}
+
+// ── Remove modal ──
+document.getElementById('modal-cancel').addEventListener('click', () => {
+  document.getElementById('modal-remove').classList.remove('open');
+  removeTarget = null;
+});
+document.getElementById('modal-confirm').addEventListener('click', () => {
+  if (removeTarget !== null) {
+    collected.delete(removeTarget);
+    saveLocal();
+    renderTable();
+    updateStats();
+    toast(`No.${removeTarget} 已移除`, 'error');
+    removeTarget = null;
+  }
+  document.getElementById('modal-remove').classList.remove('open');
+});
+
+// ── Local save ──
+function saveLocal() {
+  const data = { collected: [...collected].sort((a,b) => a-b) };
+  localStorage.setItem('pokemon_collected', JSON.stringify(data));
+}
+function loadLocal() {
+  const s = localStorage.getItem('pokemon_collected');
+  if (s) {
+    try {
+      const d = JSON.parse(s);
+      collected = new Set(d.collected || []);
+    } catch (_) {}
+  }
+}
+
+// ── File drag & drop ──
+const dropZone  = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('click',  () => fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  handleFiles([...e.dataTransfer.files]);
+});
+fileInput.addEventListener('change', () => handleFiles([...fileInput.files]));
+
+function handleFiles(files) {
+  const images = files.filter(f => f.type.startsWith('image/'));
+  if (!images.length) { toast('請選擇圖片檔案', 'error'); return; }
+
+  images.forEach(file => {
+    const nameMatch = file.name.match(/^(\d{1,3})\.(jpe?g|png)$/i);
+    if (nameMatch) {
+      const id = parseInt(nameMatch[1], 10);
+      const card = CARDS.find(c => c.id === id);
+      pendingImages.push({ file, id: card ? id : null, rawName: file.name, card });
+    } else {
+      pendingImages.push({ file, id: null, rawName: file.name, card: null });
+    }
+  });
+
+  renderQueue();
+  document.getElementById('queue-section').style.display = '';
+}
+
+function renderQueue() {
+  const list = document.getElementById('queue-list');
+  list.innerHTML = '';
+  pendingImages.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'queue-item';
+    const status = item.card
+      ? `<span class="qi-status matched">✓ ${item.card.name}</span>`
+      : `<span class="qi-status unmatched">無法識別</span>`;
+    el.innerHTML = `<span class="qi-name">${item.rawName}</span>${status}`;
+    list.appendChild(el);
+  });
+}
+
+document.getElementById('btn-apply').addEventListener('click', () => {
+  const matched = pendingImages.filter(i => i.id !== null);
+  if (!matched.length) { toast('沒有可識別的圖片', 'error'); return; }
+
+  // In a real deployment, you'd write the files. Here we just mark as collected
+  // and show instructions to copy files manually.
+  matched.forEach(item => collected.add(item.id));
+  saveLocal();
+  renderTable();
+  updateStats();
+
+  toast(`${matched.length} 張卡牌已標記為收藏，請將圖片複製到 images/ 資料夾`, 'success');
+
+  pendingImages = [];
+  renderQueue();
+  document.getElementById('queue-section').style.display = 'none';
+  document.getElementById('file-input').value = '';
+});
+
+document.getElementById('btn-clear-queue').addEventListener('click', () => {
+  pendingImages = [];
+  document.getElementById('queue-section').style.display = 'none';
+  document.getElementById('file-input').value = '';
+});
+
+// ── Search & filter ──
+document.getElementById('search').addEventListener('input', e => {
+  searchQ = e.target.value;
+  renderTable();
+});
+document.getElementById('btn-show-all').addEventListener('click', () => {
+  filterMode = 'all';
+  renderTable();
+});
+document.getElementById('btn-show-missing').addEventListener('click', () => {
+  filterMode = 'missing';
+  renderTable();
+});
+
+// ── GitHub / Download ──
+document.getElementById('btn-save-gh').addEventListener('click', () => {
+  document.getElementById('modal-github').classList.add('open');
+});
+document.getElementById('modal-gh-cancel').addEventListener('click', () => {
+  document.getElementById('modal-github').classList.remove('open');
+});
+document.getElementById('modal-gh-download').addEventListener('click', () => {
+  const data = { collected: [...collected].sort((a,b) => a-b) };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  document.getElementById('modal-github').classList.remove('open');
+  toast('data.json 已下載，請覆蓋到專案資料夾後 commit & push', 'success');
+});
+
+// ── Tabs ──
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Toast ──
+function toast(msg, type = '') {
+  const wrap = document.getElementById('toast-wrap');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3200);
+}
+
+// ── Init ──
+loadLocal();
+loadData();
+</script>
+</body>
+</html>
