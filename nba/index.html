@@ -90,26 +90,112 @@
       position: sticky; top: 0; z-index: 200;
       background: var(--bg-surface);
       border-bottom: 1px solid var(--border-gold);
-      padding: 20px 40px;
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      box-shadow: 0 4px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.7);
+      overflow: hidden;
     }
 
-    .header-brand { display: flex; flex-direction: column; gap: 5px; }
+    /* Ambient glow behind title */
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 100px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-top {
+      padding: 20px 40px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      position: relative;
+    }
+
+    .header-brand { display: flex; flex-direction: column; gap: 7px; }
 
     .header-brand h1 {
-      font-size: 26px; font-weight: normal;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 32px; font-weight: normal;
+      letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--gold-light); line-height: 1;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+    }
+
+    .header-brand-meta {
+      display: flex; align-items: center; gap: 10px;
     }
 
     .header-brand span {
-      font-family: sans-serif; font-size: 12px;
-      letter-spacing: 0.28em; text-transform: uppercase;
+      font-family: sans-serif; font-size: 11px;
+      letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--gold-dim);
     }
 
+    .header-brand-dot {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--gold-dim); flex-shrink: 0;
+    }
+
     .header-actions { display: flex; align-items: center; gap: 12px; }
+
+    /* ── Header Search Bar ───────────────────────── */
+    .header-search {
+      padding: 0 40px 18px;
+      position: relative;
+    }
+
+    .search-wrap {
+      position: relative;
+      max-width: 480px;
+    }
+
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--gold-dim); pointer-events: none;
+      display: flex; align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: sans-serif; font-size: 13px;
+      letter-spacing: 0.05em;
+      padding: 10px 16px 10px 40px;
+      outline: none;
+      transition: border-color 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
+      caret-color: var(--gold-main);
+    }
+
+    .search-input::placeholder { color: var(--text-muted); }
+
+    .search-input:focus {
+      border-color: var(--gold-dim);
+      background: rgba(201,168,76,0.04);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.06);
+    }
+
+    .search-clear {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--border-gold); border: none;
+      color: var(--text-muted); cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      transition: all 180ms var(--ease);
+    }
+    .search-clear.visible { display: flex; }
+    .search-clear:hover { background: var(--gold-dim); color: var(--bg-base); }
+
+    /* No results */
+    .no-results {
+      display: none;
+      flex-direction: column; align-items: center; justify-content: center;
+      padding: 80px 0; gap: 12px; text-align: center;
+    }
+    .no-results.show { display: flex; }
+    .no-results-icon { font-size: 36px; opacity: 0.2; }
+    .no-results h3 { font-size: 16px; font-weight: normal; color: var(--text-secondary); letter-spacing: 0.06em; }
+    .no-results p { font-family: sans-serif; font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; }
 
     /* ── Sync dot ─────────────────────────────── */
     .sync-dot {
@@ -576,37 +662,58 @@
 
 <!-- Header -->
 <header class="header">
-  <div class="header-brand">
-    <h1>NBA 球員卡收藏</h1>
-    <span>Trading Cards · PSA Graded</span>
+  <div class="header-top">
+    <div class="header-brand">
+      <h1>NBA 球員卡收藏</h1>
+      <div class="header-brand-meta">
+        <span>Trading Cards</span>
+        <div class="header-brand-dot"></div>
+        <span>PSA Graded</span>
+        <div class="header-brand-dot"></div>
+        <span id="headerCount">—</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="sync-dot" id="syncDot"></div>
+      <button class="btn btn-gold" id="addPlayerBtn" onclick="showAddPlayerModal()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        新增球星
+      </button>
+      <button class="lock-btn" id="lockBtn" onclick="toggleAdmin()" title="管理員登入">
+        <svg id="lockIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </button>
+    </div>
   </div>
-  <div class="header-actions">
-    <div class="sync-dot" id="syncDot"></div>
-
-    <button class="btn btn-gold" id="addPlayerBtn" onclick="showAddPlayerModal()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-      </svg>
-      新增球星
-    </button>
-
-    <button class="lock-btn" id="lockBtn" onclick="toggleAdmin()" title="管理員登入">
-      <svg id="lockIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
-    </button>
+  <div class="header-search">
+    <div class="search-wrap">
+      <span class="search-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </span>
+      <input class="search-input" id="searchInput" type="text"
+        placeholder="搜尋球員姓名..."
+        oninput="searchPlayers(this.value)">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
 <!-- Main -->
 <main class="main">
-  <div class="stats">
-    <div><div class="stat-value" id="statPlayers">—</div><div class="stat-label">位球星</div></div>
-    <div class="stats-divider"></div>
-    <div><div class="stat-value" id="statCards">—</div><div class="stat-label">張卡片</div></div>
-    <div class="stats-divider"></div>
-    <div><div class="stat-value" id="statPhotos">—</div><div class="stat-label">已上傳圖片</div></div>
+  <div class="no-results" id="noResults">
+    <div class="no-results-icon">🏀</div>
+    <h3>找不到符合的球員</h3>
+    <p>試試其他關鍵字</p>
   </div>
   <div id="playerList"></div>
 </main>
@@ -959,10 +1066,37 @@
   function getInitials(name) { return (name||'').split(' ').filter(Boolean).map(w=>w[0]).slice(0,2).join(''); }
 
   function updateStats() {
-    const all = players.flatMap(p => p.cards);
-    document.getElementById('statPlayers').textContent = players.length;
-    document.getElementById('statCards').textContent   = all.length;
-    document.getElementById('statPhotos').textContent  = all.filter(c => c.image_url).length;
+    const total = players.length;
+    const cards = players.flatMap(p => p.cards).length;
+    document.getElementById('headerCount').textContent =
+      total > 0 ? `${total} 位球星 · ${cards} 張卡片` : '—';
+  }
+
+  /* ── Search ──────────────────────────────────── */
+  function searchPlayers(query) {
+    const q = query.trim().toLowerCase();
+    const sections = document.querySelectorAll('.player-section');
+    let visibleCount = 0;
+
+    sections.forEach(sec => {
+      const name = (sec.querySelector('.player-name-input')?.value || '').toLowerCase();
+      const match = !q || name.includes(q);
+      sec.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+
+    // clear button visibility
+    document.getElementById('searchClear').classList.toggle('visible', q.length > 0);
+
+    // no results state
+    document.getElementById('noResults').classList.toggle('show', q.length > 0 && visibleCount === 0);
+  }
+
+  function clearSearch() {
+    const input = document.getElementById('searchInput');
+    input.value = '';
+    searchPlayers('');
+    input.focus();
   }
 
   let toastTimer;
