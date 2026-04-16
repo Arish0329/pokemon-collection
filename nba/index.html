@@ -677,10 +677,6 @@
         <h1>NBA 球員卡收藏</h1>
         <div class="header-brand-meta">
           <span>Trading Cards</span>
-          <div class="header-brand-dot"></div>
-          <span>PSA Graded</span>
-          <div class="header-brand-dot"></div>
-          <span id="headerCount">—</span>
         </div>
       </div>
     </div>
@@ -1065,10 +1061,7 @@
   function getInitials(name) { return (name||'').split(' ').filter(Boolean).map(w=>w[0]).slice(0,2).join(''); }
 
   function updateStats() {
-    const total = players.length;
-    const cards = players.flatMap(p => p.cards).length;
-    document.getElementById('headerCount').textContent =
-      total > 0 ? `${total} 位球星 · ${cards} 張卡片` : '—';
+    // stats reserved for future use
   }
 
   /* ── Search ──────────────────────────────────── */
