@@ -34,12 +34,15 @@
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html { overflow-x: hidden; }
+
     body {
       background: var(--bg-base);
       color: var(--text-primary);
       font-family: var(--font-ui);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── Header ─────────────────────────────────── */
@@ -189,12 +192,15 @@
       .header-inner { padding: 0 20px; }
       .header-brand h1 { font-size: 22px; }
 
+      /* ── 手機版主容器 ── */
+      .main { padding: 28px 20px 60px; }
+
       /* ── 手機版球員 Header ── */
       .player-avatar {
         width: 56px; height: 56px;
         flex-shrink: 0;
       }
-      .player-header { gap: 14px; }
+      .player-header { gap: 14px; overflow: hidden; }
       .player-name-input {
         font-size: 14px;
         letter-spacing: 0.06em;
