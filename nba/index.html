@@ -269,8 +269,6 @@
     body.admin-mode .player-actions    { display: flex; }
     body.admin-mode #addPlayerBtn      { display: inline-flex; }
     body.admin-mode .player-avatar     { pointer-events: auto; cursor: pointer; }
-    body.admin-mode .player-name-input { pointer-events: auto; }
-    body.admin-mode .player-team-input { pointer-events: auto; }
 
     /* ── Main ────────────────────────────────────── */
     .main { max-width: 1440px; margin: 0 auto; padding: 36px 40px 80px; }
@@ -333,37 +331,62 @@
       display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0;
     }
 
-    /* ── Player Name ─────────────────────────────── */
-    .player-name-input {
+    /* ── Player Name — display (public) ─────────────── */
+    .player-name-display {
+      color: var(--gold-light);
+      font-family: var(--font-ui); font-size: 18px;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      line-height: 1.2; padding: 2px 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ── Player Team — display (public) ─────────────── */
+    .player-team-display {
+      color: var(--text-secondary);
+      font-family: var(--font-ui); font-size: 13px;
+      font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 2px 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ── Player Name/Team — input (admin only) ───────── */
+    .player-name-input,
+    .player-team-input {
+      display: none;
+    }
+
+    body.admin-mode .player-name-display,
+    body.admin-mode .player-team-display { display: none; }
+
+    body.admin-mode .player-name-input {
+      display: block;
       width: 100%; background: transparent; border: none;
       border-bottom: 1px solid transparent;
       color: var(--gold-light);
       font-family: var(--font-ui); font-size: 18px;
       font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 2px 0; outline: none;
-      transition: border-color 180ms var(--ease), color 180ms var(--ease);
+      transition: border-color 180ms var(--ease);
       caret-color: var(--gold-main);
     }
 
-    body.admin-mode .player-name-input:focus { border-bottom-color: var(--gold-main); color: var(--gold-light); }
-    .player-name-input::placeholder { color: var(--text-muted); font-size: 16px; }
+    body.admin-mode .player-name-input:focus { border-bottom-color: var(--gold-main); }
+    body.admin-mode .player-name-input::placeholder { color: var(--text-muted); font-size: 16px; }
 
-    /* ── Player Team ─────────────────────────────── */
-    .player-team-input {
+    body.admin-mode .player-team-input {
+      display: block;
       width: 100%; background: transparent; border: none;
       border-bottom: 1px solid transparent;
       color: var(--text-secondary);
       font-family: var(--font-ui); font-size: 13px;
       font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
       padding: 2px 0; outline: none;
-      pointer-events: none;
       transition: border-color 180ms var(--ease);
       caret-color: var(--gold-main);
     }
 
-    body.admin-mode .player-team-input { pointer-events: auto; }
     body.admin-mode .player-team-input:focus { border-bottom-color: var(--border-gold); }
-    .player-team-input::placeholder { color: var(--text-muted); font-size: 13px; }
+    body.admin-mode .player-team-input::placeholder { color: var(--text-muted); font-size: 13px; }
 
     /* ── Player Actions ──────────────────────────── */
     .player-actions { gap: 8px; margin-left: auto; }
@@ -986,7 +1009,11 @@
     const { error } = await db.from('players').update({ name }).eq('id', id);
     if (error) { setSyncStatus('error'); toast('儲存失敗'); return; }
     const p = players.find(p => p.id === id);
-    if (p) p.name = name;
+    if (p) {
+      p.name = name;
+      const sec = document.querySelector(`.player-section[data-player-id="${id}"]`);
+      if (sec) { const d = sec.querySelector('.player-name-display'); if (d) d.textContent = name; }
+    }
     setSyncStatus('ok');
   }
 
@@ -996,7 +1023,11 @@
     const { error } = await db.from('players').update({ team: team || null }).eq('id', id);
     if (error) { setSyncStatus('error'); toast('儲存失敗'); return; }
     const p = players.find(p => p.id === id);
-    if (p) p.team = team;
+    if (p) {
+      p.team = team;
+      const sec = document.querySelector(`.player-section[data-player-id="${id}"]`);
+      if (sec) { const d = sec.querySelector('.player-team-display'); if (d) d.textContent = team; }
+    }
     setSyncStatus('ok');
   }
 
@@ -1254,6 +1285,8 @@
           </div>
 
           <div class="player-info">
+            <div class="player-name-display">${(p.name||'').replace(/</g,'&lt;')}</div>
+            <div class="player-team-display">${(p.team||'').replace(/</g,'&lt;')}</div>
             <input class="player-name-input" type="text"
               value="${(p.name||'').replace(/"/g,'&quot;')}"
               placeholder="球員姓名"
