@@ -6,19 +6,21 @@
   <title>NBA 球員卡收藏 | Arish Collection</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏀</text></svg>">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-base:        #0A0904;
       --bg-surface:     #111008;
       --bg-card:        #17140A;
       --gold-bright:    #F2C455;
-      --gold-light:     #F0D880;
+      --gold-light:     #E8CC78;
       --gold-main:      #C9A84C;
       --gold-dim:       #8B7030;
       --gold-subtle:    #2E2412;
       --text-primary:   #EDE0C4;
       --text-secondary: #9A8B6A;
-      --text-muted:     #4A4030;
+      --text-muted:     #5C5240;
       --border:         #201C10;
       --border-gold:    #3A3018;
       --shadow-gold:    rgba(201, 168, 76, 0.18);
@@ -26,6 +28,8 @@
       --radius-md:      10px;
       --radius-lg:      14px;
       --ease:           cubic-bezier(0.22, 0.61, 0.36, 1);
+      --font-ui:        'Inter', sans-serif;
+      --font-display:   'Georgia', 'Times New Roman', serif;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +37,7 @@
     body {
       background: var(--bg-base);
       color: var(--text-primary);
-      font-family: 'Georgia', 'Times New Roman', serif;
+      font-family: var(--font-ui);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -65,24 +69,24 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-family: sans-serif;
+      font-family: var(--font-ui);
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       text-decoration: none;
       transition: color 200ms var(--ease);
     }
-    .nav-back:hover { color: var(--gold-dim); }
+    .nav-back:hover { color: var(--gold-main); }
 
     .nav-brand {
-      font-family: sans-serif;
+      font-family: var(--font-ui);
       font-size: 11px;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
-    .nav-brand span { color: var(--gold-dim); }
+    .nav-brand span { color: var(--text-secondary); }
 
     .header-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -97,24 +101,26 @@
 
     .header-brand h1 {
       font-size: 28px; font-weight: normal;
+      font-family: var(--font-display);
       letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--gold-light); line-height: 1;
     }
 
     .header-brand-meta {
       display: flex; align-items: center; gap: 8px;
-      margin-top: 6px;
+      margin-top: 7px;
     }
 
     .header-brand-meta span {
-      font-family: sans-serif; font-size: 10px;
+      font-family: var(--font-ui); font-size: 10px;
+      font-weight: 500;
       letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold-dim);
+      color: var(--text-secondary);
     }
 
     .header-brand-dot {
       width: 2px; height: 2px; border-radius: 50%;
-      background: var(--text-muted); flex-shrink: 0;
+      background: var(--border-gold); flex-shrink: 0;
     }
 
     /* ── Search row ──────────────────────────────── */
@@ -139,15 +145,16 @@
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-md);
       color: var(--text-primary);
-      font-family: sans-serif; font-size: 13px;
-      letter-spacing: 0.05em;
+      font-family: var(--font-ui); font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
       padding: 11px 44px 11px 44px;
       outline: none;
       transition: border-color 200ms var(--ease), background 200ms var(--ease), box-shadow 200ms var(--ease);
       caret-color: var(--gold-main);
     }
 
-    .search-input::placeholder { color: var(--text-muted); letter-spacing: 0.08em; }
+    .search-input::placeholder { color: var(--text-muted); letter-spacing: 0.06em; }
 
     .search-input:focus {
       border-color: var(--gold-dim);
@@ -208,8 +215,8 @@
     .btn {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 9px 18px; border-radius: var(--radius-sm);
-      font-size: 12px; letter-spacing: 0.07em;
-      font-family: sans-serif; font-weight: 500;
+      font-size: 12px; letter-spacing: 0.08em;
+      font-family: var(--font-ui); font-weight: 600;
       cursor: pointer; border: none;
       transition: all 200ms var(--ease); white-space: nowrap;
     }
@@ -245,8 +252,8 @@
       margin-bottom: 48px; padding-bottom: 28px; border-bottom: 1px solid var(--border);
     }
 
-    .stat-value { font-size: 36px; color: var(--gold-bright); letter-spacing: -0.03em; line-height: 1; font-weight: normal; }
-    .stat-label { font-family: sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 5px; }
+    .stat-value { font-size: 36px; color: var(--gold-bright); letter-spacing: -0.03em; line-height: 1; font-weight: normal; font-family: var(--font-display); }
+    .stat-label { font-family: var(--font-ui); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 5px; }
     .stats-divider { width: 1px; height: 36px; background: var(--border-gold); }
 
     /* ── Player Section ──────────────────────────── */
@@ -295,14 +302,14 @@
       flex: 1; background: transparent; border: none;
       border-bottom: 1px solid transparent;
       color: var(--text-primary);
-      font-family: sans-serif; font-size: 20px;
-      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: var(--font-ui); font-size: 18px;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 4px 0; outline: none;
       transition: border-color 180ms var(--ease), color 180ms var(--ease);
       caret-color: var(--gold-main);
     }
 
-    body.admin-mode .player-name-input:focus { border-bottom-color: var(--gold-main); color: var(--gold-bright); }
+    body.admin-mode .player-name-input:focus { border-bottom-color: var(--gold-main); color: var(--gold-light); }
     .player-name-input::placeholder { color: var(--text-muted); font-size: 16px; }
 
     /* ── Player Actions ──────────────────────────── */
@@ -389,13 +396,13 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    .slot-empty p { font-family: sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .slot-empty p { font-family: var(--font-ui); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
 
     .psa-badge {
       position: absolute; top: 8px; right: 8px;
       background: rgba(10,9,4,0.85); border: 1px solid var(--border-gold);
       border-radius: 4px; padding: 3px 7px;
-      font-family: sans-serif; font-size: 9px; letter-spacing: 0.1em;
+      font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
       color: var(--gold-dim); text-transform: uppercase; pointer-events: none;
     }
 
@@ -444,7 +451,7 @@
     }
 
     .add-btn-area:hover .add-icon { transform: scale(1.1) rotate(90deg); }
-    .add-btn-area p { font-family: sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .add-btn-area p { font-family: var(--font-ui); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
     .add-name-spacer { height: 27px; }
 
     /* ── Modals ──────────────────────────────────── */
@@ -472,9 +479,10 @@
     .modal-overlay.show .modal { transform: translateY(0); }
 
     .modal-title {
-      font-size: 16px; font-weight: normal;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gold-bright); text-align: center;
+      font-size: 13px; font-weight: 600;
+      font-family: var(--font-ui);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-main); text-align: center;
     }
 
     .modal-avatar-area { display: flex; justify-content: center; }
@@ -505,8 +513,8 @@
     .modal-input {
       width: 100%; background: var(--bg-card);
       border: 1px solid var(--border-gold); border-radius: var(--radius-sm);
-      color: var(--text-primary); font-family: sans-serif; font-size: 13px;
-      letter-spacing: 0.06em; padding: 12px 14px; outline: none;
+      color: var(--text-primary); font-family: var(--font-ui); font-size: 13px;
+      font-weight: 500; letter-spacing: 0.06em; padding: 12px 14px; outline: none;
       transition: border-color 180ms var(--ease); caret-color: var(--gold-main);
     }
 
@@ -524,7 +532,7 @@
     }
 
     .admin-error {
-      font-family: sans-serif; font-size: 11px;
+      font-family: var(--font-ui); font-size: 11px; font-weight: 500;
       letter-spacing: 0.08em; color: #C05050;
       text-align: center;
       opacity: 0; transition: opacity 200ms; margin-top: -12px;
@@ -549,7 +557,7 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-screen p { font-family: sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .loading-screen p { font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
 
     /* ── Empty state ─────────────────────────────── */
     .empty-state {
@@ -558,8 +566,8 @@
     }
 
     .empty-state-icon { font-size: 48px; opacity: 0.2; margin-bottom: 8px; }
-    .empty-state h2 { font-size: 18px; color: var(--text-secondary); font-weight: normal; letter-spacing: 0.06em; }
-    .empty-state p { font-family: sans-serif; font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+    .empty-state h2 { font-size: 18px; color: var(--text-secondary); font-weight: 400; font-family: var(--font-display); letter-spacing: 0.06em; }
+    .empty-state p { font-family: var(--font-ui); font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.08em; }
     .empty-gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); }
 
     /* ── Lightbox ────────────────────────────────── */
@@ -601,7 +609,7 @@
 
     .lightbox-caption {
       position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-      font-family: sans-serif; font-size: 11px; letter-spacing: 0.18em;
+      font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
       text-transform: uppercase; color: rgba(201,168,76,0.5);
       white-space: nowrap;
     }
@@ -613,8 +621,8 @@
       position: fixed; bottom: 32px; right: 32px;
       background: var(--bg-surface); border: 1px solid var(--border-gold);
       color: var(--text-primary); padding: 11px 20px;
-      border-radius: var(--radius-sm); font-family: sans-serif;
-      font-size: 12px; letter-spacing: 0.05em;
+      border-radius: var(--radius-sm); font-family: var(--font-ui);
+      font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
       box-shadow: 0 8px 40px rgba(0,0,0,0.6);
       pointer-events: none; z-index: 998;
       opacity: 0; transform: translateY(12px);
