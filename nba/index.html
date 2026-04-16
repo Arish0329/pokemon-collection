@@ -275,7 +275,6 @@
     .player-actions        { display: none; }
     #addPlayerBtn          { display: none; }
     .player-avatar         { pointer-events: none; cursor: default; }
-    .player-name-input     { pointer-events: none; }
 
     body.admin-mode .card-overlay      { display: flex; }
     body.admin-mode .add-card-slot     { display: flex; flex-direction: column; gap: 10px; }
@@ -1182,7 +1181,8 @@
     let visibleCount = 0;
 
     sections.forEach(sec => {
-      const name = (sec.querySelector('.player-name-input')?.value || '').toLowerCase();
+      const nameEl = sec.querySelector('.player-name-display') || sec.querySelector('.player-name-input');
+      const name = (nameEl?.textContent || nameEl?.value || '').toLowerCase();
       const match = !q || name.includes(q);
       sec.style.display = match ? '' : 'none';
       if (match) visibleCount++;
