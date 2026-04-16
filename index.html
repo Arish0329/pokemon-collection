@@ -3,638 +3,382 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>初代首刷寶可夢收藏 | Gary Chen</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  <title>Arish Collection</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #07070f;
-      --bg-card: #0d0d1e;
+      --bg:          #07070f;
+      --bg-card:     #0d0d1e;
       --bg-card-hover: #131328;
-      --border: #1e1e3a;
-      --border-holo: #c9a227;
-      --glow-holo: rgba(201,162,39,0.4);
-      --text: #d8d8ea;
-      --text-dim: #5a5a7a;
-      --gold: #c9a227;
-      --gold-light: #f0d060;
-      --blue: #4a8fff;
+      --border:      #1e1e3a;
+      --text:        #d8d8ea;
+      --text-dim:    #5a5a7a;
+      --text-muted:  #9090b0;
+
+      /* Pokémon — Gold */
+      --pokemon:       #c9a227;
+      --pokemon-light: #f0d060;
+      --pokemon-glow:  rgba(201, 162, 39, 0.35);
+      --pokemon-bg:    rgba(201, 162, 39, 0.05);
+
+      /* NBA — Orange */
+      --nba:           #e87722;
+      --nba-light:     #ffaa55;
+      --nba-glow:      rgba(232, 119, 34, 0.35);
+      --nba-bg:        rgba(232, 119, 34, 0.05);
     }
 
-    body {
+    html, body {
+      min-height: 100vh;
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--bg);
       color: var(--text);
+    }
+
+    /* ── Page Layout ── */
+    .page {
       min-height: 100vh;
-    }
-
-    /* ── Header ── */
-    .header {
-      text-align: center;
-      padding: 56px 20px 44px;
-      background: linear-gradient(180deg, #0e0e28 0%, var(--bg) 100%);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,162,39,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .header-titles {
-      display: inline-block;
-    }
-    .header-eyebrow {
-      font-size: clamp(1.3rem, 3.6vw, 2.1rem);
-      font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 0px;
-      line-height: 1;
-      letter-spacing: 0.15em;
-    }
-    .header-title {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: 0.04em;
-      text-shadow: 0 0 40px rgba(201,162,39,0.25);
-    }
-    .header-sub {
-      margin-top: 10px;
-      font-size: 0.82rem;
-      color: #9090b0;
-      letter-spacing: 0.12em;
-    }
-
-    /* ── Stats ── */
-    .stats-wrap {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 28px 24px 0;
-    }
-    .stats-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .stats-main {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-    .stats-number {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--gold);
-    }
-    .stats-badges {
-      display: flex;
-      gap: 10px;
-    }
-    .badge {
-      font-size: 0.72rem;
-      padding: 3px 11px;
-      border-radius: 20px;
-      border: 1px solid;
-      white-space: nowrap;
-    }
-    .badge-holo  { border-color: var(--gold);   color: var(--gold); }
-    .badge-common{ border-color: var(--border); color: var(--text-dim); }
-    .progress-bar {
-      width: 100%;
-      height: 5px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 28px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      border-radius: 3px;
-      transition: width 1s ease;
-      width: 0%;
-    }
-
-    /* ── Filters ── */
-    .filters-wrap {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 0 24px 22px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 5px 15px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-dim);
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.8rem;
-      transition: all 0.18s;
-    }
-    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .filter-btn.active {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #000;
-      font-weight: 700;
-    }
-
-    /* ── Grid ── */
-    .grid-wrap {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 600px) {
-      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .grid-wrap, .filters-wrap, .stats-wrap { padding-left: 14px; padding-right: 14px; }
-    }
-    @media (min-width: 601px) and (max-width: 820px) {
-      .card-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ── Card ── */
-    .card {
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      background: var(--bg-card);
-      overflow: hidden;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .card.collected { cursor: pointer; }
-    .card.collected:hover { transform: translateY(-4px); }
-    .card.holo {
-      border-color: var(--border-holo);
-      box-shadow: 0 0 10px var(--glow-holo);
-    }
-    .card.holo.collected:hover {
-      box-shadow: 0 0 20px var(--glow-holo), 0 8px 24px rgba(0,0,0,0.6);
-    }
-    .card.common.collected:hover {
-      border-color: #3a5a9f;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    }
-    .card.hidden { display: none; }
-
-    /* Card image — PSA scan ratio 380x639 */
-    .card-img-wrap {
-      width: 100%;
-      aspect-ratio: 380 / 639;
-      position: relative;
-      overflow: hidden;
-      background: #060612;
-    }
-    .card-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s;
-    }
-    .card.collected:hover .card-img-wrap img { transform: scale(1.04); }
-
-    /* Placeholder */
-    .card-placeholder {
-      width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: radial-gradient(circle at 50% 60%, #0d0d22 0%, #060610 80%);
-    }
-    .placeholder-icon { opacity: 0.15; width: 36px; height: 36px; }
-    .placeholder-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      opacity: 0.5;
-    }
-
-    /* Card info */
-    .card-info {
-      padding: 8px 10px 9px;
-    }
-    .card-num {
-      font-size: 0.62rem;
-      color: var(--text-dim);
-      margin-bottom: 2px;
-    }
-    .card-name {
-      font-size: 0.78rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--text);
-    }
-    .card.holo .card-num  { color: var(--gold); opacity: 0.8; }
-    .card.holo .card-name { color: var(--gold-light); }
-
-    /* HOLO badge */
-    .badge-holo-tag {
-      position: absolute;
-      top: 6px; right: 6px;
-      font-size: 0.5rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: linear-gradient(135deg, #c9a227, #f0d060);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    /* Collected tick */
-    .tick-badge {
-      position: absolute;
-      top: 6px; left: 6px;
-      width: 18px; height: 18px;
-      background: rgba(74,143,255,0.85);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tick-badge svg { width: 10px; height: 10px; }
-
-    /* ── Lightbox ── */
-    .lightbox {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.93);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-inner {
+      padding: 48px 24px 64px;
       position: relative;
-      max-width: 340px;
-      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Ambient background glows */
+    .page::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 20% 20%, rgba(201,162,39,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 40% at 80% 80%, rgba(232,119,34,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Brand Header ── */
+    .brand {
       text-align: center;
+      margin-bottom: 56px;
+      animation: fadeUp 0.7s ease both;
     }
-    .lightbox-img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.9);
-    }
-    .lightbox-holo { border: 2px solid var(--gold); box-shadow: 0 0 30px var(--glow-holo); }
-    .lightbox-info { margin-top: 18px; }
-    .lightbox-name {
-      font-size: 1.05rem;
-      font-weight: 700;
+
+    .brand-name {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: 0.3em;
       color: #fff;
+      line-height: 1;
+      text-shadow:
+        0 0 60px rgba(201,162,39,0.15),
+        0 0 120px rgba(201,162,39,0.08);
     }
-    .lightbox-sub {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 5px;
+
+    .brand-sub {
+      font-size: clamp(0.72rem, 2vw, 0.92rem);
+      letter-spacing: 0.55em;
+      color: var(--text-muted);
+      margin-top: 10px;
+      text-transform: uppercase;
     }
-    .lightbox-close {
+
+    .brand-divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pokemon), transparent);
+      margin: 20px auto 0;
+    }
+
+    /* ── Collection Cards Grid ── */
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    @media (max-width: 600px) {
+      .collections { grid-template-columns: 1fr; max-width: 380px; }
+    }
+
+    /* ── Collection Card ── */
+    .col-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .col-card::before {
+      content: '';
       position: absolute;
-      top: -44px; right: 0;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.15s;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+      transition: opacity 0.25s;
     }
-    .lightbox-close:hover { border-color: var(--text); }
+
+    /* Pokémon Card */
+    .col-card.pokemon { --accent: var(--pokemon); --accent-light: var(--pokemon-light); --accent-glow: var(--pokemon-glow); --accent-bg: var(--pokemon-bg); }
+    .col-card.pokemon::before { background: linear-gradient(90deg, var(--pokemon), var(--pokemon-light)); }
+    .col-card.pokemon:hover {
+      border-color: var(--pokemon);
+      box-shadow: 0 0 32px var(--pokemon-glow), 0 16px 40px rgba(0,0,0,0.5);
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+    }
+
+    /* NBA Card */
+    .col-card.nba { --accent: var(--nba); --accent-light: var(--nba-light); --accent-glow: var(--nba-glow); --accent-bg: var(--nba-bg); }
+    .col-card.nba::before { background: linear-gradient(90deg, var(--nba), var(--nba-light)); }
+    .col-card.nba:hover {
+      border-color: var(--nba);
+      box-shadow: 0 0 32px var(--nba-glow), 0 16px 40px rgba(0,0,0,0.5);
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+    }
+
+    /* Disabled / Coming soon */
+    .col-card.disabled {
+      cursor: default;
+      opacity: 0.7;
+    }
+    .col-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+      background: var(--bg-card);
+    }
+
+    /* Card icon */
+    .col-icon {
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 0 12px var(--accent-glow, transparent));
+      transition: transform 0.25s;
+    }
+    .col-card:not(.disabled):hover .col-icon { transform: scale(1.1); }
+
+    /* Card label (small uppercase type) */
+    .col-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    /* Card title */
+    .col-title {
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    /* Card description */
+    .col-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Progress section */
+    .col-progress {
+      margin-top: auto;
+      margin-bottom: 20px;
+    }
+    .col-progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .col-progress-text {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+    }
+    .col-progress-count {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .col-bar-bg {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .col-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0%;
+    }
+
+    /* Coming soon badge */
+    .col-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+      margin-bottom: 20px;
+    }
+    .col-badge.soon {
+      border-color: var(--nba);
+      color: var(--nba);
+      background: var(--nba-bg);
+    }
+    .col-badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite;
+    }
+
+    /* CTA button */
+    .col-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+    .col-card:not(.disabled):hover .col-cta { gap: 10px; }
+    .col-cta-arrow {
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+    .col-card:not(.disabled):hover .col-cta-arrow { transform: translateX(3px); }
+    .col-cta.muted { color: var(--text-dim); }
 
     /* ── Footer ── */
     footer {
+      margin-top: 56px;
       text-align: center;
-      padding: 30px 20px;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--text-dim);
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
     }
   </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-titles">
-    <p class="header-eyebrow">Pokémon Collection</p>
-    <h1 class="header-title">初代首刷寶可夢收藏</h1>
-  </div>
-  <p class="header-sub">1st Edition · Traditional Chinese · Base Set · 102/102</p>
-</header>
+<main class="page">
 
-<div class="stats-wrap">
-  <div class="stats-row">
-    <span class="stats-main">收藏進度</span>
-    <div class="stats-badges">
-      <span class="badge badge-holo"  id="badge-holo">閃卡 0 / 16</span>
-      <span class="badge badge-common" id="badge-common">一般 0 / 86</span>
+  <!-- Brand -->
+  <div class="brand">
+    <h1 class="brand-name">ARISH</h1>
+    <p class="brand-sub">Collection</p>
+    <div class="brand-divider"></div>
+  </div>
+
+  <!-- Collection Cards -->
+  <div class="collections">
+
+    <!-- Pokémon -->
+    <a class="col-card pokemon" href="./pokemon/index.html">
+      <span class="col-icon">🎴</span>
+      <p class="col-label">Pokémon TCG</p>
+      <h2 class="col-title">初代首刷<br>寶可夢收藏</h2>
+      <p class="col-desc">1st Edition · Traditional Chinese · Base Set · 102 張</p>
+      <div class="col-progress">
+        <div class="col-progress-label">
+          <span class="col-progress-text">收藏進度</span>
+          <span class="col-progress-count" id="poke-count">— / 102</span>
+        </div>
+        <div class="col-bar-bg">
+          <div class="col-bar-fill" id="poke-bar"></div>
+        </div>
+      </div>
+      <div class="col-cta">
+        <span>進入收藏</span>
+        <span class="col-cta-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- NBA -->
+    <div class="col-card nba disabled">
+      <span class="col-icon">🏀</span>
+      <p class="col-label">NBA Trading Cards</p>
+      <h2 class="col-title">NBA<br>球員卡收藏</h2>
+      <p class="col-desc">球星簽名卡、RC 新人卡、限量短印收藏展示</p>
+      <div class="col-badge soon">
+        <span class="col-badge-dot"></span>
+        即將推出
+      </div>
+      <div class="col-cta muted">
+        <span>敬請期待</span>
+      </div>
     </div>
-    <span class="stats-number"><span id="stats-n">0</span> <span style="font-size:0.9rem;font-weight:400;color:var(--text-dim)">/ 102</span></span>
+
   </div>
-  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-</div>
 
-<div class="filters-wrap">
-  <button class="filter-btn active" data-filter="all">全部</button>
-  <button class="filter-btn" data-filter="holo">閃卡 HOLO</button>
-  <button class="filter-btn" data-filter="pokemon">寶可夢</button>
-  <button class="filter-btn" data-filter="trainer">訓練師／道具</button>
-  <button class="filter-btn" data-filter="energy">能量</button>
-  <button class="filter-btn" data-filter="collected">已收藏</button>
-  <button class="filter-btn" data-filter="missing">未收藏</button>
-</div>
+  <!-- Footer -->
+  <footer>
+    © Gary Chen · Arish Collection · 個人收藏展示，非商業用途
+  </footer>
 
-<div class="grid-wrap">
-  <div class="card-grid" id="card-grid"></div>
-</div>
-
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightbox-close">✕</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-    <div class="lightbox-info">
-      <div class="lightbox-name" id="lightbox-name"></div>
-      <div class="lightbox-sub" id="lightbox-sub"></div>
-    </div>
-  </div>
-</div>
-
-<footer>Pokémon TCG © Nintendo / Creatures Inc. / GAME FREAK inc. &nbsp;·&nbsp; 個人收藏展示，非商業用途</footer>
+</main>
 
 <script>
-const CARDS = [
-  // ─── HOLO (No.1–16) ───
-  { id:1,  name:'胡地',        cat:'holo',    holo:true  },
-  { id:2,  name:'水箭龜',      cat:'holo',    holo:true  },
-  { id:3,  name:'吉利蛋',      cat:'holo',    holo:true  },
-  { id:4,  name:'噴火龍',      cat:'holo',    holo:true  },
-  { id:5,  name:'皮皮',        cat:'holo',    holo:true  },
-  { id:6,  name:'暴鯉龍',      cat:'holo',    holo:true  },
-  { id:7,  name:'快拳郎',      cat:'holo',    holo:true  },
-  { id:8,  name:'怪力',        cat:'holo',    holo:true  },
-  { id:9,  name:'三合一磁怪',  cat:'holo',    holo:true  },
-  { id:10, name:'超夢',        cat:'holo',    holo:true  },
-  { id:11, name:'尼多王',      cat:'holo',    holo:true  },
-  { id:12, name:'九尾',        cat:'holo',    holo:true  },
-  { id:13, name:'快泳蛙',      cat:'holo',    holo:true  },
-  { id:14, name:'雷丘',        cat:'holo',    holo:true  },
-  { id:15, name:'妙蛙花',      cat:'holo',    holo:true  },
-  { id:16, name:'閃電鳥',      cat:'holo',    holo:true  },
-  // ─── 寶可夢 (No.17–70) ───
-  { id:17, name:'大針蜂',      cat:'pokemon', holo:false },
-  { id:18, name:'哈克龍',      cat:'pokemon', holo:false },
-  { id:19, name:'三地鼠',      cat:'pokemon', holo:false },
-  { id:20, name:'雷電獸',      cat:'pokemon', holo:false },
-  { id:21, name:'頑皮蛋',      cat:'pokemon', holo:false },
-  { id:22, name:'比比鳥',      cat:'pokemon', holo:false },
-  { id:23, name:'風速狗',      cat:'pokemon', holo:false },
-  { id:24, name:'火恐龍',      cat:'pokemon', holo:false },
-  { id:25, name:'白海獅',      cat:'pokemon', holo:false },
-  { id:26, name:'迷你龍',      cat:'pokemon', holo:false },
-  { id:27, name:'大蔥鴨',      cat:'pokemon', holo:false },
-  { id:28, name:'卡蒂狗',      cat:'pokemon', holo:false },
-  { id:29, name:'鬼斯通',      cat:'pokemon', holo:false },
-  { id:30, name:'妙蛙草',      cat:'pokemon', holo:false },
-  { id:31, name:'迷唇姊',      cat:'pokemon', holo:false },
-  { id:32, name:'勇吉拉',      cat:'pokemon', holo:false },
-  { id:33, name:'鐵殼蛹',      cat:'pokemon', holo:false },
-  { id:34, name:'豪力',        cat:'pokemon', holo:false },
-  { id:35, name:'鯉魚王',      cat:'pokemon', holo:false },
-  { id:36, name:'鴨嘴火龍',    cat:'pokemon', holo:false },
-  { id:37, name:'尼多力諾',    cat:'pokemon', holo:false },
-  { id:38, name:'蚊香蛙',      cat:'pokemon', holo:false },
-  { id:39, name:'多邊獸',      cat:'pokemon', holo:false },
-  { id:40, name:'拉達',        cat:'pokemon', holo:false },
-  { id:41, name:'小海獅',      cat:'pokemon', holo:false },
-  { id:42, name:'卡咪龜',      cat:'pokemon', holo:false },
-  { id:43, name:'凱西',        cat:'pokemon', holo:false },
-  { id:44, name:'妙蛙種子',    cat:'pokemon', holo:false },
-  { id:45, name:'綠毛蟲',      cat:'pokemon', holo:false },
-  { id:46, name:'小火龍',      cat:'pokemon', holo:false },
-  { id:47, name:'地鼠',        cat:'pokemon', holo:false },
-  { id:48, name:'嘟嘟',        cat:'pokemon', holo:false },
-  { id:49, name:'催眠貘',      cat:'pokemon', holo:false },
-  { id:50, name:'鬼斯',        cat:'pokemon', holo:false },
-  { id:51, name:'瓦斯彈',      cat:'pokemon', holo:false },
-  { id:52, name:'腕力',        cat:'pokemon', holo:false },
-  { id:53, name:'小磁怪',      cat:'pokemon', holo:false },
-  { id:54, name:'鐵甲蛹',      cat:'pokemon', holo:false },
-  { id:55, name:'尼多朗',      cat:'pokemon', holo:false },
-  { id:56, name:'大岩蛇',      cat:'pokemon', holo:false },
-  { id:57, name:'波波',        cat:'pokemon', holo:false },
-  { id:58, name:'皮卡丘',      cat:'pokemon', holo:false },
-  { id:59, name:'蚊香蝌蚪',    cat:'pokemon', holo:false },
-  { id:60, name:'小火馬',      cat:'pokemon', holo:false },
-  { id:61, name:'小拉達',      cat:'pokemon', holo:false },
-  { id:62, name:'穿山鼠',      cat:'pokemon', holo:false },
-  { id:63, name:'傑尼龜',      cat:'pokemon', holo:false },
-  { id:64, name:'寶石海星',    cat:'pokemon', holo:false },
-  { id:65, name:'海星星',      cat:'pokemon', holo:false },
-  { id:66, name:'蔓藤怪',      cat:'pokemon', holo:false },
-  { id:67, name:'霹靂電球',    cat:'pokemon', holo:false },
-  { id:68, name:'六尾',        cat:'pokemon', holo:false },
-  { id:69, name:'獨角蟲',      cat:'pokemon', holo:false },
-  { id:70, name:'皮皮玩偶',    cat:'pokemon', holo:false },
-  // ─── 訓練師 (No.71–95) ───
-  { id:71, name:'電腦通信',      cat:'trainer', holo:false },
-  { id:72, name:'退化噴霧劑',    cat:'trainer', holo:false },
-  { id:73, name:'冒牌的大木博士',cat:'trainer', holo:false },
-  { id:74, name:'探寶器',        cat:'trainer', holo:false },
-  { id:75, name:'迷你裙',        cat:'trainer', holo:false },
-  { id:76, name:'寶可夢飼養員',  cat:'trainer', holo:false },
-  { id:77, name:'寶可夢交換員',  cat:'trainer', holo:false },
-  { id:78, name:'神奇寶貝回收',  cat:'trainer', holo:false },
-  { id:79, name:'超級能量消除',  cat:'trainer', holo:false },
-  { id:80, name:'傷害預防',      cat:'trainer', holo:false },
-  { id:81, name:'能量回收',      cat:'trainer', holo:false },
-  { id:82, name:'萬能醫療器',    cat:'trainer', holo:false },
-  { id:83, name:'維修',          cat:'trainer', holo:false },
-  { id:84, name:'力量增強',      cat:'trainer', holo:false },
-  { id:85, name:'神奇寶貝中心',  cat:'trainer', holo:false },
-  { id:86, name:'神奇寶貝笛子',  cat:'trainer', holo:false },
-  { id:87, name:'神奇寶貝圖鑑',  cat:'trainer', holo:false },
-  { id:88, name:'大木博士',      cat:'trainer', holo:false },
-  { id:89, name:'更生劑',        cat:'trainer', holo:false },
-  { id:90, name:'超級藥水',      cat:'trainer', holo:false },
-  { id:91, name:'正輝',          cat:'trainer', holo:false },
-  { id:92, name:'能量削減',      cat:'trainer', holo:false },
-  { id:93, name:'陣風',          cat:'trainer', holo:false },
-  { id:94, name:'藥水',          cat:'trainer', holo:false },
-  { id:95, name:'神奇寶貝替換',  cat:'trainer', holo:false },
-  // ─── 能量 (No.96–102) ───
-  { id:96,  name:'兩個無色能量', cat:'energy', holo:false },
-  { id:97,  name:'格鬥能量',     cat:'energy', holo:false },
-  { id:98,  name:'火能量',       cat:'energy', holo:false },
-  { id:99,  name:'草能量',       cat:'energy', holo:false },
-  { id:100, name:'雷能量',       cat:'energy', holo:false },
-  { id:101, name:'超能能量',     cat:'energy', holo:false },
-  { id:102, name:'水能量',       cat:'energy', holo:false },
-];
-
-const imgId = id => `images/${String(id).padStart(3,'0')}.jpg`;
-
-let collected = new Set();
-let activeFilter = 'all';
-
-// ── Load data ──
-async function loadData() {
-  try {
-    const res = await fetch(`./data.json?t=${Date.now()}`);
-    if (res.ok) {
+  // Load live Pokémon progress
+  (async () => {
+    try {
+      const res = await fetch('./data.json?t=' + Date.now());
+      if (!res.ok) return;
       const data = await res.json();
-      collected = new Set(data.collected || []);
-    }
-  } catch (_) {}
-  render();
-  updateStats();
-}
-
-// ── Render grid ──
-function render() {
-  const grid = document.getElementById('card-grid');
-  grid.innerHTML = '';
-
-  CARDS.forEach(card => {
-    const isCollected = collected.has(card.id);
-    const visible = matchFilter(card, isCollected);
-
-    const el = document.createElement('div');
-    el.className = `card ${card.holo ? 'holo' : 'common'} ${isCollected ? 'collected' : ''} ${visible ? '' : 'hidden'}`;
-    el.dataset.id = card.id;
-
-    const imgWrap = document.createElement('div');
-    imgWrap.className = 'card-img-wrap';
-
-    if (isCollected) {
-      const img = document.createElement('img');
-      img.src = imgId(card.id);
-      img.alt = card.name;
-      img.loading = 'lazy';
-      imgWrap.appendChild(img);
-
-      const tick = document.createElement('div');
-      tick.className = 'tick-badge';
-      tick.innerHTML = `<svg viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.5">
-        <polyline points="1.5,5 4,7.5 8.5,2.5"/>
-      </svg>`;
-      imgWrap.appendChild(tick);
-
-      el.addEventListener('click', () => openLightbox(card, imgId(card.id)));
-    } else {
-      const ph = document.createElement('div');
-      ph.className = 'card-placeholder';
-      ph.innerHTML = `
-        <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="2" y1="12" x2="22" y2="12"/>
-          <circle cx="12" cy="12" r="3" fill="none"/>
-        </svg>
-        <span class="placeholder-label">未收藏</span>`;
-      imgWrap.appendChild(ph);
-    }
-
-    if (card.holo) {
-      const badge = document.createElement('span');
-      badge.className = 'badge-holo-tag';
-      badge.textContent = 'HOLO';
-      imgWrap.appendChild(badge);
-    }
-
-    const info = document.createElement('div');
-    info.className = 'card-info';
-    info.innerHTML = `<div class="card-num">No.${card.id}</div>
-      <div class="card-name">${card.name}</div>`;
-
-    el.appendChild(imgWrap);
-    el.appendChild(info);
-    grid.appendChild(el);
-  });
-}
-
-function matchFilter(card, isCollected) {
-  if (activeFilter === 'all')       return true;
-  if (activeFilter === 'holo')      return card.holo;
-  if (activeFilter === 'pokemon')   return card.cat === 'pokemon';
-  if (activeFilter === 'trainer')   return card.cat === 'trainer';
-  if (activeFilter === 'energy')    return card.cat === 'energy';
-  if (activeFilter === 'collected') return isCollected;
-  if (activeFilter === 'missing')   return !isCollected;
-  return true;
-}
-
-// ── Stats ──
-function updateStats() {
-  const total = collected.size;
-  const holoCollected  = CARDS.filter(c => c.holo  && collected.has(c.id)).length;
-  const commonCollected = CARDS.filter(c => !c.holo && collected.has(c.id)).length;
-
-  document.getElementById('stats-n').textContent = total;
-  document.getElementById('badge-holo').textContent   = `閃卡 ${holoCollected} / 16`;
-  document.getElementById('badge-common').textContent = `一般 ${commonCollected} / 86`;
-  document.getElementById('progress-fill').style.width = `${(total / 102 * 100).toFixed(1)}%`;
-}
-
-// ── Filter buttons ──
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    render();
-  });
-});
-
-// ── Lightbox ──
-function openLightbox(card, src) {
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = src;
-  img.alt = card.name;
-  img.className = `lightbox-img${card.holo ? ' lightbox-holo' : ''}`;
-  document.getElementById('lightbox-name').textContent = `No.${card.id} ${card.name}`;
-  document.getElementById('lightbox-sub').textContent =
-    card.holo ? '閃卡 HOLO · 初代首刷 · 繁體中文' : `${catLabel(card.cat)} · 初代首刷 · 繁體中文`;
-  lb.classList.add('open');
-}
-
-function catLabel(cat) {
-  return { pokemon:'寶可夢卡', trainer:'訓練師／道具卡', energy:'能量卡', holo:'閃卡' }[cat] || '';
-}
-
-document.getElementById('lightbox-close').addEventListener('click', () => {
-  document.getElementById('lightbox').classList.remove('open');
-});
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox'))
-    document.getElementById('lightbox').classList.remove('open');
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
-});
-
-loadData();
+      const n = (data.collected || []).length;
+      document.getElementById('poke-count').textContent = `${n} / 102`;
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.getElementById('poke-bar').style.width = `${(n / 102 * 100).toFixed(1)}%`;
+        }, 200);
+      });
+    } catch (_) {}
+  })();
 </script>
+
 </body>
 </html>
