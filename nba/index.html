@@ -188,6 +188,27 @@
     @media (max-width: 600px) {
       .header-inner { padding: 0 20px; }
       .header-brand h1 { font-size: 22px; }
+
+      /* ── 手機版球員 Header ── */
+      .player-avatar {
+        width: 56px; height: 56px;
+        flex-shrink: 0;
+      }
+      .player-header { gap: 14px; }
+      .player-name-input {
+        font-size: 14px;
+        letter-spacing: 0.06em;
+      }
+      .player-team-input {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+      }
+
+      /* ── 手機版卡片 Grid ── */
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px 12px;
+      }
     }
 
     /* ── Sync dot ─────────────────────────────── */
