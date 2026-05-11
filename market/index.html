@@ -412,11 +412,12 @@ const raw = [
 
 const grades = [9, 8.5, 8, 7, 6];
 const colors = {
-  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.08)' },
-  8.5: { line: '#e87722', fill: 'rgba(232,119,34,0.08)' },
-  8:   { line: '#4e9eff', fill: 'rgba(78,158,255,0.08)' },
-  7:   { line: '#a78bfa', fill: 'rgba(167,139,250,0.08)' },
-  6:   { line: '#34d399', fill: 'rgba(52,211,153,0.08)' },
+  // 暖金 → 深藍 漸層（PSA 9 最高價值 = 最暖，PSA 6 最低 = 最冷）
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },   // 暖金
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },   // 琥珀橙
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },  // 淺天藍
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },   // 中藍
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },    // 深藍
 };
 
 const sorted = [...raw].sort((a,b) => new Date(a.date) - new Date(b.date));
@@ -508,20 +509,22 @@ grades.forEach(g => {
   const avg = Math.round(usds.reduce((a,b)=>a+b,0)/usds.length);
   const max = Math.max(...usds);
   const min = Math.min(...usds);
+  const c = colors[g].line;
   statsEl.innerHTML += `
-    <div class="stat-card">
-      <div class="stat-label">PSA ${g} · ${pts.length} 筆</div>
-      <div class="stat-value" style="color:#4e9eff">$${avg.toLocaleString()}</div>
-      <div class="stat-sub">均價<br>低 $${min.toLocaleString()} · 高 $${max.toLocaleString()}</div>
+    <div class="stat-card" style="border-left: 3px solid ${c}40; border-left-color: ${c}60;">
+      <div class="stat-label" style="color:${c}cc">PSA ${g} · ${pts.length} 筆</div>
+      <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
+      <div class="stat-sub">均價&ensp;·&ensp;低 $${min.toLocaleString()} · 高 $${max.toLocaleString()}</div>
     </div>`;
 });
 
 // Table
 const tbody = document.getElementById('tableBody');
 [...raw].sort((a,b) => new Date(b.date)-new Date(a.date)).forEach(r => {
+  const c = (colors[r.psa] || {line:'#888'}).line;
   tbody.innerHTML += `<tr>
     <td>${r.date}</td>
-    <td><span class="psa-badge" style="background:rgba(78,158,255,0.12);color:#7ec3ff;border:1px solid rgba(78,158,255,0.25)">PSA ${r.psa}</span></td>
+    <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">PSA ${r.psa}</span></td>
     <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
     <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
     <td style="color:#bbb">${r.source}</td>
