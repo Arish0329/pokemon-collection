@@ -167,7 +167,11 @@
     transition: opacity 0.15s;
   }
 
-  canvas { display: block; width: 100% !important; }
+  .chart-container {
+    position: relative;
+    height: 380px;
+  }
+  canvas { display: block; }
 
   /* ── Stats Grid ── */
   .stats-grid {
@@ -301,7 +305,9 @@
   <!-- Chart -->
   <div class="chart-panel">
     <div class="custom-legend" id="customLegend"></div>
-    <canvas id="trendChart" height="90"></canvas>
+    <div class="chart-container">
+      <canvas id="trendChart"></canvas>
+    </div>
   </div>
 
   <!-- Stats -->
@@ -395,6 +401,7 @@ const chart = new Chart(document.getElementById('trendChart'), {
   data: { datasets },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     interaction: { mode: 'index', intersect: false },
     plugins: {
       legend: { display: false },
