@@ -314,6 +314,53 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── Sort Bar ── */
+  .sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .sort-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .sort-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+  .sort-btn:hover {
+    color: var(--text);
+    border-color: var(--border-hi);
+    background: rgba(255,255,255,0.03);
+  }
+  .sort-btn.active {
+    color: var(--market);
+    border-color: rgba(78,158,255,0.5);
+    background: rgba(78,158,255,0.08);
+  }
+  .sort-arrow {
+    font-size: 0.65rem;
+    opacity: 0.7;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .page { padding: 24px 16px 48px; }
@@ -361,6 +408,14 @@
 
   <!-- Records Table -->
   <p class="section-title">完整成交紀錄</p>
+  <div class="sort-bar">
+    <span class="sort-label">排序</span>
+    <button class="sort-btn active" data-sort="date-desc">📅 日期最新</button>
+    <button class="sort-btn" data-sort="date-asc">📅 日期最舊</button>
+    <button class="sort-btn" data-sort="price-desc">💰 價格最高</button>
+    <button class="sort-btn" data-sort="price-asc">💰 價格最低</button>
+    <button class="sort-btn" data-sort="psa-desc">🏅 評級最高</button>
+  </div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -518,17 +573,41 @@ grades.forEach(g => {
     </div>`;
 });
 
-// Table
+// Table — 動態排序渲染
 const tbody = document.getElementById('tableBody');
-[...raw].sort((a,b) => new Date(b.date)-new Date(a.date)).forEach(r => {
-  const c = (colors[r.psa] || {line:'#888'}).line;
-  tbody.innerHTML += `<tr>
-    <td>${r.date}</td>
-    <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">PSA ${r.psa}</span></td>
-    <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
-    <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
-    <td style="color:#bbb">${r.source}</td>
-  </tr>`;
+
+const sorters = {
+  'date-desc':  (a,b) => new Date(b.date) - new Date(a.date),
+  'date-asc':   (a,b) => new Date(a.date) - new Date(b.date),
+  'price-desc': (a,b) => b.usd - a.usd,
+  'price-asc':  (a,b) => a.usd - b.usd,
+  'psa-desc':   (a,b) => b.psa - a.psa,
+};
+
+function renderTable(sortKey) {
+  const sorted = [...raw].sort(sorters[sortKey] || sorters['date-desc']);
+  tbody.innerHTML = sorted.map(r => {
+    const c = (colors[r.psa] || {line:'#888'}).line;
+    return `<tr>
+      <td>${r.date}</td>
+      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">PSA ${r.psa}</span></td>
+      <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
+      <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
+      <td style="color:#bbb">${r.source}</td>
+    </tr>`;
+  }).join('');
+}
+
+// 初始渲染
+renderTable('date-desc');
+
+// Sort button 互動
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTable(btn.dataset.sort);
+  });
 });
 </script>
 </body>
