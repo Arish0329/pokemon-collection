@@ -482,7 +482,8 @@ const sorted = [...raw].sort((a,b) => new Date(a.date) - new Date(b.date));
 const datasets = grades.map(g => {
   const points = sorted.filter(r => r.psa === g).map(r => ({
     x: new Date(r.date.replace(/\//g, '-')),
-    y: r.usd
+    y: r.usd,
+    _record: r
   }));
   return {
     label: `PSA ${g}`,
@@ -505,7 +506,7 @@ const chart = new Chart(document.getElementById('trendChart'), {
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    interaction: { mode: 'index', intersect: false },
+    interaction: { mode: 'nearest', intersect: true },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -516,7 +517,20 @@ const chart = new Chart(document.getElementById('trendChart'), {
         bodyColor: '#eee',
         padding: 10,
         callbacks: {
-          label: ctx => ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`
+          title: ctx => {
+            if (!ctx.length) return '';
+            const d = ctx[0].raw.x;
+            return d.toLocaleDateString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit' });
+          },
+          label: ctx => {
+            const r = ctx.raw._record;
+            if (!r) return ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`;
+            return [
+              ` ${ctx.dataset.label}`,
+              ` $${r.usd.toLocaleString()} USD  ·  NT$${r.twd.toLocaleString()}`,
+              ` ${r.source}`,
+            ];
+          }
         }
       }
     },
