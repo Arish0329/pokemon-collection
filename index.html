@@ -30,6 +30,12 @@
       --nba-light:     #ffaa55;
       --nba-glow:      rgba(232, 119, 34, 0.35);
       --nba-bg:        rgba(232, 119, 34, 0.05);
+
+      /* Market — Blue */
+      --market:        #4e9eff;
+      --market-light:  #7ec3ff;
+      --market-glow:   rgba(78, 158, 255, 0.35);
+      --market-bg:     rgba(78, 158, 255, 0.05);
     }
 
     html, body {
@@ -57,8 +63,9 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 55% 40% at 20% 20%, rgba(201,162,39,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 55% 40% at 80% 80%, rgba(232,119,34,0.04) 0%, transparent 70%);
+        radial-gradient(ellipse 50% 35% at 15% 20%, rgba(201,162,39,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 85% 80%, rgba(232,119,34,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 50% 50%, rgba(78,158,255,0.03) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -98,14 +105,17 @@
     /* ── Collection Cards Grid ── */
     .collections {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       width: 100%;
-      max-width: 800px;
+      max-width: 1100px;
       animation: fadeUp 0.7s 0.15s ease both;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 860px) {
+      .collections { grid-template-columns: repeat(2, 1fr); max-width: 680px; }
+    }
+    @media (max-width: 560px) {
       .collections { grid-template-columns: 1fr; max-width: 380px; }
     }
 
@@ -150,6 +160,16 @@
     .col-card.nba:hover {
       border-color: var(--nba);
       box-shadow: 0 0 32px var(--nba-glow), 0 16px 40px rgba(0,0,0,0.5);
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+    }
+
+    /* Market Card */
+    .col-card.market { --accent: var(--market); --accent-light: var(--market-light); --accent-glow: var(--market-glow); --accent-bg: var(--market-bg); }
+    .col-card.market::before { background: linear-gradient(90deg, var(--market), var(--market-light)); }
+    .col-card.market:hover {
+      border-color: var(--market);
+      box-shadow: 0 0 32px var(--market-glow), 0 16px 40px rgba(0,0,0,0.5);
       background: var(--bg-card-hover);
       transform: translateY(-6px);
     }
@@ -350,6 +370,27 @@
       </div>
     </a>
 
+    <!-- Market -->
+    <a class="col-card market" href="./market/index.html">
+      <span class="col-icon">📈</span>
+      <p class="col-label">Market Prices</p>
+      <h2 class="col-title">市場行情<br>成交追蹤</h2>
+      <p class="col-desc">噴火龍 PSA 6–9 歷史成交價格走勢、均價統計與完整紀錄</p>
+      <div class="col-progress" style="margin-top:auto; margin-bottom:20px;">
+        <div class="col-progress-label">
+          <span class="col-progress-text">成交筆數</span>
+          <span class="col-progress-count">28 筆紀錄</span>
+        </div>
+        <div class="col-bar-bg">
+          <div class="col-bar-fill" id="market-bar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="col-cta">
+        <span>查看行情</span>
+        <span class="col-cta-arrow">→</span>
+      </div>
+    </a>
+
   </div>
 
   <!-- Footer -->
@@ -375,6 +416,13 @@
       });
     } catch (_) {}
   })();
+
+  // Market bar — animate to show activity (28 records as ratio of soft target 40)
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.getElementById('market-bar').style.width = '70%';
+    }, 400);
+  });
 </script>
 
 </body>
