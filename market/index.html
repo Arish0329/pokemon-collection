@@ -493,19 +493,26 @@ const pokemonDB = {
       {date:'2024/11/3', psa:9, usd:528,  twd:17054, source:'Fanatics'},
       {date:'2024/4/21', psa:9, usd:660,  twd:21318, source:'Fanatics'},
       {date:'2022/7/10', psa:9, usd:720,  twd:21600, source:'Fanatics'},
-      {date:'2021/5/28', psa:9, usd:1125, twd:31500, source:'Fanatics'},
+      {date:'2021/5/28', psa:9,  usd:1125,   twd:31500, source:'Fanatics'},
+      {date:'2021/4/27', psa:9,  usd:1045,   twd:29260, source:'Fanatics'},
+      {date:'2020/11/25',psa:7,  usd:460,    twd:13570, source:'Fanatics'},
+      {date:'2020/7/27', psa:9,  usd:1125,   twd:33188, source:'PWCC'},
+      {date:'2019/5/28', psa:9,  usd:105,    twd:3255,  source:'PWCC'},
+      {date:'2018/11/20',psa:9,  usd:77,     twd:2387,  source:'PWCC'},
+      {date:'2018/2/25', psa:10, usd:245,    twd:7473,  source:'PWCC'},
     ]
   }
 };
 
 // ── Grade color scheme (warm gold → deep blue) ──
-const grades = [9, 8.5, 8, 7, 6];
+const grades = [10, 9, 8.5, 8, 7, 6];
 const colors = {
-  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
-  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
-  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
-  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
-  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
+  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },  // 白金 / GEM MINT
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },   // 暖金
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },   // 琥珀橙
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },  // 淺天藍
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },   // 中藍
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },    // 深藍
 };
 
 // ── State ──
