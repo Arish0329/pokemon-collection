@@ -21,9 +21,7 @@
     --text:      #d8d8ea;
     --text-muted:#9090b0;
     --text-dim:  #5a5a7a;
-    --market:    #4e9eff;
-    --market-light: #7ec3ff;
-    --market-glow:  rgba(78,158,255,0.3);
+    --accent:    #4e9eff;
   }
 
   html, body {
@@ -57,11 +55,7 @@
     border: 1px solid transparent;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
-  .nav-back:hover {
-    color: var(--text);
-    border-color: var(--border);
-    background: rgba(255,255,255,0.04);
-  }
+  .nav-back:hover { color: var(--text); border-color: var(--border); background: rgba(255,255,255,0.04); }
   .nav-back-arrow { font-size: 0.9rem; }
   .nav-brand {
     margin-left: 16px;
@@ -70,38 +64,42 @@
     color: var(--text-dim);
     text-transform: uppercase;
   }
-  .nav-brand span { color: var(--market); }
+  .nav-brand span { color: var(--accent); }
 
   /* ── Hero Header ── */
   .header {
     text-align: center;
-    padding: 56px 20px 44px;
+    padding: 48px 20px 36px;
     background: linear-gradient(180deg, #0a0a22 0%, var(--bg) 100%);
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
+    transition: --glow-color 0.4s;
   }
   .header::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(78,158,255,0.09) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 55% at 50% 0%, var(--header-glow, rgba(78,158,255,0.09)) 0%, transparent 70%);
     pointer-events: none;
+    transition: background 0.5s;
   }
   .header-eyebrow {
     font-size: clamp(1.1rem, 3vw, 1.8rem);
     font-weight: 900;
-    color: var(--market);
+    color: var(--accent);
     letter-spacing: 0.2em;
     line-height: 1;
     margin-bottom: 4px;
+    transition: color 0.3s;
   }
   .header-title {
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     font-weight: 900;
     color: #fff;
     letter-spacing: 0.04em;
-    text-shadow: 0 0 40px rgba(78,158,255,0.22);
+    text-shadow: 0 0 40px var(--header-glow, rgba(78,158,255,0.22));
+    transition: text-shadow 0.3s;
   }
   .header-sub {
     margin-top: 10px;
@@ -109,32 +107,93 @@
     color: #9090b0;
     letter-spacing: 0.1em;
   }
-  .header-stats {
+  .header-badges {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-top: 22px;
+    gap: 10px;
+    margin-top: 18px;
     flex-wrap: wrap;
   }
   .h-badge {
     font-size: 0.72rem;
     padding: 3px 12px;
     border-radius: 20px;
-    border: 1px solid;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
     white-space: nowrap;
   }
-  .h-badge-blue  { border-color: var(--market); color: var(--market); }
-  .h-badge-dim   { border-color: var(--border); color: var(--text-dim); }
-  .header-count {
-    font-size: 0.82rem;
-    color: var(--text-dim);
+
+  /* ── Pokémon Selector ── */
+  .poke-selector {
+    display: flex;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .header-count strong {
-    font-size: 1.4rem;
+  .poke-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--bg-panel);
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+    min-width: 160px;
+  }
+  .poke-tab:hover {
+    border-color: var(--border-hi);
+    background: var(--bg-card);
+    transform: translateY(-2px);
+  }
+  .poke-tab.active {
+    border-color: var(--tab-accent, #4e9eff);
+    background: var(--bg-card);
+    box-shadow: 0 0 20px var(--tab-glow, rgba(78,158,255,0.15));
+  }
+  .poke-tab-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px var(--tab-glow, transparent));
+  }
+  .poke-tab-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .poke-tab-zh {
+    font-size: 0.9rem;
     font-weight: 900;
-    color: var(--market);
-    margin-right: 3px;
+    color: #fff;
+  }
+  .poke-tab.active .poke-tab-zh { color: var(--tab-accent, #4e9eff); }
+  .poke-tab-en {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .poke-tab-count {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+  .poke-tab.active .poke-tab-count {
+    color: var(--tab-accent);
+    border-color: var(--tab-accent);
+    background: rgba(0,0,0,0.2);
   }
 
   /* ── Page Body ── */
@@ -143,6 +202,17 @@
     margin: 0 auto;
     padding: 36px 24px 64px;
   }
+
+  /* ── Empty State ── */
+  .empty-state {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-dim);
+  }
+  .empty-state-icon { font-size: 3rem; margin-bottom: 16px; }
+  .empty-state h3 { font-size: 1rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
+  .empty-state p { font-size: 0.8rem; }
 
   /* ── Section Title ── */
   .section-title {
@@ -162,16 +232,13 @@
     border-radius: 14px;
     padding: 24px;
     margin-bottom: 28px;
-    animation: fadeUp 0.6s 0.1s ease both;
   }
-
   .custom-legend {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 18px;
   }
-
   .legend-item {
     display: flex;
     align-items: center;
@@ -186,31 +253,12 @@
     font-size: 12px;
     color: #888;
   }
-  .legend-item.active {
-    border-color: rgba(78,158,255,0.4);
-    color: #ccc;
-  }
+  .legend-item.active { border-color: rgba(78,158,255,0.4); color: #ccc; }
   .legend-item.active .legend-check { opacity: 1; }
   .legend-item:not(.active) { opacity: 0.35; }
-
-  .legend-swatch {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    background: var(--c);
-    flex-shrink: 0;
-  }
-  .legend-check {
-    font-size: 11px;
-    color: var(--c);
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-
-  .chart-container {
-    position: relative;
-    height: 380px;
-  }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
+  .legend-check { font-size: 11px; color: var(--c); opacity: 0; transition: opacity 0.15s; }
+  .chart-container { position: relative; height: 380px; }
   canvas { display: block; }
 
   /* ── Stats Grid ── */
@@ -219,9 +267,7 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
     margin-bottom: 28px;
-    animation: fadeUp 0.6s 0.2s ease both;
   }
-
   .stat-card {
     background: var(--bg-panel);
     border: 1px solid var(--border);
@@ -230,27 +276,9 @@
     transition: border-color 0.2s;
   }
   .stat-card:hover { border-color: var(--border-hi); }
-
-  .stat-label {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
-    font-weight: 900;
-  }
-
-  .stat-sub {
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    margin-top: 3px;
-    line-height: 1.5;
-  }
+  .stat-label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-weight: 700; }
+  .stat-value { font-size: 1.5rem; font-weight: 900; }
+  .stat-sub { font-size: 0.68rem; color: var(--text-dim); margin-top: 3px; line-height: 1.5; }
 
   /* ── Records Table ── */
   .table-wrap {
@@ -258,15 +286,8 @@
     border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
-    animation: fadeUp 0.6s 0.3s ease both;
   }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.8rem;
-  }
-
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
   th {
     background: #13131f;
     color: var(--text-dim);
@@ -278,58 +299,14 @@
     letter-spacing: 0.1em;
     border-bottom: 1px solid var(--border);
   }
-
-  td {
-    padding: 10px 16px;
-    border-bottom: 1px solid #0d0d1a;
-    color: var(--text-muted);
-  }
-
+  td { padding: 10px 16px; border-bottom: 1px solid #0d0d1a; color: var(--text-muted); }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #13131f; }
-
-  .owned-badge {
-    display: inline-block;
-    background: rgba(78,158,255,0.12);
-    color: var(--market);
-    border: 1px solid rgba(78,158,255,0.3);
-    border-radius: 4px;
-    font-size: 0.6rem;
-    padding: 1px 6px;
-    margin-left: 6px;
-    font-weight: 700;
-  }
-
-  .psa-badge {
-    display: inline-block;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 2px 8px;
-  }
-
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .psa-badge { display: inline-block; border-radius: 4px; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; }
 
   /* ── Sort Bar ── */
-  .sort-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-  }
-  .sort-label {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-right: 4px;
-  }
+  .sort-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .sort-label { font-size: 0.65rem; color: var(--text-dim); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 4px; }
   .sort-btn {
     display: inline-flex;
     align-items: center;
@@ -346,26 +323,22 @@
     transition: color 0.15s, border-color 0.15s, background 0.15s;
     white-space: nowrap;
   }
-  .sort-btn:hover {
-    color: var(--text);
-    border-color: var(--border-hi);
-    background: rgba(255,255,255,0.03);
+  .sort-btn:hover { color: var(--text); border-color: var(--border-hi); background: rgba(255,255,255,0.03); }
+  .sort-btn.active { color: var(--accent); border-color: rgba(78,158,255,0.5); background: rgba(78,158,255,0.08); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .sort-btn.active {
-    color: var(--market);
-    border-color: rgba(78,158,255,0.5);
-    background: rgba(78,158,255,0.08);
-  }
-  .sort-arrow {
-    font-size: 0.65rem;
-    opacity: 0.7;
-  }
+  .anim { animation: fadeUp 0.4s ease both; }
 
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .page { padding: 24px 16px 48px; }
     th, td { padding: 8px 12px; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .poke-tab { min-width: 130px; padding: 10px 14px; }
   }
 </style>
 </head>
@@ -383,125 +356,186 @@
 <!-- Hero Header -->
 <header class="header">
   <p class="header-eyebrow">Market Prices</p>
-  <h1 class="header-title">繁中首刷噴火龍成交紀錄</h1>
-  <p class="header-sub">Charizard · Pokemon Chinese 1st Edition · PSA Grading</p>
-  <div class="header-stats">
-    <span class="h-badge h-badge-dim">eBay / Fanatics / Goldin / Heritage</span>
+  <h1 class="header-title" id="headerTitle">繁中首刷噴火龍成交紀錄</h1>
+  <p class="header-sub" id="headerSub">Charizard · Pokemon Chinese 1st Edition · PSA Grading</p>
+  <div class="header-badges">
+    <span class="h-badge">eBay / Fanatics / Goldin / Heritage / 社團</span>
   </div>
 </header>
 
+<!-- Pokémon Selector -->
+<div class="poke-selector" id="pokeSelector"></div>
+
 <div class="page">
 
-  <!-- Chart -->
-  <div class="chart-panel">
-    <div class="custom-legend" id="customLegend"></div>
-    <div class="chart-container">
-      <canvas id="trendChart"></canvas>
+  <!-- Main content (chart + stats + table) -->
+  <div id="mainContent">
+
+    <div class="chart-panel anim">
+      <div class="custom-legend" id="customLegend"></div>
+      <div class="chart-container">
+        <canvas id="trendChart"></canvas>
+      </div>
     </div>
+
+    <p class="section-title">各評級均價統計</p>
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <p class="section-title">完整成交紀錄</p>
+    <div class="sort-bar">
+      <span class="sort-label">排序</span>
+      <button class="sort-btn active" data-sort="date-desc">📅 日期最新</button>
+      <button class="sort-btn" data-sort="date-asc">📅 日期最舊</button>
+      <button class="sort-btn" data-sort="price-desc">💰 價格最高</button>
+      <button class="sort-btn" data-sort="price-asc">💰 價格最低</button>
+      <button class="sort-btn" data-sort="psa-desc">🏅 評級最高</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th><th>PSA</th><th>USD</th><th>TWD</th><th>來源</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
   </div>
 
-  <!-- Stats -->
-  <p class="section-title">各評級均價統計</p>
-  <div class="stats-grid" id="statsGrid"></div>
-
-  <!-- Records Table -->
-  <p class="section-title">完整成交紀錄</p>
-  <div class="sort-bar">
-    <span class="sort-label">排序</span>
-    <button class="sort-btn active" data-sort="date-desc">📅 日期最新</button>
-    <button class="sort-btn" data-sort="date-asc">📅 日期最舊</button>
-    <button class="sort-btn" data-sort="price-desc">💰 價格最高</button>
-    <button class="sort-btn" data-sort="price-asc">💰 價格最低</button>
-    <button class="sort-btn" data-sort="psa-desc">🏅 評級最高</button>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>日期</th>
-          <th>PSA</th>
-          <th>USD</th>
-          <th>TWD</th>
-          <th>來源</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+  <!-- Empty State -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-state-icon" id="emptyIcon">🔍</div>
+    <h3>尚無成交紀錄</h3>
+    <p>資料陸續新增中，敬請期待</p>
   </div>
 
 </div>
 
 <script>
-const raw = [
-  {date:'2026/5/10',psa:6,usd:4360,twd:140828,source:'eBay',owned:false},
-  {date:'2025/11/9',psa:8,usd:3360,twd:108528,source:'Fanatics',owned:true},
-  {date:'2025/11/2',psa:8,usd:3240,twd:104652,source:'Fanatics',owned:false},
-  {date:'2025/10/27',psa:7,usd:2640,twd:85272,source:'eBay',owned:false},
-  {date:'2025/9/4',psa:8.5,usd:6806,twd:219834,source:'eBay',owned:false},
-  {date:'2025/7/6',psa:7,usd:4644,twd:150000,source:'社團',owned:false},
-  {date:'2025/6/29',psa:8,usd:3950,twd:128375,source:'eBay',owned:false},
-  {date:'2025/3/25',psa:8,usd:3480,twd:113100,source:'eBay',owned:false},
-  {date:'2025/3/12',psa:9,usd:6000,twd:195000,source:'eBay',owned:false},
-  {date:'2025/3/9',psa:8,usd:3110,twd:101075,source:'eBay',owned:false},
-  {date:'2025/2/9',psa:8,usd:2450,twd:79625,source:'eBay',owned:false},
-  {date:'2024/8/24',psa:9,usd:3950,twd:127585,source:'eBay',owned:true},
-  {date:'2024/7/21',psa:9,usd:6954,twd:225855,source:'Goldin',owned:false},
-  {date:'2024/7/9',psa:8,usd:2378,twd:77285,source:'eBay',owned:false},
-  {date:'2024/6/26',psa:7,usd:2200,twd:71060,source:'eBay',owned:false},
-  {date:'2024/6/20',psa:7,usd:2300,twd:74290,source:'eBay',owned:false},
-  {date:'2024/6/12',psa:9,usd:6105,twd:197192,source:'eBay',owned:false},
-  {date:'2024/4/21',psa:8,usd:2190,twd:70080,source:'Fanatics',owned:false},
-  {date:'2023/10/21',psa:9,usd:3250,twd:103350,source:'Heritage',owned:false},
-  {date:'2023/11/19',psa:8,usd:1680,twd:52920,source:'Fanatics',owned:false},
-  {date:'2022/7/31',psa:8,usd:2760,twd:82800,source:'Fanatics',owned:false},
-  {date:'2022/7/10',psa:9,usd:5040,twd:151200,source:'Fanatics',owned:false},
-  {date:'2022/4/3',psa:9,usd:4920,twd:145140,source:'Fanatics',owned:false},
-  {date:'2022/3/4',psa:9,usd:3960,twd:116820,source:'Heritage',owned:false},
-  {date:'2022/2/13',psa:7,usd:1710,twd:50445,source:'Fanatics',owned:false},
-  {date:'2021/7/28',psa:8,usd:3050,twd:85400,source:'Fanatics',owned:false},
-  {date:'2021/5/28',psa:8,usd:4005,twd:112140,source:'Fanatics',owned:false},
-  {date:'2021/5/28',psa:8,usd:3450,twd:96600,source:'Fanatics',owned:false},
-  {date:'2021/5/28',psa:8,usd:3250,twd:91000,source:'Fanatics',owned:false},
-  {date:'2021/4/27',psa:9,usd:8130,twd:227640,source:'Fanatics',owned:false},
-  {date:'2021/1/31',psa:6,usd:1975,twd:55300,source:'Fanatics',owned:false},
-];
-
-const grades = [9, 8.5, 8, 7, 6];
-const colors = {
-  // 暖金 → 深藍 漸層（PSA 9 最高價值 = 最暖，PSA 6 最低 = 最冷）
-  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },   // 暖金
-  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },   // 琥珀橙
-  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },  // 淺天藍
-  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },   // 中藍
-  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },    // 深藍
+// ══════════════════════════════════════════════
+// ── Pokémon Database ──
+// ══════════════════════════════════════════════
+const pokemonDB = {
+  charizard: {
+    zh: '噴火龍', en: 'Charizard', icon: '🔥',
+    accent: '#c9a227', glow: 'rgba(201,162,39,0.12)',
+    records: [
+      {date:'2026/5/10',psa:6,usd:4360,twd:140828,source:'eBay'},
+      {date:'2025/11/9',psa:8,usd:3360,twd:108528,source:'Fanatics'},
+      {date:'2025/11/2',psa:8,usd:3240,twd:104652,source:'Fanatics'},
+      {date:'2025/10/27',psa:7,usd:2640,twd:85272,source:'eBay'},
+      {date:'2025/9/4',psa:8.5,usd:6806,twd:219834,source:'eBay'},
+      {date:'2025/7/6',psa:7,usd:4644,twd:150000,source:'社團'},
+      {date:'2025/6/29',psa:8,usd:3950,twd:128375,source:'eBay'},
+      {date:'2025/5/23',psa:8,usd:7740,twd:250000,source:'社團'},
+      {date:'2025/5/23',psa:8,usd:7740,twd:250000,source:'社團'},
+      {date:'2025/3/25',psa:8,usd:3480,twd:113100,source:'eBay'},
+      {date:'2025/3/12',psa:9,usd:6000,twd:195000,source:'eBay'},
+      {date:'2025/3/9',psa:8,usd:3110,twd:101075,source:'eBay'},
+      {date:'2025/2/9',psa:8,usd:2450,twd:79625,source:'eBay'},
+      {date:'2024/8/24',psa:9,usd:3950,twd:127585,source:'eBay'},
+      {date:'2024/7/21',psa:9,usd:6954,twd:225855,source:'Goldin'},
+      {date:'2024/7/9',psa:8,usd:2378,twd:77285,source:'eBay'},
+      {date:'2024/6/26',psa:7,usd:2200,twd:71060,source:'eBay'},
+      {date:'2024/6/20',psa:7,usd:2300,twd:74290,source:'eBay'},
+      {date:'2024/6/12',psa:9,usd:6105,twd:197192,source:'eBay'},
+      {date:'2024/4/21',psa:8,usd:2190,twd:70080,source:'Fanatics'},
+      {date:'2023/10/21',psa:9,usd:3250,twd:103350,source:'Heritage'},
+      {date:'2023/11/19',psa:8,usd:1680,twd:52920,source:'Fanatics'},
+      {date:'2022/7/31',psa:8,usd:2760,twd:82800,source:'Fanatics'},
+      {date:'2022/7/10',psa:9,usd:5040,twd:151200,source:'Fanatics'},
+      {date:'2022/4/3',psa:9,usd:4920,twd:145140,source:'Fanatics'},
+      {date:'2022/3/4',psa:9,usd:3960,twd:116820,source:'Heritage'},
+      {date:'2022/2/13',psa:7,usd:1710,twd:50445,source:'Fanatics'},
+      {date:'2021/7/28',psa:8,usd:3050,twd:85400,source:'Fanatics'},
+      {date:'2021/5/28',psa:8,usd:4005,twd:112140,source:'Fanatics'},
+      {date:'2021/5/28',psa:8,usd:3450,twd:96600,source:'Fanatics'},
+      {date:'2021/5/28',psa:8,usd:3250,twd:91000,source:'Fanatics'},
+      {date:'2021/4/27',psa:9,usd:8130,twd:227640,source:'Fanatics'},
+      {date:'2021/1/31',psa:6,usd:1975,twd:55300,source:'Fanatics'},
+    ]
+  },
+  blastoise: {
+    zh: '水箭龜', en: 'Blastoise', icon: '💧',
+    accent: '#38bdf8', glow: 'rgba(56,189,248,0.12)',
+    records: []
+  },
+  venusaur: {
+    zh: '妙蛙花', en: 'Venusaur', icon: '🌿',
+    accent: '#4ade80', glow: 'rgba(74,222,128,0.12)',
+    records: []
+  }
 };
 
-const sorted = [...raw].sort((a,b) => new Date(a.date) - new Date(b.date));
+// ── Grade color scheme (warm gold → deep blue) ──
+const grades = [9, 8.5, 8, 7, 6];
+const colors = {
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
+};
 
-const datasets = grades.map(g => {
-  const points = sorted.filter(r => r.psa === g).map(r => ({
-    x: new Date(r.date.replace(/\//g, '-')),
-    y: r.usd,
-    _record: r
-  }));
-  return {
-    label: `PSA ${g}`,
-    data: points,
-    borderColor: colors[g].line,
-    backgroundColor: colors[g].fill,
-    pointBackgroundColor: colors[g].line,
-    pointRadius: 5,
-    pointHoverRadius: 7,
-    borderWidth: 2,
-    tension: 0.3,
-    fill: false,
-    spanGaps: true,
-  };
-}).filter(d => d.data.length > 0);
+// ── State ──
+let currentPokeKey = 'charizard';
+let currentSort    = 'date-desc';
+let chartInstance  = null;
 
-const chart = new Chart(document.getElementById('trendChart'), {
+// ══════════════════════════════════════════════
+// ── Build Pokémon Selector ──
+// ══════════════════════════════════════════════
+const selectorEl = document.getElementById('pokeSelector');
+Object.entries(pokemonDB).forEach(([key, poke]) => {
+  const count = poke.records.length;
+  const btn = document.createElement('button');
+  btn.className = 'poke-tab' + (key === 'charizard' ? ' active' : '');
+  btn.dataset.poke = key;
+  btn.style.setProperty('--tab-accent', poke.accent);
+  btn.style.setProperty('--tab-glow', poke.glow);
+  btn.innerHTML = `
+    <span class="poke-tab-icon">${poke.icon}</span>
+    <div class="poke-tab-info">
+      <span class="poke-tab-zh">${poke.zh}</span>
+      <span class="poke-tab-en">${poke.en}</span>
+    </div>
+    <span class="poke-tab-count" id="count-${key}">${count > 0 ? count + ' 筆' : '尚無資料'}</span>
+  `;
+  btn.addEventListener('click', () => switchPokemon(key));
+  selectorEl.appendChild(btn);
+});
+
+// ══════════════════════════════════════════════
+// ── Chart Init ──
+// ══════════════════════════════════════════════
+function buildDatasets(records) {
+  const sorted = [...records].sort((a,b) => new Date(a.date) - new Date(b.date));
+  return grades.map(g => {
+    const points = sorted.filter(r => r.psa === g).map(r => ({
+      x: new Date(r.date.replace(/\//g, '-')),
+      y: r.usd,
+      _record: r
+    }));
+    return {
+      label: `PSA ${g}`,
+      data: points,
+      borderColor: colors[g].line,
+      backgroundColor: colors[g].fill,
+      pointBackgroundColor: colors[g].line,
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      borderWidth: 2,
+      tension: 0.3,
+      fill: false,
+      spanGaps: true,
+    };
+  }).filter(d => d.data.length > 0);
+}
+
+chartInstance = new Chart(document.getElementById('trendChart'), {
   type: 'line',
-  data: { datasets },
+  data: { datasets: buildDatasets(pokemonDB.charizard.records) },
   options: {
     responsive: true,
     maintainAspectRatio: false,
@@ -518,8 +552,7 @@ const chart = new Chart(document.getElementById('trendChart'), {
         callbacks: {
           title: ctx => {
             if (!ctx.length) return '';
-            const d = ctx[0].raw.x;
-            return d.toLocaleDateString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit' });
+            return ctx[0].raw.x.toLocaleDateString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit' });
           },
           label: ctx => {
             const r = ctx.raw._record;
@@ -542,55 +575,54 @@ const chart = new Chart(document.getElementById('trendChart'), {
       },
       y: {
         grid: { color: '#1a1a28' },
-        ticks: {
-          color: '#555',
-          font: { size: 11 },
-          callback: v => '$' + v.toLocaleString()
-        }
+        ticks: { color: '#555', font: { size: 11 }, callback: v => '$' + v.toLocaleString() }
       }
     }
   }
 });
 
-// Custom Legend
-const legendEl = document.getElementById('customLegend');
-chart.data.datasets.forEach((ds, i) => {
-  const c = ds.borderColor;
-  const item = document.createElement('div');
-  item.className = 'legend-item active';
-  item.style.setProperty('--c', c);
-  item.innerHTML = `<span class="legend-swatch"></span><span>${ds.label}</span><span class="legend-check">✓</span>`;
-  item.addEventListener('click', () => {
-    const meta = chart.getDatasetMeta(i);
-    const hidden = !meta.hidden;
-    meta.hidden = hidden;
-    item.classList.toggle('active', !hidden);
-    chart.update();
+// ── Legend ──
+function renderLegend(datasets) {
+  const legendEl = document.getElementById('customLegend');
+  legendEl.innerHTML = '';
+  datasets.forEach((ds, i) => {
+    const c = ds.borderColor;
+    const item = document.createElement('div');
+    item.className = 'legend-item active';
+    item.style.setProperty('--c', c);
+    item.innerHTML = `<span class="legend-swatch"></span><span>${ds.label}</span><span class="legend-check">✓</span>`;
+    item.addEventListener('click', () => {
+      const meta = chartInstance.getDatasetMeta(i);
+      meta.hidden = !meta.hidden;
+      item.classList.toggle('active', !meta.hidden);
+      chartInstance.update();
+    });
+    legendEl.appendChild(item);
   });
-  legendEl.appendChild(item);
-});
+}
 
-// Stats
-const statsEl = document.getElementById('statsGrid');
-grades.forEach(g => {
-  const pts = raw.filter(r => r.psa === g);
-  if (!pts.length) return;
-  const usds = pts.map(r => r.usd);
-  const avg = Math.round(usds.reduce((a,b)=>a+b,0)/usds.length);
-  const max = Math.max(...usds);
-  const min = Math.min(...usds);
-  const c = colors[g].line;
-  statsEl.innerHTML += `
-    <div class="stat-card" style="border-left: 3px solid ${c}40; border-left-color: ${c}60;">
-      <div class="stat-label" style="color:${c}cc">PSA ${g} · ${pts.length} 筆</div>
-      <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
-      <div class="stat-sub">均價&ensp;·&ensp;低 $${min.toLocaleString()} · 高 $${max.toLocaleString()}</div>
-    </div>`;
-});
+// ── Stats ──
+function renderStats(records) {
+  const statsEl = document.getElementById('statsGrid');
+  statsEl.innerHTML = '';
+  grades.forEach(g => {
+    const pts = records.filter(r => r.psa === g);
+    if (!pts.length) return;
+    const usds = pts.map(r => r.usd);
+    const avg  = Math.round(usds.reduce((a,b)=>a+b,0) / usds.length);
+    const max  = Math.max(...usds);
+    const min  = Math.min(...usds);
+    const c    = colors[g].line;
+    statsEl.innerHTML += `
+      <div class="stat-card" style="border-left:3px solid ${c}60">
+        <div class="stat-label" style="color:${c}cc">PSA ${g} · ${pts.length} 筆</div>
+        <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
+        <div class="stat-sub">均價&ensp;·&ensp;低 $${min.toLocaleString()} · 高 $${max.toLocaleString()}</div>
+      </div>`;
+  });
+}
 
-// Table — 動態排序渲染
-const tbody = document.getElementById('tableBody');
-
+// ── Table ──
 const sorters = {
   'date-desc':  (a,b) => new Date(b.date) - new Date(a.date),
   'date-asc':   (a,b) => new Date(a.date) - new Date(b.date),
@@ -599,9 +631,10 @@ const sorters = {
   'psa-desc':   (a,b) => b.psa - a.psa,
 };
 
-function renderTable(sortKey) {
-  const sorted = [...raw].sort(sorters[sortKey] || sorters['date-desc']);
-  tbody.innerHTML = sorted.map(r => {
+function renderTable(records, sortKey) {
+  const tbody = document.getElementById('tableBody');
+  const data  = [...records].sort(sorters[sortKey] || sorters['date-desc']);
+  tbody.innerHTML = data.map(r => {
     const c = (colors[r.psa] || {line:'#888'}).line;
     return `<tr>
       <td>${r.date}</td>
@@ -613,17 +646,62 @@ function renderTable(sortKey) {
   }).join('');
 }
 
-// 初始渲染
-renderTable('date-desc');
-
-// Sort button 互動
+// ── Sort buttons ──
 document.querySelectorAll('.sort-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderTable(btn.dataset.sort);
+    currentSort = btn.dataset.sort;
+    renderTable(pokemonDB[currentPokeKey].records, currentSort);
   });
 });
+
+// ══════════════════════════════════════════════
+// ── Switch Pokémon ──
+// ══════════════════════════════════════════════
+function switchPokemon(key) {
+  if (key === currentPokeKey) return;
+  currentPokeKey = key;
+  const poke = pokemonDB[key];
+
+  // Update selector tabs
+  document.querySelectorAll('.poke-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.poke === key)
+  );
+
+  // Update header
+  document.getElementById('headerTitle').textContent = `繁中首刷${poke.zh}成交紀錄`;
+  document.getElementById('headerSub').textContent   = `${poke.en} · Pokemon Chinese 1st Edition · PSA Grading`;
+  document.querySelector('.header').style.setProperty('--header-glow', poke.glow);
+  document.querySelector('.header-eyebrow').style.color = poke.accent;
+
+  // Show/hide empty state
+  const hasData = poke.records.length > 0;
+  document.getElementById('mainContent').style.display = hasData ? 'block' : 'none';
+  document.getElementById('emptyState').style.display  = hasData ? 'none'  : 'block';
+  document.getElementById('emptyIcon').textContent     = poke.icon;
+
+  if (hasData) {
+    // Update chart
+    const datasets = buildDatasets(poke.records);
+    chartInstance.data.datasets = datasets;
+    chartInstance.update();
+    renderLegend(datasets);
+
+    // Reset sort & re-render
+    currentSort = 'date-desc';
+    document.querySelectorAll('.sort-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.sort === 'date-desc')
+    );
+    renderStats(poke.records);
+    renderTable(poke.records, currentSort);
+  }
+}
+
+// ── Initial render ──
+renderLegend(buildDatasets(pokemonDB.charizard.records));
+renderStats(pokemonDB.charizard.records);
+renderTable(pokemonDB.charizard.records, currentSort);
 </script>
 </body>
 </html>
