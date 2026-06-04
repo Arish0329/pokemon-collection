@@ -158,10 +158,14 @@
     box-shadow: 0 0 20px var(--tab-glow, rgba(78,158,255,0.15));
   }
   .poke-tab-icon {
-    font-size: 1.8rem;
-    line-height: 1;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
     filter: drop-shadow(0 0 8px var(--tab-glow, transparent));
+    transition: transform 0.2s;
   }
+  .poke-tab:hover .poke-tab-icon { transform: scale(1.1); }
   .poke-tab-info {
     display: flex;
     flex-direction: column;
@@ -405,7 +409,7 @@
 
   <!-- Empty State -->
   <div class="empty-state" id="emptyState">
-    <div class="empty-state-icon" id="emptyIcon">🔍</div>
+    <img class="empty-state-icon" id="emptyIcon" src="" alt="" style="width:80px;height:80px;object-fit:contain;opacity:0.4;">
     <h3>尚無成交紀錄</h3>
     <p>資料陸續新增中，敬請期待</p>
   </div>
@@ -418,7 +422,7 @@
 // ══════════════════════════════════════════════
 const pokemonDB = {
   charizard: {
-    zh: '噴火龍', en: 'Charizard', icon: '🔥',
+    zh: '噴火龍', en: 'Charizard', icon: 'images/charizard.png',
     accent: '#c9a227', glow: 'rgba(201,162,39,0.12)',
     records: [
       {date:'2026/5/10',psa:6,usd:4360,twd:140828,source:'eBay'},
@@ -457,12 +461,12 @@ const pokemonDB = {
     ]
   },
   blastoise: {
-    zh: '水箭龜', en: 'Blastoise', icon: '💧',
+    zh: '水箭龜', en: 'Blastoise', icon: 'images/blastoise.png',
     accent: '#38bdf8', glow: 'rgba(56,189,248,0.12)',
     records: []
   },
   venusaur: {
-    zh: '妙蛙花', en: 'Venusaur', icon: '🌿',
+    zh: '妙蛙花', en: 'Venusaur', icon: 'images/venusaur.png',
     accent: '#4ade80', glow: 'rgba(74,222,128,0.12)',
     records: []
   }
@@ -495,7 +499,7 @@ Object.entries(pokemonDB).forEach(([key, poke]) => {
   btn.style.setProperty('--tab-accent', poke.accent);
   btn.style.setProperty('--tab-glow', poke.glow);
   btn.innerHTML = `
-    <span class="poke-tab-icon">${poke.icon}</span>
+    <img class="poke-tab-icon" src="${poke.icon}" alt="${poke.zh}">
     <div class="poke-tab-info">
       <span class="poke-tab-zh">${poke.zh}</span>
       <span class="poke-tab-en">${poke.en}</span>
@@ -679,7 +683,9 @@ function switchPokemon(key) {
   const hasData = poke.records.length > 0;
   document.getElementById('mainContent').style.display = hasData ? 'block' : 'none';
   document.getElementById('emptyState').style.display  = hasData ? 'none'  : 'block';
-  document.getElementById('emptyIcon').textContent     = poke.icon;
+  const emptyIcon = document.getElementById('emptyIcon');
+  emptyIcon.src = poke.icon;
+  emptyIcon.alt = poke.zh;
 
   if (hasData) {
     // Update chart
