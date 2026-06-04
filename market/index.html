@@ -278,11 +278,20 @@
     border-radius: 12px;
     padding: 16px;
     transition: border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .stat-card:hover { border-color: var(--border-hi); }
-  .stat-label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-weight: 700; }
-  .stat-value { font-size: 1.5rem; font-weight: 900; }
-  .stat-sub { font-size: 0.68rem; color: var(--text-dim); margin-top: 3px; line-height: 1.5; }
+  .stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+  .stat-main { display: flex; flex-direction: column; gap: 2px; }
+  .stat-main-tag { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .stat-value { font-size: 1.5rem; font-weight: 900; line-height: 1.1; }
+  .stat-divider { height: 1px; background: var(--border); }
+  .stat-range { display: flex; gap: 12px; }
+  .stat-range-item { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .stat-range-tag { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .stat-range-val { font-size: 0.82rem; font-weight: 700; color: var(--text); }
 
   /* ── Records Table ── */
   .table-wrap {
@@ -668,9 +677,22 @@ function renderStats(records) {
     const c    = colors[g].line;
     statsEl.innerHTML += `
       <div class="stat-card" style="border-left:3px solid ${c}60">
-        <div class="stat-label" style="color:${c}cc">PSA ${g} · ${pts.length} 筆</div>
-        <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
-        <div class="stat-sub">均價&ensp;·&ensp;低 $${min.toLocaleString()} · 高 $${max.toLocaleString()}</div>
+        <div class="stat-label" style="color:${c}cc">PSA ${g} &nbsp;·&nbsp; ${pts.length} 筆成交</div>
+        <div class="stat-main">
+          <div class="stat-main-tag">均價</div>
+          <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-range">
+          <div class="stat-range-item">
+            <div class="stat-range-tag">最低</div>
+            <div class="stat-range-val">$${min.toLocaleString()}</div>
+          </div>
+          <div class="stat-range-item">
+            <div class="stat-range-tag">最高</div>
+            <div class="stat-range-val">$${max.toLocaleString()}</div>
+          </div>
+        </div>
       </div>`;
   });
 }
