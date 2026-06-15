@@ -391,7 +391,7 @@
       </div>
     </div>
 
-    <p class="section-title">各評級均價統計</p>
+    <p class="section-title">各評級近期行情</p>
     <div class="stats-grid" id="statsGrid"></div>
 
     <p class="section-title">完整成交紀錄</p>
@@ -812,26 +812,28 @@ function renderStats(records) {
   grades.forEach(g => {
     const pts = records.filter(r => r.psa === g);
     if (!pts.length) return;
-    const usds = pts.map(r => r.usd);
-    const avg  = Math.round(usds.reduce((a,b)=>a+b,0) / usds.length);
-    const max  = Math.max(...usds);
-    const min  = Math.min(...usds);
+    const max  = Math.max(...pts.map(r => r.usd));        // 全期最高
+    // 依日期由新到舊排序，取近 3 筆計算「近期均價」，避免久遠舊價拉低數值
+    const sorted    = [...pts].sort((a,b) => new Date(b.date) - new Date(a.date));
+    const recent    = sorted.slice(0, 3);
+    const recentAvg = Math.round(recent.reduce((sum,r) => sum + r.usd, 0) / recent.length);
+    const latest    = sorted[0].usd;                       // 最新單筆成交
     const c    = colors[g].line;
     statsEl.innerHTML += `
       <div class="stat-card" style="border-left:3px solid ${c}60">
         <div class="stat-label" style="color:${c}cc">PSA ${g} &nbsp;·&nbsp; ${pts.length} 筆成交</div>
         <div class="stat-main">
-          <div class="stat-main-tag">均價</div>
-          <div class="stat-value" style="color:#fff">$${avg.toLocaleString()}</div>
+          <div class="stat-main-tag">近 ${recent.length} 筆均價</div>
+          <div class="stat-value" style="color:#fff">$${recentAvg.toLocaleString()}</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-range">
           <div class="stat-range-item">
-            <div class="stat-range-tag">最低</div>
-            <div class="stat-range-val">$${min.toLocaleString()}</div>
+            <div class="stat-range-tag">最新</div>
+            <div class="stat-range-val">$${latest.toLocaleString()}</div>
           </div>
           <div class="stat-range-item">
-            <div class="stat-range-tag">最高</div>
+            <div class="stat-range-tag">全期最高</div>
             <div class="stat-range-val">$${max.toLocaleString()}</div>
           </div>
         </div>
