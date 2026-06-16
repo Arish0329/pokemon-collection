@@ -431,6 +431,31 @@
       border-radius: var(--radius-md);
     }
 
+    /* ── Card drag handle & states (admin only) ──── */
+    .card-drag-handle {
+      display: none;
+      position: absolute; top: 8px; left: 8px; z-index: 5;
+      width: 28px; height: 28px;
+      align-items: center; justify-content: center;
+      color: var(--text-secondary); cursor: grab;
+      background: rgba(8,8,8,0.78);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(4px);
+      transition: color 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease);
+    }
+    body.admin-mode .card-drag-handle { display: flex; }
+    .card-drag-handle:hover { color: var(--gold-main); border-color: var(--gold-dim); background: rgba(8,8,8,0.92); }
+    .card-drag-handle:active { cursor: grabbing; }
+    .card-item.is-dragging {
+      opacity: 0.3; transform: scale(0.97);
+      transition: opacity 150ms, transform 150ms;
+    }
+    .card-item.drag-over .card-slot {
+      outline: 2px dashed var(--gold-main);
+      outline-offset: 4px;
+    }
+
     /* ── Card Grid ───────────────────────────────── */
     .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 28px 24px; }
 
@@ -882,6 +907,7 @@
     const cards = cs || [];
     players = (ps || []).map(p => ({ ...p, cards: cards.filter(c => c.player_id === p.id) }));
     applyPlayerOrder();
+    applyCardOrder();
 
     setSyncStatus('ok');
     hideLoading();
@@ -1219,8 +1245,14 @@
         : `<div class="avatar-initials">${getInitials(p.name)}</div>`;
 
       const cardsHtml = p.cards.map(c => `
-        <div class="card-item">
+        <div class="card-item" data-card-id="${c.id}">
           <div class="card-slot ${c.image_url ? 'has-image' : ''}" id="cs-${c.id}" onclick="onCardClick('${c.id}','${p.id}')">
+            <div class="card-drag-handle" title="拖曳排序卡片" onclick="event.stopPropagation()">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <circle cx="4" cy="2" r="1.2"/><circle cx="4" cy="7" r="1.2"/><circle cx="4" cy="12" r="1.2"/>
+                <circle cx="10" cy="2" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="10" cy="12" r="1.2"/>
+              </svg>
+            </div>
             ${c.image_url
               ? `<img src="${c.image_url}" alt="PSA Card" draggable="false">`
               : `<div class="slot-empty">
@@ -1327,6 +1359,7 @@
 
     updateStats();
     initDragDrop();
+    initCardDragDrop();
   }
 
   function savePlayerOrder() {
@@ -1346,6 +1379,28 @@
         return ai - bi;
       });
     } catch (_) {}
+  }
+
+  function saveCardOrder(playerId) {
+    const p = players.find(x => x.id === playerId);
+    if (p) localStorage.setItem('card_order_' + playerId, JSON.stringify(p.cards.map(c => c.id)));
+  }
+
+  function applyCardOrder() {
+    players.forEach(p => {
+      const saved = localStorage.getItem('card_order_' + p.id);
+      if (!saved) return;
+      try {
+        const order = JSON.parse(saved);
+        p.cards.sort((a, b) => {
+          const ai = order.indexOf(a.id);
+          const bi = order.indexOf(b.id);
+          if (ai === -1) return 1;
+          if (bi === -1) return -1;
+          return ai - bi;
+        });
+      } catch (_) {}
+    });
   }
 
   function initDragDrop() {
@@ -1408,6 +1463,80 @@
         savePlayerOrder();
         render();
         toast('排序已更新');
+      });
+    });
+  }
+
+  function initCardDragDrop() {
+    if (!document.body.classList.contains('admin-mode')) return;
+
+    let dragSrc = null;
+    let dragAllowed = false;
+
+    document.querySelectorAll('.card-item').forEach(item => {
+      const handle = item.querySelector('.card-drag-handle');
+      if (!handle) return;
+
+      handle.addEventListener('mousedown', () => { dragAllowed = true; });
+      handle.addEventListener('touchstart', () => { dragAllowed = true; }, { passive: true });
+
+      item.setAttribute('draggable', 'true');
+
+      item.addEventListener('dragstart', e => {
+        if (!dragAllowed) { e.preventDefault(); return; }
+        dragSrc = item;
+        dragAllowed = false;
+        e.stopPropagation();             // 別觸發球員區塊的拖曳
+        setTimeout(() => item.classList.add('is-dragging'), 0);
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', item.dataset.cardId);
+      });
+
+      item.addEventListener('dragend', () => {
+        dragAllowed = false;
+        item.classList.remove('is-dragging');
+        document.querySelectorAll('.card-item').forEach(s => s.classList.remove('drag-over'));
+        dragSrc = null;
+      });
+
+      item.addEventListener('dragover', e => {
+        if (!dragSrc || dragSrc === item) return;
+        // 僅允許在同一位球員的卡片間排序
+        if (dragSrc.closest('.player-section') !== item.closest('.player-section')) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        document.querySelectorAll('.card-item').forEach(s => s.classList.remove('drag-over'));
+        item.classList.add('drag-over');
+      });
+
+      item.addEventListener('dragleave', e => {
+        if (!item.contains(e.relatedTarget)) item.classList.remove('drag-over');
+      });
+
+      item.addEventListener('drop', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        item.classList.remove('drag-over');
+        if (!dragSrc || dragSrc === item) return;
+
+        const srcSection = dragSrc.closest('.player-section');
+        const dstSection = item.closest('.player-section');
+        if (srcSection !== dstSection) return;   // 不允許跨球員拖曳
+
+        const playerId = dstSection.dataset.playerId;
+        const p = players.find(x => x.id === playerId);
+        if (!p) return;
+
+        const srcIdx = p.cards.findIndex(c => c.id === dragSrc.dataset.cardId);
+        const dstIdx = p.cards.findIndex(c => c.id === item.dataset.cardId);
+        if (srcIdx === -1 || dstIdx === -1) return;
+
+        const [moved] = p.cards.splice(srcIdx, 1);
+        p.cards.splice(dstIdx, 0, moved);
+
+        saveCardOrder(playerId);
+        render();
+        toast('卡片排序已更新');
       });
     });
   }
