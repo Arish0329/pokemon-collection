@@ -125,80 +125,129 @@
   }
 
   /* ── Pokémon Selector ── */
+  /* ── Pokémon 可搜尋下拉選單 ── */
   .poke-selector {
     display: flex;
-    gap: 12px;
+    justify-content: center;
     padding: 20px 24px;
     border-bottom: 1px solid var(--border);
     background: var(--bg);
-    justify-content: center;
-    flex-wrap: wrap;
   }
-  .poke-tab {
+  .poke-combo {
+    position: relative;
+    width: min(440px, 92vw);
+    font-family: inherit;
+  }
+  /* 觸發按鈕（顯示目前選擇） */
+  .poke-combo-trigger {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 20px;
+    width: 100%;
+    padding: 10px 16px;
     border-radius: 12px;
-    border: 1.5px solid var(--border);
+    border: 1.5px solid var(--tab-accent, var(--border-hi));
     background: var(--bg-panel);
     cursor: pointer;
     font-family: inherit;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
-    min-width: 160px;
+    color: var(--text);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2), 0 6px 16px rgba(0,0,0,0.35), 0 0 22px var(--tab-glow, transparent);
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.25s;
   }
-  .poke-tab:hover {
-    border-color: var(--border-hi);
-    background: var(--bg-card);
-    transform: translateY(-2px);
-  }
-  .poke-tab.active {
-    border-color: var(--tab-accent, #4e9eff);
-    background: var(--bg-card);
-    box-shadow: 0 0 20px var(--tab-glow, rgba(78,158,255,0.15));
-  }
-  .poke-tab-icon {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    flex-shrink: 0;
+  .poke-combo-trigger:hover { background: var(--bg-card); }
+  .poke-combo-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .poke-combo-icon {
+    width: 42px; height: 42px; object-fit: contain; flex-shrink: 0;
     filter: drop-shadow(0 0 8px var(--tab-glow, transparent));
-    transition: transform 0.2s;
   }
-  .poke-tab:hover .poke-tab-icon { transform: scale(1.1); }
-  .poke-tab-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
+  .poke-combo-dex {
+    font-size: 0.82rem; font-weight: 700; color: var(--text-muted);
+    font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
   }
-  .poke-tab-zh {
-    font-size: 0.9rem;
-    font-weight: 900;
-    color: #fff;
-  }
-  .poke-tab.active .poke-tab-zh { color: var(--tab-accent, #4e9eff); }
-  .poke-tab-en {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
-  .poke-tab-count {
+  .poke-combo-name { font-size: 1.05rem; font-weight: 900; color: var(--tab-accent, #fff); }
+  .poke-combo-en { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; }
+  .poke-combo-count {
     margin-left: auto;
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--text-dim);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2px 8px;
+    font-size: 0.7rem; font-weight: 700; color: var(--tab-accent, var(--text-muted));
+    border: 1px solid var(--tab-accent, var(--border));
+    border-radius: 20px; padding: 3px 10px; white-space: nowrap;
+    background: rgba(0,0,0,0.25);
+  }
+  .poke-combo-chevron {
+    color: var(--text-dim); font-size: 0.7rem; margin-left: 2px;
+    transition: transform 0.25s ease;
+  }
+  .poke-combo.open .poke-combo-chevron { transform: rotate(180deg); }
+
+  /* 下拉面板 */
+  .poke-combo-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0; right: 0;
+    z-index: 200;
+    background: var(--bg-card);
+    border: 1px solid var(--border-hi);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.45);
+    overflow: hidden;
+    animation: comboIn 0.2s ease;
+  }
+  .poke-combo-panel[hidden] { display: none; }
+  @keyframes comboIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .poke-combo-search { padding: 10px; border-bottom: 1px solid var(--border); }
+  .poke-combo-search input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-hi);
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .poke-combo-search input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(78,158,255,0.15);
+  }
+  .poke-combo-search input::placeholder { color: var(--text-dim); }
+
+  .poke-combo-list { max-height: 340px; overflow-y: auto; padding: 6px; }
+  .poke-combo-option {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%;
+    padding: 8px 12px;
+    min-height: 48px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .poke-combo-option:hover,
+  .poke-combo-option.highlight { background: rgba(255,255,255,0.05); }
+  .poke-combo-option.selected { background: var(--opt-glow, rgba(78,158,255,0.12)); }
+  .poke-combo-option-icon { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .poke-combo-option-dex {
+    font-size: 0.8rem; font-weight: 700; color: var(--text-dim);
+    font-variant-numeric: tabular-nums; min-width: 32px;
+  }
+  .poke-combo-option-zh { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+  .poke-combo-option.selected .poke-combo-option-zh { color: var(--opt-accent, var(--accent)); }
+  .poke-combo-option-en { font-size: 0.68rem; color: var(--text-dim); }
+  .poke-combo-option-count {
+    margin-left: auto; font-size: 0.68rem; font-weight: 700; color: var(--text-dim);
     white-space: nowrap;
   }
-  .poke-tab.active .poke-tab-count {
-    color: var(--tab-accent);
-    border-color: var(--tab-accent);
-    background: rgba(0,0,0,0.2);
-  }
+  .poke-combo-check { color: var(--opt-accent, var(--accent)); font-size: 0.8rem; width: 12px; opacity: 0; }
+  .poke-combo-option.selected .poke-combo-check { opacity: 1; }
+  .poke-combo-empty { padding: 28px 16px; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
 
   /* ── Page Body ── */
   .page {
@@ -351,7 +400,7 @@
     .page { padding: 24px 16px 48px; }
     th, td { padding: 8px 12px; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .poke-tab { min-width: 130px; padding: 10px 14px; }
+    .poke-combo-en { display: none; }
   }
 </style>
 </head>
@@ -377,7 +426,24 @@
 </header>
 
 <!-- Pokémon Selector -->
-<div class="poke-selector" id="pokeSelector"></div>
+<div class="poke-selector">
+  <div class="poke-combo" id="pokeCombo">
+    <button class="poke-combo-trigger" id="comboTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="選擇寶可夢卡片">
+      <img class="poke-combo-icon" id="triggerIcon" src="" alt="">
+      <span class="poke-combo-dex" id="triggerDex"></span>
+      <span class="poke-combo-name" id="triggerName"></span>
+      <span class="poke-combo-en" id="triggerEn"></span>
+      <span class="poke-combo-count" id="triggerCount"></span>
+      <span class="poke-combo-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="poke-combo-panel" id="comboPanel" role="listbox" aria-label="卡片清單" hidden>
+      <div class="poke-combo-search">
+        <input type="text" id="comboSearch" placeholder="搜尋編號或名稱…（例：004 或 噴火龍）" autocomplete="off" aria-label="搜尋卡片">
+      </div>
+      <div class="poke-combo-list" id="comboList"></div>
+    </div>
+  </div>
+</div>
 
 <div class="page">
 
@@ -823,28 +889,109 @@ let chartInstance  = null;
 // ══════════════════════════════════════════════
 // ── Build Pokémon Selector ──
 // ══════════════════════════════════════════════
-const selectorEl = document.getElementById('pokeSelector');
+const comboEl      = document.getElementById('pokeCombo');
+const comboTrigger = document.getElementById('comboTrigger');
+const comboPanel   = document.getElementById('comboPanel');
+const comboSearch  = document.getElementById('comboSearch');
+const comboList    = document.getElementById('comboList');
+
 // 依圖鑑編號（dex）由小到大排序，無編號者排最後
-Object.entries(pokemonDB)
-  .sort((a, b) => (a[1].dex ?? 999) - (b[1].dex ?? 999))
-  .forEach(([key, poke]) => {
-  const count = poke.records.length;
-  const btn = document.createElement('button');
-  btn.className = 'poke-tab' + (key === 'charizard' ? ' active' : '');
-  btn.dataset.poke = key;
-  btn.style.setProperty('--tab-accent', poke.accent);
-  btn.style.setProperty('--tab-glow', poke.glow);
-  btn.innerHTML = `
-    <img class="poke-tab-icon" src="${poke.icon}" alt="${poke.zh}">
-    <div class="poke-tab-info">
-      <span class="poke-tab-zh">${poke.zh}</span>
-      <span class="poke-tab-en">${poke.en}</span>
-    </div>
-    <span class="poke-tab-count" id="count-${key}">${count > 0 ? count + ' 筆' : '尚無資料'}</span>
-  `;
-  btn.addEventListener('click', () => switchPokemon(key));
-  selectorEl.appendChild(btn);
+const sortedPokes = Object.entries(pokemonDB)
+  .sort((a, b) => (a[1].dex ?? 999) - (b[1].dex ?? 999));
+const padDex = n => String(n ?? '').padStart(3, '0');
+
+// 建立／過濾選項清單
+function buildOptions(filter = '') {
+  const f = filter.trim().toLowerCase();
+  const matches = sortedPokes.filter(([key, p]) =>
+    !f || padDex(p.dex).includes(f) || String(p.dex).includes(f)
+       || p.zh.toLowerCase().includes(f) || p.en.toLowerCase().includes(f)
+  );
+  comboList.innerHTML = '';
+  if (matches.length === 0) {
+    comboList.innerHTML = '<div class="poke-combo-empty">找不到符合的卡片，試試其他關鍵字</div>';
+    return;
+  }
+  matches.forEach(([key, p]) => {
+    const opt = document.createElement('button');
+    opt.className = 'poke-combo-option' + (key === currentPokeKey ? ' selected' : '');
+    opt.dataset.poke = key;
+    opt.setAttribute('role', 'option');
+    opt.setAttribute('aria-selected', key === currentPokeKey ? 'true' : 'false');
+    opt.style.setProperty('--opt-accent', p.accent);
+    opt.style.setProperty('--opt-glow', p.glow);
+    opt.innerHTML = `
+      <img class="poke-combo-option-icon" src="${p.icon}" alt="">
+      <span class="poke-combo-option-dex">${padDex(p.dex)}</span>
+      <span class="poke-combo-option-zh">${p.zh}</span>
+      <span class="poke-combo-option-en">${p.en}</span>
+      <span class="poke-combo-option-count">${p.records.length} 筆</span>
+      <span class="poke-combo-check" aria-hidden="true">✓</span>`;
+    opt.addEventListener('click', () => selectPoke(key));
+    comboList.appendChild(opt);
+  });
+}
+
+// 更新觸發按鈕顯示
+function updateTrigger(key) {
+  const p = pokemonDB[key];
+  comboTrigger.style.setProperty('--tab-accent', p.accent);
+  comboTrigger.style.setProperty('--tab-glow', p.glow);
+  document.getElementById('triggerIcon').src  = p.icon;
+  document.getElementById('triggerIcon').alt  = p.zh;
+  document.getElementById('triggerDex').textContent   = padDex(p.dex);
+  document.getElementById('triggerName').textContent  = p.zh;
+  document.getElementById('triggerEn').textContent    = p.en;
+  document.getElementById('triggerCount').textContent = p.records.length + ' 筆';
+}
+
+function openCombo() {
+  comboEl.classList.add('open');
+  comboPanel.hidden = false;
+  comboTrigger.setAttribute('aria-expanded', 'true');
+  comboSearch.value = '';
+  buildOptions();
+  setTimeout(() => comboSearch.focus(), 30);
+  const sel = comboList.querySelector('.selected');
+  if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+function closeCombo() {
+  comboEl.classList.remove('open');
+  comboPanel.hidden = true;
+  comboTrigger.setAttribute('aria-expanded', 'false');
+}
+function selectPoke(key) {
+  closeCombo();
+  switchPokemon(key);
+  updateTrigger(key);
+}
+
+comboTrigger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  comboEl.classList.contains('open') ? closeCombo() : openCombo();
 });
+comboSearch.addEventListener('input', () => buildOptions(comboSearch.value));
+document.addEventListener('click', (e) => {
+  if (!comboEl.contains(e.target)) closeCombo();
+});
+
+// 鍵盤操作：上下移動、Enter 選取、Esc 關閉
+function setHighlight(opts, idx) {
+  opts.forEach(o => o.classList.remove('highlight'));
+  if (opts[idx]) { opts[idx].classList.add('highlight'); opts[idx].scrollIntoView({ block: 'nearest' }); }
+}
+comboSearch.addEventListener('keydown', (e) => {
+  const opts = [...comboList.querySelectorAll('.poke-combo-option')];
+  if (e.key === 'Escape') { closeCombo(); comboTrigger.focus(); return; }
+  if (!opts.length) return;
+  let idx = opts.findIndex(o => o.classList.contains('highlight'));
+  if (e.key === 'ArrowDown') { e.preventDefault(); setHighlight(opts, Math.min(idx + 1, opts.length - 1) < 0 ? 0 : Math.min(idx + 1, opts.length - 1)); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); setHighlight(opts, idx <= 0 ? 0 : idx - 1); }
+  else if (e.key === 'Enter') { e.preventDefault(); const t = opts[idx] || opts[0]; if (t) selectPoke(t.dataset.poke); }
+});
+
+// 初始化觸發按鈕為目前卡片
+updateTrigger(currentPokeKey);
 
 // ══════════════════════════════════════════════
 // ── Chart Init ──
@@ -1019,10 +1166,8 @@ function switchPokemon(key) {
   currentPokeKey = key;
   const poke = pokemonDB[key];
 
-  // Update selector tabs
-  document.querySelectorAll('.poke-tab').forEach(t =>
-    t.classList.toggle('active', t.dataset.poke === key)
-  );
+  // Update combobox trigger
+  updateTrigger(key);
 
   // Update header
   document.getElementById('headerTitle').textContent = `繁中首刷${poke.zh}成交紀錄`;
