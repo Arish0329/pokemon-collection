@@ -480,6 +480,21 @@
       </table>
     </div>
 
+    <!-- 其他鑑定公司成交（BGS／非 PSA），僅有資料時顯示 -->
+    <div id="otherGradingSection" style="display:none">
+      <p class="section-title">其他鑑定公司成交<span style="color:var(--text-dim);font-weight:400;font-size:0.8rem">（BGS／非 PSA，不計入上方 PSA 統計）</span></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th><th>鑑定</th><th>USD</th><th>TWD</th><th>來源</th>
+            </tr>
+          </thead>
+          <tbody id="otherGradingBody"></tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 
   <!-- Empty State -->
@@ -500,6 +515,16 @@ const pokemonDB = {
     zh: '噴火龍', en: 'Charizard', dex: 4, icon: 'images/004.png',
     accent: '#c9a227', glow: 'rgba(201,162,39,0.12)',
     records: [
+      {date:'2026/6/18',psa:9,  usd:14640,twd:472872,company:'BGS',source:'ALT'},
+      {date:'2026/6/18',psa:8.5,usd:10547,twd:340668,company:'BGS',source:'ALT'},
+      {date:'2026/6/7', psa:6.5,usd:3350, twd:108205,company:'BGS',source:'Fanatics'},
+      {date:'2025/12/28',psa:9, usd:8700, twd:281010,company:'BGS',source:'Fanatics'},
+      {date:'2025/9/28',psa:7.5,usd:4920, twd:158916,company:'BGS',source:'Fanatics'},
+      {date:'2025/6/29',psa:8.5,usd:3240, twd:104652,company:'BGS',source:'Fanatics'},
+      {date:'2025/6/29',psa:8,  usd:2190, twd:70737, company:'BGS',source:'Fanatics'},
+      {date:'2025/6/22',psa:8.5,usd:4080, twd:131784,company:'BGS',source:'Fanatics'},
+      {date:'2024/12/22',psa:9, usd:3720, twd:120156,company:'BGS',source:'Fanatics'},
+      {date:'2021/4/26',psa:7,  usd:1725, twd:48300, company:'BGS',source:'Fanatics'},
       {date:'2026/5/31',psa:8,usd:9600,twd:310080,source:'Fanatics'},
       {date:'2026/5/10',psa:6,usd:4360,twd:140828,source:'eBay'},
       {date:'2025/11/9',psa:8,usd:3360,twd:108528,source:'Fanatics'},
@@ -1131,9 +1156,12 @@ updateTrigger(currentPokeKey);
 // ══════════════════════════════════════════════
 // ── Chart Init ──
 // ══════════════════════════════════════════════
+function isPSA(r)  { return !r.company || r.company === 'PSA'; }
+function isOther(r){ return r.company && r.company !== 'PSA'; }
+
 function buildDatasets(records) {
-  const sorted = [...records].sort((a,b) => new Date(a.date) - new Date(b.date));
-  return grades.map(g => {
+  const sorted = [...records].filter(isPSA).sort((a,b) => new Date(a.date) - new Date(b.date));
+  const sets = grades.map(g => {
     const points = sorted.filter(r => r.psa === g).map(r => ({
       x: new Date(r.date.replace(/\//g, '-')),
       y: r.usd,
@@ -1153,6 +1181,27 @@ function buildDatasets(records) {
       spanGaps: true,
     };
   }).filter(d => d.data.length > 0);
+
+  // BGS／其他鑑定：獨立散點（空心菱形），不連線、不混入 PSA 線
+  const others = records.filter(isOther)
+    .sort((a,b) => new Date(a.date) - new Date(b.date))
+    .map(r => ({ x: new Date(r.date.replace(/\//g, '-')), y: r.usd, _record: r }));
+  if (others.length) {
+    sets.push({
+      label: 'BGS',
+      data: others,
+      borderColor: '#ff6b8a',
+      backgroundColor: 'transparent',
+      pointBackgroundColor: 'transparent',
+      pointBorderColor: '#ff6b8a',
+      pointBorderWidth: 2,
+      pointStyle: 'rectRot',
+      pointRadius: 7,
+      pointHoverRadius: 9,
+      showLine: false,
+    });
+  }
+  return sets;
 }
 
 chartInstance = new Chart(document.getElementById('trendChart'), {
@@ -1179,8 +1228,9 @@ chartInstance = new Chart(document.getElementById('trendChart'), {
           label: ctx => {
             const r = ctx.raw._record;
             if (!r) return ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`;
+            const gradeLabel = (r.company && r.company !== 'PSA') ? `${r.company} ${r.psa}` : `PSA ${r.psa}`;
             return [
-              ` ${ctx.dataset.label}`,
+              ` ${gradeLabel}`,
               ` $${r.usd.toLocaleString()} USD  ·  NT$${r.twd.toLocaleString()}`,
               ` ${r.source}`,
             ];
@@ -1227,8 +1277,9 @@ function renderLegend(datasets) {
 function renderStats(records) {
   const statsEl = document.getElementById('statsGrid');
   statsEl.innerHTML = '';
+  const psaRecords = records.filter(isPSA);
   grades.forEach(g => {
-    const pts = records.filter(r => r.psa === g);
+    const pts = psaRecords.filter(r => r.psa === g);
     if (!pts.length) return;
     const max  = Math.max(...pts.map(r => r.usd));        // 全期最高
     // 依日期由新到舊排序，取近 3 筆計算「近期均價」，避免久遠舊價拉低數值
@@ -1270,7 +1321,7 @@ const sorters = {
 
 function renderTable(records, sortKey) {
   const tbody = document.getElementById('tableBody');
-  const data  = [...records].sort(sorters[sortKey] || sorters['date-desc']);
+  const data  = [...records].filter(isPSA).sort(sorters[sortKey] || sorters['date-desc']);
   tbody.innerHTML = data.map(r => {
     const c = (colors[r.psa] || {line:'#888'}).line;
     return `<tr>
@@ -1281,6 +1332,23 @@ function renderTable(records, sortKey) {
       <td style="color:#bbb">${r.source}</td>
     </tr>`;
   }).join('');
+}
+
+// ── 其他鑑定（BGS）成交表 ──
+function renderOtherGrading(records) {
+  const section = document.getElementById('otherGradingSection');
+  const tbody   = document.getElementById('otherGradingBody');
+  const others  = records.filter(isOther).sort((a,b) => new Date(b.date) - new Date(a.date));
+  if (!others.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  const c = '#ff6b8a';
+  tbody.innerHTML = others.map(r => `<tr>
+      <td>${r.date}</td>
+      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">${r.company} ${r.psa}</span></td>
+      <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
+      <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
+      <td style="color:#bbb">${r.source}</td>
+    </tr>`).join('');
 }
 
 // ── Sort buttons ──
@@ -1332,6 +1400,7 @@ function switchPokemon(key) {
     );
     renderStats(poke.records);
     renderTable(poke.records, currentSort);
+    renderOtherGrading(poke.records);
   }
 }
 
@@ -1339,6 +1408,7 @@ function switchPokemon(key) {
 renderLegend(buildDatasets(pokemonDB.charizard.records));
 renderStats(pokemonDB.charizard.records);
 renderTable(pokemonDB.charizard.records, currentSort);
+renderOtherGrading(pokemonDB.charizard.records);
 </script>
 </body>
 </html>
