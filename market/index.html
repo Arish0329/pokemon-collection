@@ -279,6 +279,47 @@
   }
 
   /* ── Chart Panel ── */
+  /* ── 鑑定公司切換器 ── */
+  .grading-toggle {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .grade-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f3f4f7;                     /* 白底晶片：讓黑色 BGS LOGO 也清楚可見 */
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 9px 18px;
+    cursor: pointer;
+    opacity: 0.5;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: opacity 0.2s, border-color 0.2s, box-shadow 0.25s, transform 0.2s;
+  }
+  .grade-tab:hover { opacity: 0.85; transform: translateY(-1px); }
+  .grade-tab.active {
+    opacity: 1;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(78,158,255,0.3), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .grade-tab.disabled { opacity: 0.28; cursor: not-allowed; }
+  .grade-tab.disabled:hover { transform: none; opacity: 0.28; }
+  .grade-logo { height: 26px; width: auto; max-width: 96px; object-fit: contain; display: block; }
+  .grade-count {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #5a5a6a;
+    background: rgba(0,0,0,0.07);
+    border-radius: 20px;
+    padding: 2px 9px;
+    white-space: nowrap;
+  }
+  .grade-tab.active .grade-count { color: #1a1a24; background: rgba(0,0,0,0.12); }
+
   .chart-panel {
     background: var(--bg-panel);
     border: 1px solid var(--border);
@@ -447,6 +488,18 @@
 
 <div class="page">
 
+  <!-- 鑑定公司切換（始終可見，預設 PSA）-->
+  <div class="grading-toggle" role="tablist" aria-label="鑑定公司">
+    <button class="grade-tab active" data-company="PSA" id="gradeTabPSA" role="tab" aria-selected="true">
+      <img src="images/logo-psa.png" alt="PSA" class="grade-logo">
+      <span class="grade-count" id="countPSA"></span>
+    </button>
+    <button class="grade-tab" data-company="BGS" id="gradeTabBGS" role="tab" aria-selected="false">
+      <img src="images/logo-bgs.png" alt="BGS" class="grade-logo">
+      <span class="grade-count" id="countBGS"></span>
+    </button>
+  </div>
+
   <!-- Main content (chart + stats + table) -->
   <div id="mainContent">
 
@@ -473,26 +526,11 @@
       <table>
         <thead>
           <tr>
-            <th>日期</th><th>PSA</th><th>USD</th><th>TWD</th><th>來源</th>
+            <th>日期</th><th id="tableGradeHead">PSA</th><th>USD</th><th>TWD</th><th>來源</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
-    </div>
-
-    <!-- 其他鑑定公司成交（BGS／非 PSA），僅有資料時顯示 -->
-    <div id="otherGradingSection" style="display:none">
-      <p class="section-title">其他鑑定公司成交<span style="color:var(--text-dim);font-weight:400;font-size:0.8rem">（BGS／非 PSA，不計入上方 PSA 統計）</span></p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>日期</th><th>鑑定</th><th>USD</th><th>TWD</th><th>來源</th>
-            </tr>
-          </thead>
-          <tbody id="otherGradingBody"></tbody>
-        </table>
-      </div>
     </div>
 
   </div>
@@ -500,7 +538,7 @@
   <!-- Empty State -->
   <div class="empty-state" id="emptyState">
     <img class="empty-state-icon" id="emptyIcon" src="" alt="" style="width:80px;height:80px;object-fit:contain;opacity:0.4;">
-    <h3>尚無成交紀錄</h3>
+    <h3 id="emptyMsg">尚無成交紀錄</h3>
     <p>資料陸續新增中，敬請期待</p>
   </div>
 
@@ -1041,10 +1079,35 @@ const colors = {
   6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },    // 深藍
 };
 
+// BGS 評級（含半級）與配色
+const gradesBGS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6];
+const colorsBGS = {
+  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },
+  9.5: { line: '#e8c84a', fill: 'rgba(232,200,74,0.07)' },
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
+  7.5: { line: '#5fa0e8', fill: 'rgba(95,160,232,0.07)' },
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
+  6.5: { line: '#3f66c8', fill: 'rgba(63,102,200,0.07)' },
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
+};
+
 // ── State ──
 let currentPokeKey = 'charizard';
 let currentSort    = 'date-desc';
+let currentCompany = 'PSA';
 let chartInstance  = null;
+
+// ── 鑑定公司切換輔助 ──
+const isPSA = r => !r.company || r.company === 'PSA';
+const isBGS = r => r.company === 'BGS';
+function recordsForCompany(records) {
+  return currentCompany === 'BGS' ? records.filter(isBGS) : records.filter(isPSA);
+}
+function activeGrades() { return currentCompany === 'BGS' ? gradesBGS : grades; }
+function activeColors() { return currentCompany === 'BGS' ? colorsBGS : colors; }
+function gradeLabel(g) { return `${currentCompany} ${g}`; }
 
 // ══════════════════════════════════════════════
 // ── Build Pokémon Selector ──
@@ -1156,23 +1219,23 @@ updateTrigger(currentPokeKey);
 // ══════════════════════════════════════════════
 // ── Chart Init ──
 // ══════════════════════════════════════════════
-function isPSA(r)  { return !r.company || r.company === 'PSA'; }
-function isOther(r){ return r.company && r.company !== 'PSA'; }
-
 function buildDatasets(records) {
-  const sorted = [...records].filter(isPSA).sort((a,b) => new Date(a.date) - new Date(b.date));
-  const sets = grades.map(g => {
+  const recs = recordsForCompany(records);
+  const sorted = [...recs].sort((a,b) => new Date(a.date) - new Date(b.date));
+  const G = activeGrades(), C = activeColors();
+  return G.map(g => {
     const points = sorted.filter(r => r.psa === g).map(r => ({
       x: new Date(r.date.replace(/\//g, '-')),
       y: r.usd,
       _record: r
     }));
+    const col = C[g] || { line: '#888', fill: 'rgba(136,136,136,0.07)' };
     return {
-      label: `PSA ${g}`,
+      label: gradeLabel(g),
       data: points,
-      borderColor: colors[g].line,
-      backgroundColor: colors[g].fill,
-      pointBackgroundColor: colors[g].line,
+      borderColor: col.line,
+      backgroundColor: col.fill,
+      pointBackgroundColor: col.line,
       pointRadius: 5,
       pointHoverRadius: 7,
       borderWidth: 2,
@@ -1181,27 +1244,6 @@ function buildDatasets(records) {
       spanGaps: true,
     };
   }).filter(d => d.data.length > 0);
-
-  // BGS／其他鑑定：獨立散點（空心菱形），不連線、不混入 PSA 線
-  const others = records.filter(isOther)
-    .sort((a,b) => new Date(a.date) - new Date(b.date))
-    .map(r => ({ x: new Date(r.date.replace(/\//g, '-')), y: r.usd, _record: r }));
-  if (others.length) {
-    sets.push({
-      label: 'BGS',
-      data: others,
-      borderColor: '#ff6b8a',
-      backgroundColor: 'transparent',
-      pointBackgroundColor: 'transparent',
-      pointBorderColor: '#ff6b8a',
-      pointBorderWidth: 2,
-      pointStyle: 'rectRot',
-      pointRadius: 7,
-      pointHoverRadius: 9,
-      showLine: false,
-    });
-  }
-  return sets;
 }
 
 chartInstance = new Chart(document.getElementById('trendChart'), {
@@ -1277,9 +1319,10 @@ function renderLegend(datasets) {
 function renderStats(records) {
   const statsEl = document.getElementById('statsGrid');
   statsEl.innerHTML = '';
-  const psaRecords = records.filter(isPSA);
-  grades.forEach(g => {
-    const pts = psaRecords.filter(r => r.psa === g);
+  const recs = recordsForCompany(records);
+  const G = activeGrades(), C = activeColors();
+  G.forEach(g => {
+    const pts = recs.filter(r => r.psa === g);
     if (!pts.length) return;
     const max  = Math.max(...pts.map(r => r.usd));        // 全期最高
     // 依日期由新到舊排序，取近 3 筆計算「近期均價」，避免久遠舊價拉低數值
@@ -1287,10 +1330,10 @@ function renderStats(records) {
     const recent    = sorted.slice(0, 3);
     const recentAvg = Math.round(recent.reduce((sum,r) => sum + r.usd, 0) / recent.length);
     const latest    = sorted[0].usd;                       // 最新單筆成交
-    const c    = colors[g].line;
+    const c    = (C[g] || {line:'#888'}).line;
     statsEl.innerHTML += `
       <div class="stat-card" style="border-left:3px solid ${c}60">
-        <div class="stat-label" style="color:${c}cc">PSA ${g} &nbsp;·&nbsp; ${pts.length} 筆成交</div>
+        <div class="stat-label" style="color:${c}cc">${gradeLabel(g)} &nbsp;·&nbsp; ${pts.length} 筆成交</div>
         <div class="stat-main">
           <div class="stat-main-tag">近 ${recent.length} 筆均價</div>
           <div class="stat-value" style="color:#fff">$${recentAvg.toLocaleString()}</div>
@@ -1321,34 +1364,18 @@ const sorters = {
 
 function renderTable(records, sortKey) {
   const tbody = document.getElementById('tableBody');
-  const data  = [...records].filter(isPSA).sort(sorters[sortKey] || sorters['date-desc']);
+  const data  = recordsForCompany(records).sort(sorters[sortKey] || sorters['date-desc']);
+  const C = activeColors();
   tbody.innerHTML = data.map(r => {
-    const c = (colors[r.psa] || {line:'#888'}).line;
+    const c = (C[r.psa] || {line:'#888'}).line;
     return `<tr>
       <td>${r.date}</td>
-      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">PSA ${r.psa}</span></td>
+      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">${gradeLabel(r.psa)}</span></td>
       <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
       <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
       <td style="color:#bbb">${r.source}</td>
     </tr>`;
   }).join('');
-}
-
-// ── 其他鑑定（BGS）成交表 ──
-function renderOtherGrading(records) {
-  const section = document.getElementById('otherGradingSection');
-  const tbody   = document.getElementById('otherGradingBody');
-  const others  = records.filter(isOther).sort((a,b) => new Date(b.date) - new Date(a.date));
-  if (!others.length) { section.style.display = 'none'; return; }
-  section.style.display = 'block';
-  const c = '#ff6b8a';
-  tbody.innerHTML = others.map(r => `<tr>
-      <td>${r.date}</td>
-      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">${r.company} ${r.psa}</span></td>
-      <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
-      <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
-      <td style="color:#bbb">${r.source}</td>
-    </tr>`).join('');
 }
 
 // ── Sort buttons ──
@@ -1378,37 +1405,84 @@ function switchPokemon(key) {
   document.querySelector('.header').style.setProperty('--header-glow', poke.glow);
   document.querySelector('.header-eyebrow').style.color = poke.accent;
 
-  // Show/hide empty state
-  const hasData = poke.records.length > 0;
+  // 若目前在 BGS 但此卡無 BGS 資料，自動退回 PSA
+  if (currentCompany === 'BGS' && !poke.records.some(isBGS)) {
+    currentCompany = 'PSA';
+    updateCompanyTabs();
+  }
+
+  // Reset sort
+  currentSort = 'date-desc';
+  document.querySelectorAll('.sort-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.sort === 'date-desc')
+  );
+
+  renderAll();
+}
+
+// ── 依「目前卡片 + 目前鑑定公司」渲染整頁 ──
+function renderAll() {
+  const poke = pokemonDB[currentPokeKey];
+  const recs = recordsForCompany(poke.records);
+  const hasData = recs.length > 0;
+
   document.getElementById('mainContent').style.display = hasData ? 'block' : 'none';
   document.getElementById('emptyState').style.display  = hasData ? 'none'  : 'block';
+  document.getElementById('emptyMsg').textContent =
+    currentCompany === 'BGS' ? '此卡尚無 BGS 成交紀錄' : '尚無成交紀錄';
   const emptyIcon = document.getElementById('emptyIcon');
   emptyIcon.src = poke.icon;
   emptyIcon.alt = poke.zh;
+  document.getElementById('tableGradeHead').textContent = currentCompany;
 
   if (hasData) {
-    // Update chart
     const datasets = buildDatasets(poke.records);
     chartInstance.data.datasets = datasets;
     chartInstance.update();
     renderLegend(datasets);
-
-    // Reset sort & re-render
-    currentSort = 'date-desc';
-    document.querySelectorAll('.sort-btn').forEach(b =>
-      b.classList.toggle('active', b.dataset.sort === 'date-desc')
-    );
     renderStats(poke.records);
     renderTable(poke.records, currentSort);
-    renderOtherGrading(poke.records);
   }
+  updateCompanyCounts();
 }
 
+// ── 切換器：更新筆數、active 狀態、停用無資料的公司 ──
+function updateCompanyCounts() {
+  const poke = pokemonDB[currentPokeKey];
+  const bgsN = poke.records.filter(isBGS).length;
+  document.getElementById('countPSA').textContent = poke.records.filter(isPSA).length + ' 筆';
+  document.getElementById('countBGS').textContent = bgsN + ' 筆';
+  document.getElementById('gradeTabBGS').classList.toggle('disabled', bgsN === 0);
+}
+function updateCompanyTabs() {
+  document.querySelectorAll('.grade-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.company === currentCompany)
+  );
+  document.querySelectorAll('.grade-tab').forEach(t =>
+    t.setAttribute('aria-selected', t.dataset.company === currentCompany ? 'true' : 'false')
+  );
+}
+function switchCompany(company) {
+  if (company === currentCompany) return;
+  const poke = pokemonDB[currentPokeKey];
+  if (company === 'BGS' && !poke.records.some(isBGS)) return;  // 無 BGS 資料不切換
+  currentCompany = company;
+  updateCompanyTabs();
+  currentSort = 'date-desc';
+  document.querySelectorAll('.sort-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.sort === 'date-desc')
+  );
+  renderAll();
+}
+document.querySelectorAll('.grade-tab').forEach(tab =>
+  tab.addEventListener('click', () => {
+    if (!tab.classList.contains('disabled')) switchCompany(tab.dataset.company);
+  })
+);
+
 // ── Initial render ──
-renderLegend(buildDatasets(pokemonDB.charizard.records));
-renderStats(pokemonDB.charizard.records);
-renderTable(pokemonDB.charizard.records, currentSort);
-renderOtherGrading(pokemonDB.charizard.records);
+updateCompanyTabs();
+renderAll();
 </script>
 </body>
 </html>
