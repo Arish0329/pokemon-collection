@@ -541,7 +541,7 @@ const CARDS = [
   { id:102, name:'水能量',       cat:'energy', holo:false },
 ];
 
-const ASSET_VERSION = 4;  // 換圖後把這個數字 +1，舊圖快取就會失效（讓訪客重新下載新圖）
+const ASSET_VERSION = 5;  // 換圖後把這個數字 +1，舊圖快取就會失效（讓訪客重新下載新圖）
 const imgId = id => `../images/${String(id).padStart(3,'0')}.jpg?v=${ASSET_VERSION}`;
 
 let collected = new Set();
