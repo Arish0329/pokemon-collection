@@ -289,6 +289,16 @@
     }
     .card.holo .card-num  { color: var(--gold); opacity: 0.8; }
     .card.holo .card-name { color: var(--gold-light); }
+    .card-en {
+      font-size: 0.66rem;
+      color: #8c8ca8;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+    .card.holo .card-en { color: var(--gold); opacity: 0.85; }
 
     /* HOLO badge */
     .badge-holo-tag {
@@ -743,7 +753,8 @@ function render() {
     const info = document.createElement('div');
     info.className = 'card-info';
     info.innerHTML = `<div class="card-num">No.${card.id}</div>
-      <div class="card-name">${card.name}</div>`;
+      <div class="card-name">${card.name}</div>
+      <div class="card-en">${EN_NAMES[card.id] || ''}</div>`;
 
     el.appendChild(imgWrap);
     el.appendChild(info);
