@@ -363,6 +363,97 @@
     }
     .lightbox-close:hover { border-color: var(--text); }
 
+    /* ── Search ── */
+    .search-wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 0 24px 22px;
+    }
+    .search-box { position: relative; display: flex; align-items: center; }
+    .search-box > svg {
+      position: absolute; left: 14px;
+      width: 16px; height: 16px;
+      stroke: var(--text-dim);
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 44px 0 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,162,39,0.15);
+    }
+    .search-clear {
+      position: absolute; right: 8px;
+      width: 28px; height: 28px;
+      border: none; background: transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      display: none; align-items: center; justify-content: center;
+      transition: color 0.15s, background 0.15s;
+    }
+    .search-clear:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .search-clear.show { display: flex; }
+    .search-count {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      min-height: 1em;
+    }
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 52px 20px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    /* ── Lightbox nav & English name ── */
+    .lightbox-nav {
+      position: absolute;
+      top: 38%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(13,13,30,0.7);
+      backdrop-filter: blur(4px);
+      color: var(--text);
+      font-size: 1.4rem; line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+      z-index: 2;
+    }
+    .lightbox-nav:hover { border-color: var(--gold); background: rgba(13,13,30,0.95); }
+    .lightbox-nav:disabled { opacity: 0.2; cursor: default; border-color: var(--border); }
+    .lightbox-prev { left: -56px; }
+    .lightbox-next { right: -56px; }
+    .lightbox-en {
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+    @media (max-width: 480px) {
+      .lightbox-prev { left: 6px; }
+      .lightbox-next { right: 6px; }
+      .lightbox-nav { background: rgba(13,13,30,0.88); }
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -414,16 +505,28 @@
   <button class="filter-btn" data-filter="missing">未收藏</button>
 </div>
 
+<div class="search-wrap">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="search-input" id="search-input" placeholder="搜尋名稱或編號…（例：噴火龍 / 艾比郎 / Charizard / 4）" autocomplete="off" aria-label="搜尋卡片">
+    <button class="search-clear" id="search-clear" aria-label="清除搜尋" type="button">✕</button>
+  </div>
+  <div class="search-count" id="search-count" aria-live="polite"></div>
+</div>
+
 <div class="grid-wrap">
   <div class="card-grid" id="card-grid"></div>
 </div>
 
 <div class="lightbox" id="lightbox">
   <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-close" id="lightbox-close" aria-label="關閉" type="button">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="上一張" type="button">‹</button>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="下一張" type="button">›</button>
     <div class="lightbox-info">
       <div class="lightbox-name" id="lightbox-name"></div>
+      <div class="lightbox-en" id="lightbox-en"></div>
       <div class="lightbox-sub" id="lightbox-sub"></div>
     </div>
   </div>
@@ -546,6 +649,30 @@ const imgId = id => `../images/${String(id).padStart(3,'0')}.jpg?v=${ASSET_VERSI
 
 let collected = new Set();
 let activeFilter = 'all';
+let searchQ = '';
+
+// 英文卡名（對應 PSA/CGC 標籤，供 lightbox 顯示與搜尋）
+const EN_NAMES = {
+  1:'Alakazam',2:'Blastoise',3:'Chansey',4:'Charizard',5:'Clefairy',6:'Gyarados',7:'Hitmonchan',8:'Machamp',9:'Magneton',10:'Mewtwo',
+  11:'Nidoking',12:'Ninetales',13:'Poliwrath',14:'Raichu',15:'Venusaur',16:'Zapdos',17:'Beedrill',18:'Dragonair',19:'Dugtrio',20:'Electabuzz',
+  21:'Electrode',22:'Pidgeotto',23:'Arcanine',24:'Charmeleon',25:'Dewgong',26:'Dratini',27:"Farfetch'd",28:'Growlithe',29:'Haunter',30:'Ivysaur',
+  31:'Jynx',32:'Kadabra',33:'Kakuna',34:'Machoke',35:'Magikarp',36:'Magmar',37:'Nidorino',38:'Poliwhirl',39:'Porygon',40:'Raticate',
+  41:'Seel',42:'Wartortle',43:'Abra',44:'Bulbasaur',45:'Caterpie',46:'Charmander',47:'Diglett',48:'Doduo',49:'Drowzee',50:'Gastly',
+  51:'Koffing',52:'Machop',53:'Magnemite',54:'Metapod',55:'Nidoran ♂',56:'Onix',57:'Pidgey',58:'Pikachu',59:'Poliwag',60:'Ponyta',
+  61:'Rattata',62:'Sandshrew',63:'Squirtle',64:'Starmie',65:'Staryu',66:'Tangela',67:'Voltorb',68:'Vulpix',69:'Weedle',70:'Clefairy Doll',
+  71:'Computer Search',72:'Devolution Spray',73:'Impostor Professor Oak',74:'Item Finder',75:'Lass',76:'Pokémon Breeder',77:'Pokémon Trader',78:'Scoop Up',79:'Super Energy Removal',80:'Defender',
+  81:'Energy Retrieval',82:'Full Heal',83:'Maintenance',84:'PlusPower',85:'Pokémon Center',86:'Pokémon Flute',87:'Pokédex',88:'Professor Oak',89:'Revive',90:'Super Potion',
+  91:'Bill',92:'Energy Removal',93:'Gust of Wind',94:'Potion',95:'Switch',96:'Double Colorless Energy',97:'Fighting Energy',98:'Fire Energy',99:'Grass Energy',100:'Lightning Energy',
+  101:'Psychic Energy',102:'Water Energy'
+};
+
+function matchSearch(card) {
+  const q = searchQ.trim().toLowerCase();
+  if (!q) return true;
+  return card.name.toLowerCase().includes(q)
+      || String(card.id).includes(q)
+      || (EN_NAMES[card.id] || '').toLowerCase().includes(q);
+}
 
 // ── Load data ──
 async function loadData() {
@@ -564,10 +691,12 @@ async function loadData() {
 function render() {
   const grid = document.getElementById('card-grid');
   grid.innerHTML = '';
+  let visibleCount = 0;
 
   CARDS.forEach(card => {
     const isCollected = collected.has(card.id);
-    const visible = matchFilter(card, isCollected);
+    const visible = matchFilter(card, isCollected) && matchSearch(card);
+    if (visible) visibleCount++;
 
     const el = document.createElement('div');
     el.className = `card ${card.holo ? 'holo' : 'common'} ${isCollected ? 'collected' : ''} ${visible ? '' : 'hidden'}`;
@@ -590,7 +719,7 @@ function render() {
       </svg>`;
       imgWrap.appendChild(tick);
 
-      el.addEventListener('click', () => openLightbox(card, imgId(card.id)));
+      el.addEventListener('click', () => openLightbox(card));
     } else {
       const ph = document.createElement('div');
       ph.className = 'card-placeholder';
@@ -620,6 +749,14 @@ function render() {
     el.appendChild(info);
     grid.appendChild(el);
   });
+
+  if (visibleCount === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = searchQ ? `找不到符合「${searchQ}」的卡片` : '沒有符合條件的卡片';
+    grid.appendChild(empty);
+  }
+  updateSearchCount(visibleCount);
 }
 
 function matchFilter(card, isCollected) {
@@ -656,32 +793,85 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 // ── Lightbox ──
-function openLightbox(card, src) {
-  const lb = document.getElementById('lightbox');
+let lbList = [];   // 目前可瀏覽的卡（受篩選 + 搜尋影響，且僅限已收藏）
+let lbIndex = -1;
+
+function getNavigableCards() {
+  return CARDS.filter(card => {
+    const isC = collected.has(card.id);
+    return isC && matchFilter(card, isC) && matchSearch(card);
+  });
+}
+
+function openLightbox(card) {
+  lbList = getNavigableCards();
+  lbIndex = lbList.findIndex(c => c.id === card.id);
+  if (lbIndex < 0) { lbList = [card]; lbIndex = 0; }
+  showLightboxAt(lbIndex);
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function showLightboxAt(i) {
+  if (i < 0 || i >= lbList.length) return;
+  lbIndex = i;
+  const card = lbList[i];
   const img = document.getElementById('lightbox-img');
-  img.src = src;
+  img.src = imgId(card.id);
   img.alt = card.name;
   img.className = `lightbox-img${card.holo ? ' lightbox-holo' : ''}`;
   document.getElementById('lightbox-name').textContent = `No.${card.id} ${card.name}`;
+  document.getElementById('lightbox-en').textContent = EN_NAMES[card.id] || '';
   document.getElementById('lightbox-sub').textContent =
-    card.holo ? '閃卡 HOLO · 初代首刷 · 繁體中文' : `${catLabel(card.cat)} · 初代首刷 · 繁體中文`;
-  lb.classList.add('open');
+    (card.holo ? '閃卡 HOLO' : catLabel(card.cat)) + ' · 初代首刷 · 繁體中文';
+  document.getElementById('lightbox-prev').disabled = (i <= 0);
+  document.getElementById('lightbox-next').disabled = (i >= lbList.length - 1);
+}
+
+function lbNav(delta) {
+  const ni = lbIndex + delta;
+  if (ni >= 0 && ni < lbList.length) showLightboxAt(ni);
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
 }
 
 function catLabel(cat) {
   return { pokemon:'寶可夢卡', trainer:'訓練師／道具卡', energy:'能量卡', holo:'閃卡' }[cat] || '';
 }
 
-document.getElementById('lightbox-close').addEventListener('click', () => {
-  document.getElementById('lightbox').classList.remove('open');
-});
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+document.getElementById('lightbox-prev').addEventListener('click', e => { e.stopPropagation(); lbNav(-1); });
+document.getElementById('lightbox-next').addEventListener('click', e => { e.stopPropagation(); lbNav(1); });
 document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox'))
-    document.getElementById('lightbox').classList.remove('open');
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  else if (e.key === 'ArrowLeft')  lbNav(-1);
+  else if (e.key === 'ArrowRight') lbNav(1);
 });
+
+// ── Search ──
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+searchInput.addEventListener('input', () => {
+  searchQ = searchInput.value;
+  searchClear.classList.toggle('show', searchQ.length > 0);
+  render();
+});
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchQ = '';
+  searchClear.classList.remove('show');
+  render();
+  searchInput.focus();
+});
+
+function updateSearchCount(n) {
+  document.getElementById('search-count').textContent = searchQ ? `找到 ${n} 張` : '';
+}
 
 loadData();
 </script>
