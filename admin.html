@@ -385,7 +385,7 @@
           <span class="step-num">6</span>
           <strong>等待部署完成</strong><br>
           約 1–2 分鐘後，網址會是：<br>
-          <code>https://你的帳號.github.io/pokemon-collection/</code>
+          <code>https://arish-collection.com/</code>
         </div>
         <div class="guide-step">
           <span class="step-num">7</span>
@@ -537,7 +537,7 @@ let pendingImages = []; // { file, id, name }
 let filterMode = 'all';
 let removeTarget = null;
 
-const imgId = id => `images/${String(id).padStart(3,'0')}.jpg`;
+const imgId = id => `images/${String(id).padStart(3,'0')}.jpg?t=${Date.now()}`; // 後台縮圖永遠抓最新圖（防快取）
 const typeLabel = { holo:'HOLO 閃卡', pokemon:'寶可夢', trainer:'訓練師／道具', energy:'能量' };
 const typeClass  = { holo:'type-holo', pokemon:'type-pokemon', trainer:'type-trainer', energy:'type-energy' };
 
