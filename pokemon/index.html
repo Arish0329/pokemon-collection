@@ -458,6 +458,23 @@
       letter-spacing: 0.04em;
       margin-top: 4px;
     }
+    .lightbox-cert {
+      display: none;
+      align-items: center;
+      gap: 7px;
+      margin-top: 16px;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .lightbox-cert:hover { border-color: var(--gold); background: rgba(201,162,39,0.1); color: var(--gold-light); }
+    .lightbox-cert span { color: var(--text-dim); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.02em; }
     @media (max-width: 480px) {
       .lightbox-prev { left: 6px; }
       .lightbox-next { right: 6px; }
@@ -538,6 +555,7 @@
       <div class="lightbox-name" id="lightbox-name"></div>
       <div class="lightbox-en" id="lightbox-en"></div>
       <div class="lightbox-sub" id="lightbox-sub"></div>
+      <a class="lightbox-cert" id="lightbox-cert" target="_blank" rel="noopener">查驗證書 <span>Cert Verification ↗</span></a>
     </div>
   </div>
 </div>
@@ -675,6 +693,19 @@ const EN_NAMES = {
   91:'Bill',92:'Energy Removal',93:'Gust of Wind',94:'Potion',95:'Switch',96:'Double Colorless Energy',97:'Fighting Energy',98:'Fire Energy',99:'Grass Energy',100:'Lightning Energy',
   101:'Psychic Energy',102:'Water Energy'
 };
+
+// 鑑定證書（co 機構 + cert 證書號）；裸卡不列入。逐張依卡圖標籤核對。
+const CERTS = {
+  1:{co:'PSA',cert:'70713696'}, 2:{co:'PSA',cert:'85177123'}, 3:{co:'PSA',cert:'70713697'}, 4:{co:'PSA',cert:'65440073'},
+  5:{co:'PSA',cert:'123438093'}, 6:{co:'PSA',cert:'66311566'}, 7:{co:'PSA',cert:'116094582'}, 8:{co:'PSA',cert:'123438096'},
+  9:{co:'PSA',cert:'25808003'}, 10:{co:'PSA',cert:'123438098'}, 11:{co:'PSA',cert:'129714826'}, 12:{co:'PSA',cert:'124678412'},
+  13:{co:'PSA',cert:'116094601'}, 14:{co:'PSA',cert:'124678416'}, 15:{co:'PSA',cert:'91277882'}, 16:{co:'PSA',cert:'101778370'}
+};
+function certUrl(c) {
+  return c.co === 'CGC'
+    ? `https://www.cgccards.com/certlookup/${c.cert}`
+    : `https://www.psacard.com/cert/${c.cert}/psa`;
+}
 
 function matchSearch(card) {
   const q = searchQ.trim().toLowerCase();
@@ -834,6 +865,10 @@ function showLightboxAt(i) {
   document.getElementById('lightbox-en').textContent = EN_NAMES[card.id] || '';
   document.getElementById('lightbox-sub').textContent =
     (card.holo ? '閃卡 HOLO' : catLabel(card.cat)) + ' · 初代首刷 · 繁體中文';
+  const cert = CERTS[card.id];
+  const certBtn = document.getElementById('lightbox-cert');
+  if (cert) { certBtn.href = certUrl(cert); certBtn.style.display = 'inline-flex'; }
+  else { certBtn.style.display = 'none'; }
   document.getElementById('lightbox-prev').disabled = (i <= 0);
   document.getElementById('lightbox-next').disabled = (i >= lbList.length - 1);
 }
