@@ -1111,22 +1111,22 @@ const pokemonDB = {
     records: []
   },
   gengar: {
-    zh: '2006 傳說締造者 耿鬼', en: 'Gengar', dex: 500, icon: 'images/lm-gengar.png',
+    zh: '2006 傳說締造者 耿鬼', en: 'Gengar', dex: 500, icon: 'images/lm-gengar.png', series: 'Legend Maker',
     accent: '#7c3aed', glow: 'rgba(124,58,237,0.12)',
     records: []
   },
   mew: {
-    zh: '2006 傳說締造者 夢幻', en: 'Mew', dex: 501, icon: 'images/lm-mew.png',
+    zh: '2006 傳說締造者 夢幻', en: 'Mew', dex: 501, icon: 'images/lm-mew.png', series: 'Legend Maker',
     accent: '#ec4899', glow: 'rgba(236,72,153,0.12)',
     records: []
   },
   mewex: {
-    zh: '2006 傳說締造者 夢幻EX', en: 'Mew EX', dex: 502, icon: 'images/lm-mew.png',
+    zh: '2006 傳說締造者 夢幻EX', en: 'Mew EX', dex: 502, icon: 'images/lm-mew.png', series: 'Legend Maker',
     accent: '#d97706', glow: 'rgba(217,119,6,0.12)',
     records: []
   },
   pikachu_jungle: {
-    zh: '2000叢林皮卡丘', en: 'Pikachu (Jungle)', dex: 503, icon: 'images/058.png',
+    zh: '2000叢林皮卡丘', en: 'Pikachu (Jungle)', dex: 503, icon: 'images/058.png', series: 'Jungle Pikachu',
     accent: '#facc15', glow: 'rgba(250,204,21,0.12)',
     records: []
   }
@@ -1464,8 +1464,12 @@ function switchPokemon(key) {
   updateTrigger(key);
 
   // Update header
-  document.getElementById('headerTitle').textContent = `繁中首刷${poke.zh}成交紀錄`;
-  document.getElementById('headerSub').textContent   = `${poke.en} · Pokemon Chinese 1st Edition · PSA Grading`;
+  // dex >= 500 為非首刷系列（傳說締造者、叢林皮卡丘），不加「繁中首刷」前綴
+  const titlePrefix = poke.dex >= 500 ? '' : '繁中首刷';
+  document.getElementById('headerTitle').textContent = `${titlePrefix}${poke.zh}成交紀錄`;
+  // 非首刷系列（dex >= 500）顯示自己的系列名，其餘顯示 Pokemon Chinese 1st Edition
+  const subLabel = poke.dex >= 500 ? poke.series : 'Pokemon Chinese 1st Edition';
+  document.getElementById('headerSub').textContent   = `${poke.en} · ${subLabel} · PSA Grading`;
   document.querySelector('.header').style.setProperty('--header-glow', poke.glow);
   document.querySelector('.header-eyebrow').style.color = poke.accent;
 
