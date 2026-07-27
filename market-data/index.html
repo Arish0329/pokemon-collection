@@ -164,7 +164,7 @@
     font-size: 0.82rem; font-weight: 700; color: var(--text-muted);
     font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
   }
-  .poke-combo-name { font-size: 1.05rem; font-weight: 900; color: var(--tab-accent, #fff); }
+  .poke-combo-name { font-size: 1.05rem; font-weight: 900; color: var(--tab-accent, #fff); white-space: nowrap; }
   .poke-combo-en { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em; }
   .poke-combo-count {
     margin-left: auto;
@@ -498,6 +498,10 @@
       <img src="images/logo-bgs.png" alt="BGS" class="grade-logo">
       <span class="grade-count" id="countBGS"></span>
     </button>
+    <button class="grade-tab" data-company="RAW" id="gradeTabRAW" role="tab" aria-selected="false">
+      <span class="grade-logo" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.95rem;letter-spacing:0.06em;color:#a0a0b8;">裸卡</span>
+      <span class="grade-count" id="countRAW"></span>
+    </button>
   </div>
 
   <!-- Main content (chart + stats + table) -->
@@ -604,6 +608,7 @@ const pokemonDB = {
     zh: '水箭龜', en: 'Blastoise', dex: 2, icon: 'images/002.png',
     accent: '#38bdf8', glow: 'rgba(56,189,248,0.12)',
     records: [
+      {date:'2026/7/25', psa:8,  usd:1713, twd:55330, source:'eBay'},
       {date:'2026/6/19', psa:9,  usd:2800, twd:90440, source:'eBay'},
       {date:'2026/6/8',  psa:9,  usd:3150, twd:101745, source:'eBay'},
       {date:'2026/6/4',  psa:8,  usd:1176, twd:38000,  source:'社團'},
@@ -901,6 +906,7 @@ const pokemonDB = {
     zh: '九尾', en: 'Ninetales', dex: 12, icon: 'images/012.png',
     accent: '#a3e635', glow: 'rgba(163,230,53,0.12)',
     records: [
+      {date:'2026/7/25', psa:8,  usd:798.88, twd:25804,  source:'eBay'},
       {date:'2026/6/7',  psa:9,  usd:1483,  twd:47901,  source:'eBay'},
       {date:'2026/5/15', psa:8,  usd:700,   twd:22610,  source:'eBay'},
       {date:'2026/3/29', psa:10, usd:10100, twd:326230, source:'eBay'},
@@ -1108,7 +1114,19 @@ const pokemonDB = {
   magikarp: {
     zh: '鯉魚王', en: 'Magikarp', dex: 53, icon: 'images/053.png',
     accent: '#f97316', glow: 'rgba(249,115,22,0.12)',
-    records: []
+    records: [
+      {date:'2026/7/26', psa:10,    usd:3050,  twd:98515, source:'eBay'},
+      {date:'2026/7/24', psa:9,     usd:136,   twd:4393,  source:'eBay'},
+      {date:'2026/5/11', psa:'RAW', usd:180,   twd:5814,  company:'RAW', source:'eBay'},
+      {date:'2026/2/5',  psa:'RAW', usd:99,    twd:3198,  company:'RAW', source:'eBay'},
+      {date:'2025/11/16',psa:10,    usd:464,   twd:14987, source:'eBay'},
+      {date:'2025/8/18', psa:'RAW', usd:51,    twd:1647,  company:'RAW', source:'eBay'},
+      {date:'2025/8/18', psa:'RAW', usd:51,    twd:1647,  company:'RAW', source:'eBay'},
+      {date:'2024/12/4', psa:8,     usd:36.66, twd:1184,  source:'eBay'},
+      {date:'2024/4/14', psa:8,     usd:25.25, twd:816,   source:'eBay'},
+      {date:'2022/8/7',  psa:9,     usd:54,    twd:1593,  source:'Fanatics'},
+      {date:'2020/9/28', psa:9,     usd:102.5, twd:3024,  source:'Fanatics'},
+    ]
   },
   gengar: {
     zh: '2006 傳說締造者 耿鬼', en: 'Gengar', dex: 500, icon: 'images/lm-gengar.png', series: 'Legend Maker',
@@ -1191,6 +1209,10 @@ const colorsBGS = {
   6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
 };
 
+// 裸卡（無評級）— 單一分組，中性灰色
+const gradesRAW = ['RAW'];
+const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } };
+
 // ── State ──
 let currentPokeKey = 'charizard';
 let currentSort    = 'date-desc';
@@ -1200,12 +1222,23 @@ let chartInstance  = null;
 // ── 鑑定公司切換輔助 ──
 const isPSA = r => !r.company || r.company === 'PSA';
 const isBGS = r => r.company === 'BGS';
+const isRAW = r => r.company === 'RAW';
 function recordsForCompany(records) {
-  return currentCompany === 'BGS' ? records.filter(isBGS) : records.filter(isPSA);
+  if (currentCompany === 'BGS') return records.filter(isBGS);
+  if (currentCompany === 'RAW') return records.filter(isRAW);
+  return records.filter(isPSA);
 }
-function activeGrades() { return currentCompany === 'BGS' ? gradesBGS : grades; }
-function activeColors() { return currentCompany === 'BGS' ? colorsBGS : colors; }
-function gradeLabel(g) { return `${currentCompany} ${g}`; }
+function activeGrades() {
+  if (currentCompany === 'BGS') return gradesBGS;
+  if (currentCompany === 'RAW') return gradesRAW;
+  return grades;
+}
+function activeColors() {
+  if (currentCompany === 'BGS') return colorsBGS;
+  if (currentCompany === 'RAW') return colorsRAW;
+  return colors;
+}
+function gradeLabel(g) { return currentCompany === 'RAW' ? '裸卡' : `${currentCompany} ${g}`; }
 
 // ══════════════════════════════════════════════
 // ── Build Pokémon Selector ──
@@ -1368,9 +1401,11 @@ chartInstance = new Chart(document.getElementById('trendChart'), {
           label: ctx => {
             const r = ctx.raw._record;
             if (!r) return ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`;
-            const gradeLabel = (r.company && r.company !== 'PSA') ? `${r.company} ${r.psa}` : `PSA ${r.psa}`;
+            const gLabel = r.company === 'RAW' ? '裸卡'
+                         : (r.company && r.company !== 'PSA') ? `${r.company} ${r.psa}`
+                         : `PSA ${r.psa}`;
             return [
-              ` ${gradeLabel}`,
+              ` ${gLabel}`,
               ` $${r.usd.toLocaleString()} USD  ·  NT$${r.twd.toLocaleString()}`,
               ` ${r.source}`,
             ];
@@ -1507,9 +1542,14 @@ function switchPokemon(key) {
   document.querySelector('.header').style.setProperty('--header-glow', poke.glow);
   document.querySelector('.header-eyebrow').style.color = poke.accent;
 
-  // 若目前在 BGS 但此卡無 BGS 資料，自動退回 PSA
-  if (currentCompany === 'BGS' && !poke.records.some(isBGS)) {
-    currentCompany = 'PSA';
+  // 若目前分頁在此卡無資料，自動切到第一個有資料的分頁（PSA → BGS → 裸卡）
+  const curHasData = currentCompany === 'PSA' ? poke.records.some(isPSA)
+                   : currentCompany === 'BGS' ? poke.records.some(isBGS)
+                   : poke.records.some(isRAW);
+  if (!curHasData) {
+    if (poke.records.some(isPSA))      currentCompany = 'PSA';
+    else if (poke.records.some(isBGS)) currentCompany = 'BGS';
+    else if (poke.records.some(isRAW)) currentCompany = 'RAW';
     updateCompanyTabs();
   }
 
@@ -1531,11 +1571,13 @@ function renderAll() {
   document.getElementById('mainContent').style.display = hasData ? 'block' : 'none';
   document.getElementById('emptyState').style.display  = hasData ? 'none'  : 'block';
   document.getElementById('emptyMsg').textContent =
-    currentCompany === 'BGS' ? '此卡尚無 BGS 成交紀錄' : '尚無成交紀錄';
+    currentCompany === 'BGS' ? '此卡尚無 BGS 成交紀錄'
+    : currentCompany === 'RAW' ? '此卡尚無裸卡成交紀錄'
+    : '尚無成交紀錄';
   const emptyIcon = document.getElementById('emptyIcon');
   emptyIcon.src = poke.icon;
   emptyIcon.alt = poke.zh;
-  document.getElementById('tableGradeHead').textContent = currentCompany;
+  document.getElementById('tableGradeHead').textContent = currentCompany === 'RAW' ? '裸卡' : currentCompany;
 
   if (hasData) {
     const datasets = buildDatasets(poke.records);
@@ -1552,9 +1594,12 @@ function renderAll() {
 function updateCompanyCounts() {
   const poke = pokemonDB[currentPokeKey];
   const bgsN = poke.records.filter(isBGS).length;
+  const rawN = poke.records.filter(isRAW).length;
   document.getElementById('countPSA').textContent = poke.records.filter(isPSA).length + ' 筆';
   document.getElementById('countBGS').textContent = bgsN + ' 筆';
+  document.getElementById('countRAW').textContent = rawN + ' 筆';
   document.getElementById('gradeTabBGS').classList.toggle('disabled', bgsN === 0);
+  document.getElementById('gradeTabRAW').classList.toggle('disabled', rawN === 0);
 }
 function updateCompanyTabs() {
   document.querySelectorAll('.grade-tab').forEach(t =>
@@ -1568,6 +1613,7 @@ function switchCompany(company) {
   if (company === currentCompany) return;
   const poke = pokemonDB[currentPokeKey];
   if (company === 'BGS' && !poke.records.some(isBGS)) return;  // 無 BGS 資料不切換
+  if (company === 'RAW' && !poke.records.some(isRAW)) return;  // 無裸卡資料不切換
   currentCompany = company;
   updateCompanyTabs();
   currentSort = 'date-desc';
