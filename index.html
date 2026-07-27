@@ -105,16 +105,13 @@
     /* ── Collection Cards Grid ── */
     .collections {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       width: 100%;
-      max-width: 1100px;
+      max-width: 720px;
       animation: fadeUp 0.7s 0.15s ease both;
     }
 
-    @media (max-width: 860px) {
-      .collections { grid-template-columns: repeat(2, 1fr); max-width: 680px; }
-    }
     @media (max-width: 560px) {
       .collections { grid-template-columns: 1fr; max-width: 380px; }
     }
@@ -353,18 +350,6 @@
         </div>
       </div>
       <div class="col-cta">
-        <span>進入收藏</span>
-        <span class="col-cta-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- NBA -->
-    <a class="col-card nba" href="./nba/index.html">
-      <span class="col-icon">🏀</span>
-      <p class="col-label">NBA Trading Cards</p>
-      <h2 class="col-title">NBA<br>球員卡收藏</h2>
-      <p class="col-desc">球星簽名卡、RC 新人卡、限量短印收藏展示</p>
-      <div class="col-cta" style="margin-top:auto;">
         <span>進入收藏</span>
         <span class="col-cta-arrow">→</span>
       </div>

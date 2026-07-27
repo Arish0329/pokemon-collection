@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NBA 球員卡收藏 | Arish Collection</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏀</text></svg>">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
@@ -741,7 +740,7 @@
 <!-- Loading -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-ring"></div>
-  <p>連線中</p>
+  <p>載入中</p>
 </div>
 
 <!-- Header -->
@@ -752,21 +751,7 @@
     <div class="header-nav-row">
       <a class="nav-back" href="../index.html">← 返回首頁</a>
       <span class="nav-brand">Arish <span>Collection</span></span>
-      <div class="header-actions">
-        <div class="sync-dot" id="syncDot"></div>
-        <button class="btn btn-gold" id="addPlayerBtn" onclick="showAddPlayerModal()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-          新增球星
-        </button>
-        <button class="lock-btn" id="lockBtn" onclick="toggleAdmin()" title="管理員登入">
-          <svg id="lockIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </button>
-      </div>
+      <div class="header-actions"></div>
     </div>
 
     <!-- Brand -->
@@ -808,60 +793,6 @@
   <div id="playerList"></div>
 </main>
 
-<!-- Admin Login Modal -->
-<div class="modal-overlay" id="adminModalOverlay" onclick="onAdminOverlayClick(event)">
-  <div class="modal admin-modal">
-    <div class="modal-title">管理員登入</div>
-    <input type="password" class="modal-input" id="adminPwInput"
-      placeholder="••••••••"
-      onkeydown="if(event.key==='Enter') submitAdminLogin()">
-    <div class="admin-error" id="adminError">密碼錯誤，請再試一次</div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="hideAdminModal()">取消</button>
-      <button class="btn btn-gold" onclick="submitAdminLogin()">登入</button>
-    </div>
-  </div>
-</div>
-
-<!-- Add Player Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="onPlayerOverlayClick(event)">
-  <div class="modal">
-    <div class="modal-title">新增球星</div>
-
-    <div class="modal-avatar-area">
-      <div class="modal-avatar" onclick="document.getElementById('modalPhotoInput').click()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="modalAvatarIcon">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        <p id="modalAvatarHint">上傳照片</p>
-        <img id="modalAvatarPreview" style="display:none;">
-        <div class="modal-avatar-overlay">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-          </svg>
-          <p>更換</p>
-        </div>
-        <input type="file" id="modalPhotoInput" accept="image/*" onchange="previewModalPhoto(event)">
-      </div>
-    </div>
-
-    <input type="text" class="modal-input" id="modalNameInput"
-      placeholder="球員姓名（例如 CADE CUNNINGHAM）"
-      style="text-transform:uppercase;">
-
-    <input type="text" class="modal-input" id="modalTeamInput"
-      placeholder="所屬球隊（例如 DETROIT PISTONS）"
-      style="text-transform:uppercase; margin-top:10px;">
-
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="hideAddPlayerModal()">取消</button>
-      <button class="btn btn-gold" id="modalSaveBtn" onclick="submitAddPlayer()">新增</button>
-    </div>
-  </div>
-</div>
-
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">
@@ -877,17 +808,46 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const { createClient } = supabase;
-  const db = createClient(
-    'https://uguxzseangntmddvgzpl.supabase.co',
-    'sb_publishable_JyqJ4lUj-vnh3USGWiciYw_G07vLNcP'
-  );
+  /* ══════════════════════════════════════════════════════════════
+     地端唯讀版本（不再連線 Supabase 雲端）
 
-  const ADMIN_PW = '88888888';
+     ▍要新增／修改球員或卡片，直接編輯下方 NBA_DATA 即可：
+       1. 把新圖片放進 images/players/ 或 images/cards/ 資料夾
+       2. 在對應球員的 cards 陣列加一筆 { "id": "唯一名稱", "image_url": "images/cards/檔名.jpg" }
+       3. 存檔後重新整理頁面即可看到
+
+     ▍id 只要在整份資料中不重複即可（可用任意英數字串）
+     ▍圖片路徑一律用相對路徑，離線直接開也能顯示
+  ══════════════════════════════════════════════════════════════ */
+  const NBA_DATA = {
+    "players": [
+      {
+        "id": "cade-cunningham",
+        "name": "CADE CUNNINGHAM",
+        "team": "DETROIT PISTONS",
+        "profile_image_url": "images/players/5da8d796-367b-433c-b989-c74ae8386f6b.jpg",
+        "cards": [
+          { "id": "cade-1", "image_url": "images/cards/e551462d-eb6b-424f-be15-9416aee99123.jpg" },
+          { "id": "cade-2", "image_url": "images/cards/4ae4da33-e073-4efb-ba0d-e27823b203d4.jpg" },
+          { "id": "cade-3", "image_url": "images/cards/4989d686-34b7-47d3-9e36-78d642a08357.jpg" },
+          { "id": "cade-4", "image_url": "images/cards/a5e7024c-14d5-4488-a479-c290d22832d6.jpg" },
+          { "id": "cade-5", "image_url": "images/cards/2e649ecb-13be-4112-98d4-644c45e15263.jpg" },
+          { "id": "cade-6", "image_url": "images/cards/4f1a6043-cca4-4b04-85a1-8d4657b8881e.jpg" }
+        ]
+      },
+      {
+        "id": "wembanyama",
+        "name": "V. WEMBANYAMA",
+        "team": "SAN ANTONIO SPURS",
+        "profile_image_url": "images/players/b9562664-5fd5-467c-9f77-a29bca77616e.jpg",
+        "cards": [
+          { "id": "wemby-1", "image_url": "images/cards/f744e21c-c424-4fb8-98c6-5cd37f7bd25f.jpg" }
+        ]
+      }
+    ]
+  };
+
   let players = [];
-  let modalPhotoFile = null;
-
-  function setSyncStatus(s) { document.getElementById('syncDot').className = 'sync-dot ' + s; }
 
   function hideLoading() {
     const el = document.getElementById('loadingScreen');
@@ -895,272 +855,23 @@
     setTimeout(() => el.remove(), 500);
   }
 
-  async function init() {
-    setSyncStatus('syncing');
-    const [{ data: ps, error: pe }, { data: cs, error: ce }] = await Promise.all([
-      db.from('players').select('*').order('created_at'),
-      db.from('cards').select('*').order('created_at')
-    ]);
-
-    if (pe || ce) { setSyncStatus('error'); toast('無法連線，請重新整理'); hideLoading(); return; }
-
-    const cards = cs || [];
-    players = (ps || []).map(p => ({ ...p, cards: cards.filter(c => c.player_id === p.id) }));
-    applyPlayerOrder();
-    applyCardOrder();
-
-    setSyncStatus('ok');
+  function init() {
+    try {
+      players = (NBA_DATA.players || []).map(p => ({ ...p, cards: p.cards || [] }));
+      applyPlayerOrder();
+      applyCardOrder();
+    } catch (err) {
+      console.error('資料載入失敗', err);
+      toast('資料載入失敗');
+    }
     hideLoading();
     render();
   }
 
-  function toggleAdmin() {
-    if (document.body.classList.contains('admin-mode')) {
-      document.body.classList.remove('admin-mode');
-      sessionStorage.removeItem('admin_ok');
-      updateLockIcon(false);
-      toast('已退出管理員模式');
-    } else {
-      showAdminModal();
-    }
-  }
-
-  function showAdminModal() {
-    document.getElementById('adminPwInput').value = '';
-    document.getElementById('adminError').classList.remove('show');
-    document.getElementById('adminModalOverlay').classList.add('show');
-    setTimeout(() => document.getElementById('adminPwInput').focus(), 200);
-  }
-
-  function hideAdminModal() { document.getElementById('adminModalOverlay').classList.remove('show'); }
-  function onAdminOverlayClick(e) { if (e.target === document.getElementById('adminModalOverlay')) hideAdminModal(); }
-
-  function submitAdminLogin() {
-    const val = document.getElementById('adminPwInput').value;
-    if (val === ADMIN_PW) {
-      document.body.classList.add('admin-mode');
-      sessionStorage.setItem('admin_ok', '1');
-      updateLockIcon(true);
-      hideAdminModal();
-      toast('已進入管理員模式');
-    } else {
-      document.getElementById('adminError').classList.add('show');
-      document.getElementById('adminPwInput').value = '';
-      document.getElementById('adminPwInput').focus();
-      setTimeout(() => document.getElementById('adminError').classList.remove('show'), 2500);
-    }
-  }
-
-  function updateLockIcon(isAdmin) {
-    document.getElementById('lockIcon').innerHTML = isAdmin
-      ? `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-         <path d="M7 11V7a5 5 0 0 1 9.9-1"/>`
-      : `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>`;
-  }
-
-  if (sessionStorage.getItem('admin_ok') === '1') {
-    document.body.classList.add('admin-mode');
-    updateLockIcon(true);
-  }
-
-  function showAddPlayerModal() {
-    modalPhotoFile = null;
-    document.getElementById('modalNameInput').value = '';
-    document.getElementById('modalTeamInput').value = '';
-    document.getElementById('modalAvatarPreview').style.display = 'none';
-    document.getElementById('modalAvatarIcon').style.display = 'block';
-    document.getElementById('modalAvatarHint').style.display = 'block';
-    document.getElementById('modalPhotoInput').value = '';
-    document.getElementById('modalOverlay').classList.add('show');
-    setTimeout(() => document.getElementById('modalNameInput').focus(), 200);
-  }
-
-  function hideAddPlayerModal() { document.getElementById('modalOverlay').classList.remove('show'); }
-  function onPlayerOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) hideAddPlayerModal(); }
-
-  function previewModalPhoto(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    modalPhotoFile = file;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const img = document.getElementById('modalAvatarPreview');
-      img.src = ev.target.result; img.style.display = 'block';
-      document.getElementById('modalAvatarIcon').style.display = 'none';
-      document.getElementById('modalAvatarHint').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  }
-
-  async function submitAddPlayer() {
-    const name = document.getElementById('modalNameInput').value.trim();
-    if (!name) { document.getElementById('modalNameInput').focus(); return; }
-
-    document.getElementById('modalSaveBtn').disabled = true;
-    setSyncStatus('syncing');
-
-    const team = (document.getElementById('modalTeamInput').value.trim()).toUpperCase();
-    const { data: player, error } = await db.from('players')
-      .insert({ name: name.toUpperCase(), team: team || null }).select().single();
-
-    if (error) { setSyncStatus('error'); toast('新增失敗'); document.getElementById('modalSaveBtn').disabled = false; return; }
-
-    if (modalPhotoFile) {
-      const ext  = modalPhotoFile.name.split('.').pop();
-      const path = `players/${player.id}/profile.${ext}`;
-      const { error: uploadErr } = await db.storage.from('card-images').upload(path, modalPhotoFile);
-      if (!uploadErr) {
-        const { data: { publicUrl } } = db.storage.from('card-images').getPublicUrl(path);
-        await db.from('players').update({ profile_image_url: publicUrl }).eq('id', player.id);
-        player.profile_image_url = publicUrl;
-      }
-    }
-
-    players.push({ ...player, cards: [] });
-    document.getElementById('modalSaveBtn').disabled = false;
-    setSyncStatus('ok');
-    hideAddPlayerModal();
-    render();
-    toast(`已新增 ${player.name}`);
-  }
-
-  async function setPlayerName(id, val) {
-    const name = val.trim().toUpperCase();
-    setSyncStatus('syncing');
-    const { error } = await db.from('players').update({ name }).eq('id', id);
-    if (error) { setSyncStatus('error'); toast('儲存失敗'); return; }
-    const p = players.find(p => p.id === id);
-    if (p) {
-      p.name = name;
-      const sec = document.querySelector(`.player-section[data-player-id="${id}"]`);
-      if (sec) { const d = sec.querySelector('.player-name-display'); if (d) d.textContent = name; }
-    }
-    setSyncStatus('ok');
-  }
-
-  async function setPlayerTeam(id, val) {
-    const team = val.trim().toUpperCase();
-    setSyncStatus('syncing');
-    const { error } = await db.from('players').update({ team: team || null }).eq('id', id);
-    if (error) { setSyncStatus('error'); toast('儲存失敗'); return; }
-    const p = players.find(p => p.id === id);
-    if (p) {
-      p.team = team;
-      const sec = document.querySelector(`.player-section[data-player-id="${id}"]`);
-      if (sec) { const d = sec.querySelector('.player-team-display'); if (d) d.textContent = team; }
-    }
-    setSyncStatus('ok');
-  }
-
-  function pickPlayerPhoto(id) { document.getElementById(`pf-${id}`).click(); }
-
-  async function uploadPlayerPhoto(id, e) {
-    const file = e.target.files[0]; if (!file) return;
-    setSyncStatus('syncing');
-    const p = players.find(p => p.id === id);
-    if (p?.profile_image_url) {
-      const old = extractPath(p.profile_image_url);
-      if (old) await db.storage.from('card-images').remove([old]);
-    }
-    const ext  = file.name.split('.').pop();
-    const path = `players/${id}/profile.${ext}`;
-    const { error: uploadErr } = await db.storage.from('card-images').upload(path, file, { upsert: true });
-    if (uploadErr) { setSyncStatus('error'); toast('上傳失敗'); return; }
-    const { data: { publicUrl } } = db.storage.from('card-images').getPublicUrl(path);
-    await db.from('players').update({ profile_image_url: publicUrl }).eq('id', id);
-    if (p) p.profile_image_url = publicUrl;
-    setSyncStatus('ok');
-    render();
-    toast('頭像已更新');
-    e.target.value = '';
-  }
-
-  async function deletePlayer(id) {
-    if (!confirm('確定要刪除這位球星及所有卡片嗎？')) return;
-    setSyncStatus('syncing');
-    const p = players.find(p => p.id === id);
-    const paths = [];
-    if (p?.profile_image_url) { const pt = extractPath(p.profile_image_url); if (pt) paths.push(pt); }
-    p?.cards.forEach(c => { if (c.image_url) { const pt = extractPath(c.image_url); if (pt) paths.push(pt); } });
-    if (paths.length) await db.storage.from('card-images').remove(paths);
-    const { error } = await db.from('players').delete().eq('id', id);
-    if (error) { setSyncStatus('error'); toast('刪除失敗'); return; }
-    players = players.filter(p => p.id !== id);
-    setSyncStatus('ok');
-    render();
-    toast('球星已移除');
-  }
-
-  async function addCard(playerId) {
-    setSyncStatus('syncing');
-    const { data, error } = await db.from('cards')
-      .insert({ player_id: playerId, image_url: null }).select().single();
-    if (error) { setSyncStatus('error'); toast('新增失敗'); return; }
-    const p = players.find(p => p.id === playerId);
-    if (p) p.cards.push(data);
-    setSyncStatus('ok');
-    render();
-  }
-
-  async function deleteCard(playerId, cardId) {
-    setSyncStatus('syncing');
-    const p = players.find(p => p.id === playerId);
-    const c = p?.cards.find(c => c.id === cardId);
-    if (c?.image_url) { const pt = extractPath(c.image_url); if (pt) await db.storage.from('card-images').remove([pt]); }
-    const { error } = await db.from('cards').delete().eq('id', cardId);
-    if (error) { setSyncStatus('error'); toast('刪除失敗'); return; }
-    if (p) p.cards = p.cards.filter(c => c.id !== cardId);
-    setSyncStatus('ok');
-    render();
-    toast('卡片已移除');
-  }
-
-  function pickCardImage(cardId) { document.getElementById(`cf-${cardId}`).click(); }
-
-  async function uploadCardImage(playerId, cardId, e) {
-    const file = e.target.files[0]; if (!file) return;
-    const slot = document.getElementById(`cs-${cardId}`);
-    if (slot) slot.classList.add('uploading');
-    setSyncStatus('syncing');
-    const p = players.find(p => p.id === playerId);
-    const c = p?.cards.find(c => c.id === cardId);
-    if (c?.image_url) { const pt = extractPath(c.image_url); if (pt) await db.storage.from('card-images').remove([pt]); }
-    const ext  = file.name.split('.').pop();
-    const path = `cards/${cardId}/${Date.now()}.${ext}`;
-    const { error: uploadErr } = await db.storage.from('card-images').upload(path, file);
-    if (uploadErr) { if (slot) slot.classList.remove('uploading'); setSyncStatus('error'); toast('上傳失敗'); return; }
-    const { data: { publicUrl } } = db.storage.from('card-images').getPublicUrl(path);
-    await db.from('cards').update({ image_url: publicUrl }).eq('id', cardId);
-    if (c) c.image_url = publicUrl;
-    if (slot) slot.classList.remove('uploading');
-    setSyncStatus('ok');
-    render();
-    toast('圖片已上傳並同步至雲端');
-    e.target.value = '';
-  }
-
-  async function removeCardImage(playerId, cardId) {
-    const p = players.find(p => p.id === playerId);
-    const c = p?.cards.find(c => c.id === cardId);
-    if (!c?.image_url) return;
-    setSyncStatus('syncing');
-    const pt = extractPath(c.image_url);
-    if (pt) await db.storage.from('card-images').remove([pt]);
-    await db.from('cards').update({ image_url: null }).eq('id', cardId);
-    c.image_url = null;
-    setSyncStatus('ok');
-    render();
-  }
-
   function onCardClick(cardId, playerId) {
-    if (document.body.classList.contains('admin-mode')) {
-      pickCardImage(cardId);
-    } else {
-      const p = players.find(p => p.id === playerId);
-      const c = p?.cards.find(c => c.id === cardId);
-      if (c?.image_url) openLightbox(c.image_url, p?.name || '');
-    }
+    const p = players.find(p => p.id === playerId);
+    const c = p?.cards.find(c => c.id === cardId);
+    if (c?.image_url) openLightbox(c.image_url, p?.name || '');
   }
 
   function openLightbox(url, playerName) {
@@ -1177,12 +888,7 @@
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-  function extractPath(url) { const m = url.match(/\/object\/public\/card-images\/(.+)/); return m ? m[1] : null; }
   function getInitials(name) { return (name||'').split(' ').filter(Boolean).map(w=>w[0]).slice(0,2).join(''); }
-
-  function updateStats() {
-    // stats reserved for future use
-  }
 
   /* ── Search ──────────────────────────────────── */
   function searchPlayers(query) {
@@ -1229,10 +935,10 @@
         <div class="empty-state">
           <div class="empty-state-icon">🏀</div>
           <div class="empty-gold-line"></div>
-          <h2>尚未新增任何球星</h2>
-          <p>點擊右上角鎖頭圖示登入管理員模式開始新增</p>
+          <h2>尚未收錄任何球星</h2>
+          <p>資料來源為本機 nba-data.json</p>
         </div>`;
-      updateStats(); return;
+      return;
     }
 
     players.forEach(p => {
@@ -1247,12 +953,6 @@
       const cardsHtml = p.cards.map(c => `
         <div class="card-item" data-card-id="${c.id}">
           <div class="card-slot ${c.image_url ? 'has-image' : ''}" id="cs-${c.id}" onclick="onCardClick('${c.id}','${p.id}')">
-            <div class="card-drag-handle" title="拖曳排序卡片" onclick="event.stopPropagation()">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
-                <circle cx="4" cy="2" r="1.2"/><circle cx="4" cy="7" r="1.2"/><circle cx="4" cy="12" r="1.2"/>
-                <circle cx="10" cy="2" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="10" cy="12" r="1.2"/>
-              </svg>
-            </div>
             ${c.image_url
               ? `<img src="${c.image_url}" alt="PSA Card" draggable="false">`
               : `<div class="slot-empty">
@@ -1263,80 +963,23 @@
                       <polyline points="21 15 16 10 5 21"/>
                     </svg>
                   </div>
-                  <p>點擊上傳圖片</p>
+                  <p>尚無圖片</p>
                 </div>`
             }
             <div class="psa-badge">PSA</div>
-            <div class="card-overlay">
-              <button class="ov-btn" onclick="event.stopPropagation(); pickCardImage('${c.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              ${c.image_url ? `
-              <button class="ov-btn" onclick="event.stopPropagation(); removeCardImage('${p.id}','${c.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-              </button>` : ''}
-              <button class="ov-btn danger" onclick="event.stopPropagation(); deleteCard('${p.id}','${c.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                  <path d="M10 11v6"/><path d="M14 11v6"/>
-                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-                </svg>
-              </button>
-            </div>
-            <input type="file" id="cf-${c.id}" accept="image/*" onchange="uploadCardImage('${p.id}','${c.id}',event)">
           </div>
         </div>
       `).join('');
 
       section.innerHTML = `
         <div class="player-header">
-          <div class="drag-handle" title="拖曳排序">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
-              <circle cx="4" cy="2" r="1.2"/><circle cx="4" cy="7" r="1.2"/><circle cx="4" cy="12" r="1.2"/>
-              <circle cx="10" cy="2" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="10" cy="12" r="1.2"/>
-            </svg>
-          </div>
-          <div class="player-avatar" onclick="pickPlayerPhoto('${p.id}')">
+          <div class="player-avatar">
             ${avatarInner}
-            <div class="avatar-overlay">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </div>
-            <input type="file" id="pf-${p.id}" accept="image/*" onchange="uploadPlayerPhoto('${p.id}',event)">
           </div>
 
           <div class="player-info">
             <div class="player-name-display">${(p.name||'').replace(/</g,'&lt;')}</div>
             <div class="player-team-display">${(p.team||'').replace(/</g,'&lt;')}</div>
-            <input class="player-name-input" type="text"
-              value="${(p.name||'').replace(/"/g,'&quot;')}"
-              placeholder="球員姓名"
-              onchange="setPlayerName('${p.id}', this.value)"
-              onclick="event.stopPropagation()">
-            <input class="player-team-input" type="text"
-              value="${(p.team||'').replace(/"/g,'&quot;')}"
-              placeholder="所屬球隊"
-              onchange="setPlayerTeam('${p.id}', this.value)"
-              onclick="event.stopPropagation()">
-          </div>
-
-          <div class="player-actions">
-            <button class="icon-btn danger" onclick="deletePlayer('${p.id}')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="3 6 5 6 21 6"/>
-                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                <path d="M10 11v6"/><path d="M14 11v6"/>
-                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -1344,26 +987,11 @@
 
         <div class="card-grid">
           ${cardsHtml}
-          <div class="add-card-slot">
-            <div class="add-btn-area" onclick="addCard('${p.id}')">
-              <div class="add-icon">+</div>
-              <p>新增卡片</p>
-            </div>
-            <div class="add-name-spacer"></div>
-          </div>
         </div>
       `;
 
       list.appendChild(section);
     });
-
-    updateStats();
-    initDragDrop();
-    initCardDragDrop();
-  }
-
-  function savePlayerOrder() {
-    localStorage.setItem('player_order', JSON.stringify(players.map(p => p.id)));
   }
 
   function applyPlayerOrder() {
@@ -1381,11 +1009,6 @@
     } catch (_) {}
   }
 
-  function saveCardOrder(playerId) {
-    const p = players.find(x => x.id === playerId);
-    if (p) localStorage.setItem('card_order_' + playerId, JSON.stringify(p.cards.map(c => c.id)));
-  }
-
   function applyCardOrder() {
     players.forEach(p => {
       const saved = localStorage.getItem('card_order_' + p.id);
@@ -1400,144 +1023,6 @@
           return ai - bi;
         });
       } catch (_) {}
-    });
-  }
-
-  function initDragDrop() {
-    if (!document.body.classList.contains('admin-mode')) return;
-
-    let dragSrc = null;
-    let dragAllowed = false;
-
-    document.querySelectorAll('.player-section').forEach(sec => {
-      const handle = sec.querySelector('.drag-handle');
-      if (!handle) return;
-
-      handle.addEventListener('mousedown', () => { dragAllowed = true; });
-      handle.addEventListener('touchstart', () => { dragAllowed = true; }, { passive: true });
-
-      sec.setAttribute('draggable', 'true');
-
-      sec.addEventListener('dragstart', e => {
-        if (!dragAllowed) { e.preventDefault(); return; }
-        dragSrc = sec;
-        dragAllowed = false;
-        setTimeout(() => sec.classList.add('is-dragging'), 0);
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', sec.dataset.playerId);
-      });
-
-      sec.addEventListener('dragend', () => {
-        dragAllowed = false;
-        sec.classList.remove('is-dragging');
-        document.querySelectorAll('.player-section').forEach(s => s.classList.remove('drag-over'));
-        dragSrc = null;
-      });
-
-      sec.addEventListener('dragover', e => {
-        if (!dragSrc || dragSrc === sec) return;
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        document.querySelectorAll('.player-section').forEach(s => s.classList.remove('drag-over'));
-        sec.classList.add('drag-over');
-      });
-
-      sec.addEventListener('dragleave', e => {
-        if (!sec.contains(e.relatedTarget)) sec.classList.remove('drag-over');
-      });
-
-      sec.addEventListener('drop', e => {
-        e.preventDefault();
-        sec.classList.remove('drag-over');
-        if (!dragSrc || dragSrc === sec) return;
-
-        const srcId = dragSrc.dataset.playerId;
-        const dstId = sec.dataset.playerId;
-        const srcIdx = players.findIndex(p => p.id === srcId);
-        const dstIdx = players.findIndex(p => p.id === dstId);
-        if (srcIdx === -1 || dstIdx === -1) return;
-
-        const [moved] = players.splice(srcIdx, 1);
-        players.splice(dstIdx, 0, moved);
-
-        savePlayerOrder();
-        render();
-        toast('排序已更新');
-      });
-    });
-  }
-
-  function initCardDragDrop() {
-    if (!document.body.classList.contains('admin-mode')) return;
-
-    let dragSrc = null;
-    let dragAllowed = false;
-
-    document.querySelectorAll('.card-item').forEach(item => {
-      const handle = item.querySelector('.card-drag-handle');
-      if (!handle) return;
-
-      handle.addEventListener('mousedown', () => { dragAllowed = true; });
-      handle.addEventListener('touchstart', () => { dragAllowed = true; }, { passive: true });
-
-      item.setAttribute('draggable', 'true');
-
-      item.addEventListener('dragstart', e => {
-        if (!dragAllowed) { e.preventDefault(); return; }
-        dragSrc = item;
-        dragAllowed = false;
-        e.stopPropagation();             // 別觸發球員區塊的拖曳
-        setTimeout(() => item.classList.add('is-dragging'), 0);
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', item.dataset.cardId);
-      });
-
-      item.addEventListener('dragend', () => {
-        dragAllowed = false;
-        item.classList.remove('is-dragging');
-        document.querySelectorAll('.card-item').forEach(s => s.classList.remove('drag-over'));
-        dragSrc = null;
-      });
-
-      item.addEventListener('dragover', e => {
-        if (!dragSrc || dragSrc === item) return;
-        // 僅允許在同一位球員的卡片間排序
-        if (dragSrc.closest('.player-section') !== item.closest('.player-section')) return;
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        document.querySelectorAll('.card-item').forEach(s => s.classList.remove('drag-over'));
-        item.classList.add('drag-over');
-      });
-
-      item.addEventListener('dragleave', e => {
-        if (!item.contains(e.relatedTarget)) item.classList.remove('drag-over');
-      });
-
-      item.addEventListener('drop', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        item.classList.remove('drag-over');
-        if (!dragSrc || dragSrc === item) return;
-
-        const srcSection = dragSrc.closest('.player-section');
-        const dstSection = item.closest('.player-section');
-        if (srcSection !== dstSection) return;   // 不允許跨球員拖曳
-
-        const playerId = dstSection.dataset.playerId;
-        const p = players.find(x => x.id === playerId);
-        if (!p) return;
-
-        const srcIdx = p.cards.findIndex(c => c.id === dragSrc.dataset.cardId);
-        const dstIdx = p.cards.findIndex(c => c.id === item.dataset.cardId);
-        if (srcIdx === -1 || dstIdx === -1) return;
-
-        const [moved] = p.cards.splice(srcIdx, 1);
-        p.cards.splice(dstIdx, 0, moved);
-
-        saveCardOrder(playerId);
-        render();
-        toast('卡片排序已更新');
-      });
     });
   }
 
