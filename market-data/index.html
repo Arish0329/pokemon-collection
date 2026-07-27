@@ -498,6 +498,10 @@
       <img src="images/logo-bgs.png" alt="BGS" class="grade-logo">
       <span class="grade-count" id="countBGS"></span>
     </button>
+    <button class="grade-tab" data-company="CGC" id="gradeTabCGC" role="tab" aria-selected="false">
+      <img src="images/logo-cgc.png" alt="CGC" class="grade-logo">
+      <span class="grade-count" id="countCGC"></span>
+    </button>
     <button class="grade-tab" data-company="RAW" id="gradeTabRAW" role="tab" aria-selected="false">
       <span class="grade-logo" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.95rem;letter-spacing:0.06em;color:#a0a0b8;">裸卡</span>
       <span class="grade-count" id="countRAW"></span>
@@ -1123,10 +1127,12 @@ const pokemonDB = {
       {date:'2026/5/11', psa:'RAW', usd:180,   twd:5814,  company:'RAW', source:'eBay'},
       {date:'2026/2/5',  psa:'RAW', usd:99,    twd:3198,  company:'RAW', source:'eBay'},
       {date:'2025/11/16',psa:10,    usd:464,   twd:14987, source:'eBay'},
+      {date:'2025/9/2',  psa:9,     usd:24.5,  twd:791,   company:'CGC', source:'eBay'},
       {date:'2025/8/18', psa:'RAW', usd:51,    twd:1647,  company:'RAW', source:'eBay'},
       {date:'2025/8/18', psa:'RAW', usd:51,    twd:1647,  company:'RAW', source:'eBay'},
       {date:'2024/12/4', psa:8,     usd:36.66, twd:1184,  source:'eBay'},
       {date:'2024/4/14', psa:8,     usd:25.25, twd:816,   source:'eBay'},
+      {date:'2023/9/4',  psa:9,     usd:42,    twd:1323,  company:'CGC', source:'eBay'},
       {date:'2022/8/7',  psa:9,     usd:54,    twd:1593,  source:'Fanatics'},
       {date:'2020/9/28', psa:9,     usd:102.5, twd:3024,  source:'Fanatics'},
     ]
@@ -1134,7 +1140,15 @@ const pokemonDB = {
   gengar: {
     zh: '2006 傳說締造者 耿鬼', en: 'Gengar', dex: 500, icon: 'images/lm-gengar.png', series: 'Legend Maker',
     accent: '#7c3aed', glow: 'rgba(124,58,237,0.12)',
-    records: []
+    records: [
+      {date:'2024/9/8',  psa:9,   usd:37.2, twd:1190, company:'BGS', source:'Fanatics'},
+      {date:'2023/12/10',psa:10,  usd:198,  twd:6237, company:'CGC', source:'Fanatics'},
+      {date:'2023/8/20', psa:9,   usd:43.2, twd:1361, company:'CGC', source:'Fanatics'},
+      {date:'2023/8/6',  psa:8,   usd:44.4, twd:1399, source:'Fanatics'},
+      {date:'2023/3/12', psa:9,   usd:86.4, twd:2635, source:'Fanatics'},
+      {date:'2023/3/12', psa:9,   usd:91.2, twd:2782, source:'Fanatics'},
+      {date:'2022/5/8',  psa:9.5, usd:138,  twd:3933, company:'BGS', source:'Fanatics'},
+    ]
   },
   mew: {
     zh: '2006 傳說締造者 夢幻', en: 'Mew', dex: 501, icon: 'images/lm-mew.png', series: 'Legend Maker',
@@ -1170,6 +1184,56 @@ const pokemonDB = {
     zh: '2000叢林皮卡丘', en: 'Pikachu (Jungle)', dex: 503, icon: 'images/058.png', series: 'Jungle Pikachu',
     accent: '#facc15', glow: 'rgba(250,204,21,0.12)',
     records: [
+      {date:'2025/11/23', psa:10, usd:62.4, twd:2016, company:'CGC', source:'Fanatics'},
+      {date:'2025/11/9', psa:9, usd:26.4, twd:853, company:'CGC', source:'Fanatics'},
+      {date:'2025/11/9', psa:8, usd:20.4, twd:659, company:'CGC', source:'Fanatics'},
+      {date:'2025/11/9', psa:9, usd:36, twd:1163, company:'CGC', source:'Fanatics'},
+      {date:'2025/11/2', psa:9, usd:24, twd:775, company:'CGC', source:'Fanatics'},
+      {date:'2025/11/2', psa:9.5, usd:32.4, twd:1047, company:'CGC', source:'Fanatics'},
+      {date:'2024/10/13', psa:9, usd:17, twd:544, company:'CGC', source:'Fanatics'},
+      {date:'2024/5/5', psa:9, usd:9.6, twd:307, company:'CGC', source:'Fanatics'},
+      {date:'2023/10/29', psa:10, usd:27.6, twd:869, company:'CGC', source:'Fanatics'},
+      {date:'2023/10/22', psa:9, usd:24, twd:756, source:'Fanatics'},
+      {date:'2023/7/16', psa:9, usd:25.2, twd:794, source:'Fanatics'},
+      {date:'2023/7/9', psa:8, usd:18, twd:567, source:'Fanatics'},
+      {date:'2023/6/11', psa:9, usd:26.4, twd:818, source:'Fanatics'},
+      {date:'2023/4/16', psa:10, usd:108, twd:3348, source:'Fanatics'},
+      {date:'2023/4/16', psa:9, usd:31.2, twd:967, source:'Fanatics'},
+      {date:'2023/4/2', psa:8.5, usd:15.6, twd:484, company:'CGC', source:'Fanatics'},
+      {date:'2023/3/26', psa:9, usd:20.4, twd:622, source:'Fanatics'},
+      {date:'2023/3/19', psa:9.5, usd:74.4, twd:2269, company:'CGC', source:'Fanatics'},
+      {date:'2023/3/5', psa:9, usd:76.8, twd:2342, source:'Fanatics'},
+      {date:'2023/1/8', psa:10, usd:180, twd:5490, source:'Fanatics'},
+      {date:'2022/12/4', psa:8, usd:16.8, twd:496, source:'Fanatics'},
+      {date:'2022/5/22', psa:10, usd:252, twd:7434, source:'Fanatics'},
+      {date:'2022/4/10', psa:10, usd:180, twd:5310, source:'Fanatics'},
+      {date:'2022/2/6', psa:9, usd:43.2, twd:1274, source:'Fanatics'},
+      {date:'2021/7/28', psa:9, usd:43, twd:1204, company:'CGC', source:'Fanatics'},
+      {date:'2021/6/27', psa:8.5, usd:51, twd:1428, company:'CGC', source:'Fanatics'},
+      {date:'2021/6/27', psa:10, usd:425, twd:11900, source:'Fanatics'},
+      {date:'2021/6/27', psa:9, usd:104, twd:2912, source:'Fanatics'},
+      {date:'2021/6/27', psa:9, usd:104, twd:2912, source:'Fanatics'},
+      {date:'2021/5/28', psa:10, usd:335, twd:9380, source:'Fanatics'},
+      {date:'2021/5/28', psa:10, usd:322, twd:9016, source:'Fanatics'},
+      {date:'2021/4/27', psa:9, usd:215.5, twd:6034, source:'Fanatics'},
+      {date:'2020/9/28', psa:10, usd:152.5, twd:4499, source:'Fanatics'},
+      {date:'2020/9/28', psa:10, usd:152.5, twd:4499, source:'Fanatics'},
+      {date:'2020/7/27', psa:10, usd:202.5, twd:5974, source:'Fanatics'},
+      {date:'2020/7/27', psa:9, usd:36, twd:1062, source:'Fanatics'},
+      {date:'2020/6/28', psa:10, usd:122.5, twd:3614, source:'Fanatics'},
+      {date:'2020/1/28', psa:9, usd:22, twd:649, source:'Fanatics'},
+      {date:'2019/12/23', psa:10, usd:24.5, twd:760, source:'Fanatics'},
+      {date:'2019/11/26', psa:10, usd:39, twd:1209, source:'Fanatics'},
+      {date:'2019/10/30', psa:10, usd:45, twd:1395, source:'Fanatics'},
+      {date:'2019/7/30', psa:10, usd:56, twd:1736, source:'Fanatics'},
+      {date:'2019/5/28', psa:10, usd:61, twd:1891, source:'Fanatics'},
+      {date:'2026/7/26', psa:8,   usd:27.6, twd:891,  company:'CGC', source:'Fanatics'},
+      {date:'2026/7/19', psa:9,   usd:65,   twd:2100, company:'CGC', source:'Fanatics'},
+      {date:'2026/7/1',  psa:9,   usd:55,   twd:1777, company:'CGC', source:'Fanatics'},
+      {date:'2026/6/21', psa:9,   usd:112.8,twd:3643, source:'Fanatics'},
+      {date:'2026/4/26', psa:9,   usd:69.6, twd:2248, source:'Fanatics'},
+      {date:'2026/4/19', psa:9,   usd:96,   twd:3101, source:'Fanatics'},
+      {date:'2026/4/5',  psa:8.5, usd:32.4, twd:1047, company:'CGC', source:'Fanatics'},
       {date:'2026/7/26', psa:10, usd:525,  twd:16958, source:'Fanatics'},
       {date:'2026/7/25', psa:10, usd:640,  twd:20672, source:'eBay'},
       {date:'2026/7/18', psa:9,  usd:112,  twd:3618,  source:'eBay'},
@@ -1236,6 +1300,20 @@ const colorsBGS = {
 const gradesRAW = ['RAW'];
 const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } };
 
+// CGC 評級（含半級）— 綠色系
+const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6];
+const colorsCGC = {
+  10:  { line: '#7ee787', fill: 'rgba(126,231,135,0.07)' },
+  9.5: { line: '#56d364', fill: 'rgba(86,211,100,0.07)' },
+  9:   { line: '#3fb950', fill: 'rgba(63,185,80,0.07)' },
+  8.5: { line: '#2ea043', fill: 'rgba(46,160,67,0.07)' },
+  8:   { line: '#238636', fill: 'rgba(35,134,54,0.07)' },
+  7.5: { line: '#1a7f37', fill: 'rgba(26,127,55,0.07)' },
+  7:   { line: '#196c2e', fill: 'rgba(25,108,46,0.07)' },
+  6.5: { line: '#155d27', fill: 'rgba(21,93,39,0.07)' },
+  6:   { line: '#124d21', fill: 'rgba(18,77,33,0.07)' },
+};
+
 // ── State ──
 let currentPokeKey = 'charizard';
 let currentSort    = 'date-desc';
@@ -1246,18 +1324,22 @@ let chartInstance  = null;
 const isPSA = r => !r.company || r.company === 'PSA';
 const isBGS = r => r.company === 'BGS';
 const isRAW = r => r.company === 'RAW';
+const isCGC = r => r.company === 'CGC';
 function recordsForCompany(records) {
   if (currentCompany === 'BGS') return records.filter(isBGS);
+  if (currentCompany === 'CGC') return records.filter(isCGC);
   if (currentCompany === 'RAW') return records.filter(isRAW);
   return records.filter(isPSA);
 }
 function activeGrades() {
   if (currentCompany === 'BGS') return gradesBGS;
+  if (currentCompany === 'CGC') return gradesCGC;
   if (currentCompany === 'RAW') return gradesRAW;
   return grades;
 }
 function activeColors() {
   if (currentCompany === 'BGS') return colorsBGS;
+  if (currentCompany === 'CGC') return colorsCGC;
   if (currentCompany === 'RAW') return colorsRAW;
   return colors;
 }
@@ -1565,14 +1647,10 @@ function switchPokemon(key) {
   document.querySelector('.header').style.setProperty('--header-glow', poke.glow);
   document.querySelector('.header-eyebrow').style.color = poke.accent;
 
-  // 若目前分頁在此卡無資料，自動切到第一個有資料的分頁（PSA → BGS → 裸卡）
-  const curHasData = currentCompany === 'PSA' ? poke.records.some(isPSA)
-                   : currentCompany === 'BGS' ? poke.records.some(isBGS)
-                   : poke.records.some(isRAW);
-  if (!curHasData) {
-    if (poke.records.some(isPSA))      currentCompany = 'PSA';
-    else if (poke.records.some(isBGS)) currentCompany = 'BGS';
-    else if (poke.records.some(isRAW)) currentCompany = 'RAW';
+  // 若目前分頁在此卡無資料，自動切到第一個有資料的分頁（PSA → BGS → CGC → 裸卡）
+  const has = { PSA: poke.records.some(isPSA), BGS: poke.records.some(isBGS), CGC: poke.records.some(isCGC), RAW: poke.records.some(isRAW) };
+  if (!has[currentCompany]) {
+    currentCompany = has.PSA ? 'PSA' : has.BGS ? 'BGS' : has.CGC ? 'CGC' : has.RAW ? 'RAW' : 'PSA';
     updateCompanyTabs();
   }
 
@@ -1595,6 +1673,7 @@ function renderAll() {
   document.getElementById('emptyState').style.display  = hasData ? 'none'  : 'block';
   document.getElementById('emptyMsg').textContent =
     currentCompany === 'BGS' ? '此卡尚無 BGS 成交紀錄'
+    : currentCompany === 'CGC' ? '此卡尚無 CGC 成交紀錄'
     : currentCompany === 'RAW' ? '此卡尚無裸卡成交紀錄'
     : '尚無成交紀錄';
   const emptyIcon = document.getElementById('emptyIcon');
@@ -1617,11 +1696,14 @@ function renderAll() {
 function updateCompanyCounts() {
   const poke = pokemonDB[currentPokeKey];
   const bgsN = poke.records.filter(isBGS).length;
+  const cgcN = poke.records.filter(isCGC).length;
   const rawN = poke.records.filter(isRAW).length;
   document.getElementById('countPSA').textContent = poke.records.filter(isPSA).length + ' 筆';
   document.getElementById('countBGS').textContent = bgsN + ' 筆';
+  document.getElementById('countCGC').textContent = cgcN + ' 筆';
   document.getElementById('countRAW').textContent = rawN + ' 筆';
   document.getElementById('gradeTabBGS').classList.toggle('disabled', bgsN === 0);
+  document.getElementById('gradeTabCGC').classList.toggle('disabled', cgcN === 0);
   document.getElementById('gradeTabRAW').classList.toggle('disabled', rawN === 0);
 }
 function updateCompanyTabs() {
@@ -1636,6 +1718,7 @@ function switchCompany(company) {
   if (company === currentCompany) return;
   const poke = pokemonDB[currentPokeKey];
   if (company === 'BGS' && !poke.records.some(isBGS)) return;  // 無 BGS 資料不切換
+  if (company === 'CGC' && !poke.records.some(isCGC)) return;  // 無 CGC 資料不切換
   if (company === 'RAW' && !poke.records.some(isRAW)) return;  // 無裸卡資料不切換
   currentCompany = company;
   updateCompanyTabs();
