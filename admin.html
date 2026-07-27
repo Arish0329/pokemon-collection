@@ -317,7 +317,7 @@
       <div class="drop-zone" id="drop-zone">
         <div class="drop-zone-icon">📁</div>
         <h3>拖拽圖片到此</h3>
-        <p>或點擊選擇檔案<br>支援 JPG / PNG<br>檔名格式：<strong>001.jpg</strong>（三位數卡號）</p>
+        <p>或點擊選擇檔案<br>支援 JPG / PNG<br>檔名格式：<strong>001.jpg</strong>（三位數卡號）<br>存放位置：<strong>pokemon-collection/images/</strong></p>
       </div>
       <input type="file" id="file-input" multiple accept="image/*">
     </div>
@@ -401,7 +401,7 @@
 <div class="modal-bg" id="modal-remove">
   <div class="modal">
     <h3>移除收藏確認</h3>
-    <p id="modal-remove-text">確定要將此卡牌從收藏中移除嗎？圖片檔案需要手動從 images/ 資料夾刪除。</p>
+    <p id="modal-remove-text">確定要將此卡牌從收藏中移除嗎？圖片檔案需要手動從 pokemon-collection/images/ 資料夾刪除。</p>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="modal-cancel">取消</button>
       <button class="btn btn-danger" id="modal-confirm">確認移除</button>
@@ -537,7 +537,7 @@ let pendingImages = []; // { file, id, name }
 let filterMode = 'all';
 let removeTarget = null;
 
-const imgId = id => `images/${String(id).padStart(3,'0')}.jpg?t=${Date.now()}`; // 後台縮圖永遠抓最新圖（防快取）
+const imgId = id => `pokemon-collection/images/${String(id).padStart(3,'0')}.jpg?t=${Date.now()}`; // 後台縮圖永遠抓最新圖（防快取）
 const typeLabel = { holo:'HOLO 閃卡', pokemon:'寶可夢', trainer:'訓練師／道具', energy:'能量' };
 const typeClass  = { holo:'type-holo', pokemon:'type-pokemon', trainer:'type-trainer', energy:'type-energy' };
 
@@ -630,7 +630,7 @@ function renderTable() {
       } else {
         removeTarget = id;
         document.getElementById('modal-remove-text').textContent =
-          `確定要將 No.${id} 從收藏中移除嗎？圖片檔案需要手動從 images/ 資料夾刪除。`;
+          `確定要將 No.${id} 從收藏中移除嗎？圖片檔案需要手動從 pokemon-collection/images/ 資料夾刪除。`;
         document.getElementById('modal-remove').classList.add('open');
       }
     });
@@ -727,7 +727,7 @@ document.getElementById('btn-apply').addEventListener('click', () => {
   renderTable();
   updateStats();
 
-  toast(`${matched.length} 張卡牌已標記為收藏，請將圖片複製到 images/ 資料夾`, 'success');
+  toast(`${matched.length} 張卡牌已標記為收藏，請將圖片複製到 pokemon-collection/images/ 資料夾`, 'success');
 
   pendingImages = [];
   renderQueue();
