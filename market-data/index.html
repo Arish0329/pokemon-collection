@@ -1274,28 +1274,27 @@ let pokemonDB = legacyPokemonDB;
 
 // ── Grade color scheme (warm gold → deep blue) ──
 const grades = [10, 9, 8.5, 8, 7, 6, 5, 4, 3, 2, 1];
-const colors = {
-  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },  // 白金 / GEM MINT
-  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },   // 暖金
-  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },   // 琥珀橙
-  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },  // 淺天藍
-  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },   // 中藍
-  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },    // 深藍
+const gradeColorScale = {
+  10:   { line: '#BAE6FD', fill: 'rgba(186,230,253,0.07)' },
+  9.5:  { line: '#9DDCFD', fill: 'rgba(157,220,253,0.07)' },
+  9:    { line: '#7DD3FC', fill: 'rgba(125,211,252,0.07)' },
+  8.5:  { line: '#38BDF8', fill: 'rgba(56,189,248,0.07)' },
+  8:    { line: '#0EA5E9', fill: 'rgba(14,165,233,0.07)' },
+  7.5:  { line: '#0B94D1', fill: 'rgba(11,148,209,0.07)' },
+  7:    { line: '#0284C7', fill: 'rgba(2,132,199,0.07)' },
+  6.5:  { line: '#0875B3', fill: 'rgba(8,117,179,0.07)' },
+  6:    { line: '#0369A1', fill: 'rgba(3,105,161,0.07)' },
+  5:    { line: '#075985', fill: 'rgba(7,89,133,0.07)' },
+  4:    { line: '#0B4F73', fill: 'rgba(11,79,115,0.07)' },
+  3:    { line: '#0A4565', fill: 'rgba(10,69,101,0.07)' },
+  2:    { line: '#0A3A57', fill: 'rgba(10,58,87,0.07)' },
+  1:    { line: '#082F49', fill: 'rgba(8,47,73,0.07)' },
 };
+const colors = gradeColorScale;
 
 // BGS 評級（含半級）與配色
 const gradesBGS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1];
-const colorsBGS = {
-  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },
-  9.5: { line: '#e8c84a', fill: 'rgba(232,200,74,0.07)' },
-  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
-  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
-  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
-  7.5: { line: '#5fa0e8', fill: 'rgba(95,160,232,0.07)' },
-  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
-  6.5: { line: '#3f66c8', fill: 'rgba(63,102,200,0.07)' },
-  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
-};
+const colorsBGS = gradeColorScale;
 
 // 裸卡（無評級）— 單一分組，中性灰色
 const gradesRAW = ['RAW'];
@@ -1303,17 +1302,7 @@ const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } }
 
 // CGC 評級（含半級）— 綠色系
 const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1, 'AUTH'];
-const colorsCGC = {
-  10:  { line: '#7ee787', fill: 'rgba(126,231,135,0.07)' },
-  9.5: { line: '#56d364', fill: 'rgba(86,211,100,0.07)' },
-  9:   { line: '#3fb950', fill: 'rgba(63,185,80,0.07)' },
-  8.5: { line: '#2ea043', fill: 'rgba(46,160,67,0.07)' },
-  8:   { line: '#238636', fill: 'rgba(35,134,54,0.07)' },
-  7.5: { line: '#1a7f37', fill: 'rgba(26,127,55,0.07)' },
-  7:   { line: '#196c2e', fill: 'rgba(25,108,46,0.07)' },
-  6.5: { line: '#155d27', fill: 'rgba(21,93,39,0.07)' },
-  6:   { line: '#124d21', fill: 'rgba(18,77,33,0.07)' },
-};
+const colorsCGC = gradeColorScale;
 
 // ── State ──
 let currentPokeKey = 'charizard';
@@ -1344,6 +1333,13 @@ function activeColors() {
   if (currentCompany === 'RAW') return colorsRAW;
   return colors;
 }
+function recordGradeLabel(record) {
+  if (record.company === 'RAW') return '裸卡';
+  const company = record.company || currentCompany || 'PSA';
+  if (typeof record.psa === 'string' && /^(PSA|BGS|CGC)\s+/.test(record.psa)) return record.psa;
+  return `${company} ${record.psa}`;
+}
+
 function gradeLabel(g) { return currentCompany === 'RAW' ? '裸卡' : `${currentCompany} ${g}`; }
 
 // ══════════════════════════════════════════════
@@ -1507,9 +1503,7 @@ chartInstance = new Chart(document.getElementById('trendChart'), {
           label: ctx => {
             const r = ctx.raw._record;
             if (!r) return ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`;
-            const gLabel = r.company === 'RAW' ? '裸卡'
-                         : (r.company && r.company !== 'PSA') ? `${r.company} ${r.psa}`
-                         : `PSA ${r.psa}`;
+            const gLabel = recordGradeLabel(r);
             return [
               ` ${gLabel}`,
               ` $${r.usd.toLocaleString()} USD  ·  NT$${r.twd.toLocaleString()}`,
@@ -1609,7 +1603,7 @@ function renderTable(records, sortKey) {
     const c = (C[r.psa] || {line:'#888'}).line;
     return `<tr>
       <td>${r.date}</td>
-      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">${gradeLabel(r.psa)}</span></td>
+      <td><span class="psa-badge" style="background:${c}18;color:${c};border:1px solid ${c}38">${recordGradeLabel(r)}</span></td>
       <td style="font-weight:700;color:#eee">$${r.usd.toLocaleString()}</td>
       <td style="font-weight:600;color:#eee">NT$${r.twd.toLocaleString()}</td>
       <td style="color:#bbb">${r.source}</td>
