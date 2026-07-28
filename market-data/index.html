@@ -556,7 +556,7 @@
 // ══════════════════════════════════════════════
 // ── Pokémon Database ──
 // ══════════════════════════════════════════════
-const pokemonDB = {
+const legacyPokemonDB = {
   charizard: {
     zh: '噴火龍', en: 'Charizard', dex: 4, icon: 'images/004.png',
     accent: '#c9a227', glow: 'rgba(201,162,39,0.12)',
@@ -1270,9 +1270,10 @@ const pokemonDB = {
     ]
   }
 };
+let pokemonDB = legacyPokemonDB;
 
 // ── Grade color scheme (warm gold → deep blue) ──
-const grades = [10, 9, 8.5, 8, 7, 6];
+const grades = [10, 9, 8.5, 8, 7, 6, 5, 4, 3, 2, 1];
 const colors = {
   10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },  // 白金 / GEM MINT
   9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },   // 暖金
@@ -1283,7 +1284,7 @@ const colors = {
 };
 
 // BGS 評級（含半級）與配色
-const gradesBGS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6];
+const gradesBGS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1];
 const colorsBGS = {
   10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },
   9.5: { line: '#e8c84a', fill: 'rgba(232,200,74,0.07)' },
@@ -1301,7 +1302,7 @@ const gradesRAW = ['RAW'];
 const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } };
 
 // CGC 評級（含半級）— 綠色系
-const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6];
+const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1, 'AUTH'];
 const colorsCGC = {
   10:  { line: '#7ee787', fill: 'rgba(126,231,135,0.07)' },
   9.5: { line: '#56d364', fill: 'rgba(86,211,100,0.07)' },
@@ -1355,7 +1356,7 @@ const comboSearch  = document.getElementById('comboSearch');
 const comboList    = document.getElementById('comboList');
 
 // 依圖鑑編號（dex）由小到大排序，無編號者排最後
-const sortedPokes = Object.entries(pokemonDB)
+let sortedPokes = Object.entries(pokemonDB)
   .sort((a, b) => (a[1].dex ?? 999) - (b[1].dex ?? 999));
 const padDex = n => String(n ?? '').padStart(3, '0');
 
@@ -1734,9 +1735,27 @@ document.querySelectorAll('.grade-tab').forEach(tab =>
   })
 );
 
+async function loadMergedMarketData() {
+  try {
+    const res = await fetch(`market_data.json?t=${Date.now()}`);
+    if (!res.ok) return;
+    const payload = await res.json();
+    if (!payload.cards) return;
+    pokemonDB = payload.cards;
+    sortedPokes = Object.entries(pokemonDB)
+      .sort((a, b) => (a[1].dex ?? 999) - (b[1].dex ?? 999));
+    currentPokeKey = pokemonDB.charizard ? 'charizard' : Object.keys(pokemonDB)[0];
+    buildOptions();
+    updateTrigger(currentPokeKey);
+    updateCompanyTabs();
+    renderAll();
+  } catch (_) {}
+}
+
 // ── Initial render ──
 updateCompanyTabs();
 renderAll();
+loadMergedMarketData();
 </script>
 </body>
 </html>
