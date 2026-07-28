@@ -1275,26 +1275,28 @@ let pokemonDB = legacyPokemonDB;
 // ── Grade color scheme (warm gold → deep blue) ──
 const grades = [10, 9, 8.5, 8, 7, 6, 5, 4, 3, 2, 1];
 const gradeColorScale = {
-  10:   { line: '#FFC60A', fill: 'rgba(255,198,10,0.10)' },
-  9.5:  { line: '#FFCA20', fill: 'rgba(255,202,32,0.10)' },
-  9:    { line: '#FFCF33', fill: 'rgba(255,207,51,0.10)' },
-  8.5:  { line: '#FFD949', fill: 'rgba(255,217,73,0.10)' },
-  8:    { line: '#FFD95C', fill: 'rgba(255,217,92,0.10)' },
-  7.5:  { line: '#FFDE70', fill: 'rgba(255,222,112,0.10)' },
-  7:    { line: '#FFE285', fill: 'rgba(255,226,133,0.10)' },
-  6.5:  { line: '#FFE79A', fill: 'rgba(255,231,154,0.10)' },
-  6:    { line: '#FFECAD', fill: 'rgba(255,236,173,0.10)' },
-  5:    { line: '#FFF2C7', fill: 'rgba(255,242,199,0.10)' },
-  4:    { line: '#FFF5D6', fill: 'rgba(255,245,214,0.10)' },
-  3:    { line: '#FFF7E0', fill: 'rgba(255,247,224,0.10)' },
-  2:    { line: '#FFF9E8', fill: 'rgba(255,249,232,0.10)' },
-  1:    { line: '#FFFBF0', fill: 'rgba(255,251,240,0.10)' },
+  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
 };
 const colors = gradeColorScale;
 
 // BGS 評級（含半級）與配色
 const gradesBGS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1];
-const colorsBGS = gradeColorScale;
+const colorsBGS = {
+  10:  { line: '#f5f0c0', fill: 'rgba(245,240,192,0.07)' },
+  9.5: { line: '#e8c84a', fill: 'rgba(232,200,74,0.07)' },
+  9:   { line: '#c9a227', fill: 'rgba(201,162,39,0.07)' },
+  8.5: { line: '#e07030', fill: 'rgba(224,112,48,0.07)' },
+  8:   { line: '#88c4f8', fill: 'rgba(136,196,248,0.07)' },
+  7.5: { line: '#5fa0e8', fill: 'rgba(95,160,232,0.07)' },
+  7:   { line: '#4e80e0', fill: 'rgba(78,128,224,0.07)' },
+  6.5: { line: '#3f66c8', fill: 'rgba(63,102,200,0.07)' },
+  6:   { line: '#3458b8', fill: 'rgba(52,88,184,0.07)' },
+};
 
 // 裸卡（無評級）— 單一分組，中性灰色
 const gradesRAW = ['RAW'];
@@ -1302,7 +1304,17 @@ const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } }
 
 // CGC 評級（含半級）— 綠色系
 const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1, 'AUTH'];
-const colorsCGC = gradeColorScale;
+const colorsCGC = {
+  10:  { line: '#7ee787', fill: 'rgba(126,231,135,0.07)' },
+  9.5: { line: '#56d364', fill: 'rgba(86,211,100,0.07)' },
+  9:   { line: '#3fb950', fill: 'rgba(63,185,80,0.07)' },
+  8.5: { line: '#2ea043', fill: 'rgba(46,160,67,0.07)' },
+  8:   { line: '#238636', fill: 'rgba(35,134,54,0.07)' },
+  7.5: { line: '#1a7f37', fill: 'rgba(26,127,55,0.07)' },
+  7:   { line: '#196c2e', fill: 'rgba(25,108,46,0.07)' },
+  6.5: { line: '#155d27', fill: 'rgba(21,93,39,0.07)' },
+  6:   { line: '#124d21', fill: 'rgba(18,77,33,0.07)' },
+};
 
 // ── State ──
 let currentPokeKey = 'charizard';
