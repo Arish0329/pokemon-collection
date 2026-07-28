@@ -9391,8 +9391,8 @@
     "wartortle": {
       "zh": "卡咪龜",
       "en": "Wartortle",
-      "dex": 0,
-      "icon": "",
+      "dex": 42,
+      "icon": "images/042.png",
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
@@ -9545,8 +9545,8 @@
     "charmeleon": {
       "zh": "火恐龍",
       "en": "Charmeleon",
-      "dex": 0,
-      "icon": "",
+      "dex": 24,
+      "icon": "images/024.png",
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
@@ -9627,8 +9627,8 @@
     "ivysaur": {
       "zh": "妙蛙草",
       "en": "Ivysaur",
-      "dex": 0,
-      "icon": "",
+      "dex": 30,
+      "icon": "images/030.png",
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
