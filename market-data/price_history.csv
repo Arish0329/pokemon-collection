@@ -226,9 +226,9 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2025-08-22,Pikachu,皮卡丘,PSA,10,PSA 10,870,28101,32.3,eBay,eBay,,870,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-18,Magikarp,鯉魚王,RAW,RAW,裸卡,51,1647,32.3,eBay,eBay,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-18,Magikarp,鯉魚王,RAW,RAW,裸卡,51,1647,32.3,eBay,eBay,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
-2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,22.5,727,32.3,Fanatics,Fanatics,,22.5,$22.50,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,18.01,582,32.3,Fanatics,Fanatics,,18.01,$18.01,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,15,485,32.3,Fanatics,Fanatics,,15,$15.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,22.5,727,32.3,eBay,eBay,,22.5,$22.50,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,18.01,582,32.3,eBay,eBay,,18.01,$18.01,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,15,485,32.3,eBay,eBay,,15,$15.00,,,,,user_screenshot,,existing price_history.csv rate for date
 2025-08-04,Blastoise,水箭龜,PSA,8,PSA 8,588,18992,32.3,Fanatics,Fanatics,588,588,$588,Auction,,https://www.fanaticscollect.com/weekly/7f712faa-62f9-11f0-b4f1-0a58a9feac02,https://www.fanaticscollect.com/weekly/7f712faa-62f9-11f0-b4f1-0a58a9feac02,combined_graded.xlsx,price_history.csv (2025-08-04),existing price_history.csv rate for date
 2025-07-28,Squirtle,傑尼龜,PSA,10,PSA 10,750,24225,32.3,eBay,eBay,,750,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-07-15,Mewtwo,超夢,PSA,8,PSA 8,300,9690,32.3,Fanatics,Fanatics,300,300,$300,Buy Now,,https://www.fanaticscollect.com/fixed/4b463604-a4e9-11ef-aa0e-066fd678f893,https://www.fanaticscollect.com/fixed/4b463604-a4e9-11ef-aa0e-066fd678f893,combined_graded.xlsx,price_history.csv (2025-07-15),existing price_history.csv rate for date
@@ -251,23 +251,23 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2025-05-05,Pikachu,皮卡丘,PSA,9,PSA 9,150,4845,32.3,eBay,eBay,,150,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-04-27,Pikachu (Jungle),2000叢林皮卡丘,PSA,9,PSA 9,43.2,1395,32.3,Fanatics,Fanatics,,43.2,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-04-25,Wartortle,卡咪龜,PSA,10,PSA 10,113.48,3688,32.5,eBay,eBay,,113.48,"NT$3,688",,,,,user_screenshot,,prior available price_history.csv rate (2025-04-15)
-2026-07-24,Ivysaur,妙蛙草,PSA,8,PSA 8,61,1970,32.3,Fanatics,Fanatics,,61,$61.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2026-07-23,Ivysaur,妙蛙草,PSA,8,PSA 8,51,1647,32.3,Fanatics,Fanatics,,51,$51.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2026-06-10,Ivysaur,妙蛙草,RAW,RAW,RAW,67.88,2193,32.3,Fanatics,Fanatics,,67.88,$67.88,,,,,user_screenshot,,existing price_history.csv rate for date
-2026-02-25,Ivysaur,妙蛙草,PSA,10,PSA 10,399,12888,32.3,Fanatics,Fanatics,,399,$399.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2026-01-24,Ivysaur,妙蛙草,PSA,9,PSA 9,78,2519,32.3,Fanatics,Fanatics,,78,$78.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-29,Ivysaur,妙蛙草,CGC,9,CGC 9,69.99,2261,32.3,Fanatics,Fanatics,,69.99,$69.99,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-19,Ivysaur,妙蛙草,CGC,9,CGC 9,50,1615,32.3,Fanatics,Fanatics,,50,$50.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,45.51,1470,32.3,Fanatics,Fanatics,,45.51,$45.51,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,41.54,1342,32.3,Fanatics,Fanatics,,41.54,$41.54,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,23.01,743,32.3,Fanatics,Fanatics,,23.01,$23.01,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-07-15,Ivysaur,妙蛙草,CGC,9,CGC 9,21.5,694,32.3,Fanatics,Fanatics,,21.5,$21.50,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-07-01,Ivysaur,妙蛙草,PSA,8,PSA 8,40,1292,32.3,Fanatics,Fanatics,,40,$40.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2024-08-25,Ivysaur,妙蛙草,PSA,10,PSA 10,100,3230,32.3,Fanatics,Fanatics,,100,$100.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2024-07-15,Ivysaur,妙蛙草,PSA,10,PSA 10,124.5,4021,32.3,Fanatics,Fanatics,,124.5,$124.50,,,,,user_screenshot,,existing price_history.csv rate for date
-2024-03-02,Ivysaur,妙蛙草,RAW,RAW,RAW,33,1066,32.3,Fanatics,Fanatics,,33,$33.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2024-01-06,Ivysaur,妙蛙草,CGC,9,CGC 9,45,1453,32.3,Fanatics,Fanatics,,45,$45.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2023-10-08,Ivysaur,妙蛙草,CGC,10,CGC 10,180,5814,32.3,Fanatics,Fanatics,,180,$180.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-07-24,Ivysaur,妙蛙草,PSA,8,PSA 8,61,1970,32.3,eBay,eBay,,61,$61.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-07-23,Ivysaur,妙蛙草,PSA,8,PSA 8,51,1647,32.3,eBay,eBay,,51,$51.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-06-10,Ivysaur,妙蛙草,RAW,RAW,RAW,67.88,2193,32.3,eBay,eBay,,67.88,$67.88,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-02-25,Ivysaur,妙蛙草,PSA,10,PSA 10,399,12888,32.3,eBay,eBay,,399,$399.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-01-24,Ivysaur,妙蛙草,PSA,9,PSA 9,78,2519,32.3,eBay,eBay,,78,$78.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-29,Ivysaur,妙蛙草,CGC,9,CGC 9,69.99,2261,32.3,eBay,eBay,,69.99,$69.99,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-19,Ivysaur,妙蛙草,CGC,9,CGC 9,50,1615,32.3,eBay,eBay,,50,$50.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,45.51,1470,32.3,eBay,eBay,,45.51,$45.51,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,41.54,1342,32.3,eBay,eBay,,41.54,$41.54,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Ivysaur,妙蛙草,RAW,RAW,RAW,23.01,743,32.3,eBay,eBay,,23.01,$23.01,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-07-15,Ivysaur,妙蛙草,CGC,9,CGC 9,21.5,694,32.3,eBay,eBay,,21.5,$21.50,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-07-01,Ivysaur,妙蛙草,PSA,8,PSA 8,40,1292,32.3,eBay,eBay,,40,$40.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2024-08-25,Ivysaur,妙蛙草,PSA,10,PSA 10,100,3230,32.3,eBay,eBay,,100,$100.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2024-07-15,Ivysaur,妙蛙草,PSA,10,PSA 10,124.5,4021,32.3,eBay,eBay,,124.5,$124.50,,,,,user_screenshot,,existing price_history.csv rate for date
+2024-03-02,Ivysaur,妙蛙草,RAW,RAW,RAW,33,1066,32.3,eBay,eBay,,33,$33.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2024-01-06,Ivysaur,妙蛙草,CGC,9,CGC 9,45,1453,32.3,eBay,eBay,,45,$45.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2023-10-08,Ivysaur,妙蛙草,CGC,10,CGC 10,180,5814,32.3,eBay,eBay,,180,$180.00,,,,,user_screenshot,,existing price_history.csv rate for date
 2025-04-15,Pikachu,皮卡丘,PSA,9,PSA 9,163,5298,32.5,eBay,eBay,,163,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-04-09,Alakazam,胡地,PSA,9,PSA 9,500,16150,32.3,eBay,eBay,,500,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-04-07,Gyarados,暴鯉龍,PSA,8,PSA 8,225,7267,32.3,eBay,eBay,,225,,,,,,price_history.csv,,existing price_history.csv rate for date
@@ -802,18 +802,18 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2018-11-20,Raichu,雷丘,PSA,8,PSA 8,49,1519,31,Fanatics,Fanatics,49,49,$49,Auction,,/items/MONTHLY1862584,/items/MONTHLY1862584,combined_graded.xlsx,price_history.csv (2018-11-20),existing price_history.csv rate for date
 2018-11-20,Zapdos,閃電鳥,PSA,9,PSA 9,57,1767,31,Fanatics,Fanatics,57,57,$57,Auction,,/items/MONTHLY1862599,/items/MONTHLY1862599,combined_graded.xlsx,price_history.csv (2018-11-20),existing price_history.csv rate for date
 2018-11-20,Zapdos,閃電鳥,PSA,8,PSA 8,29,899,31,Fanatics,Fanatics,29,29,$29,Auction,,/items/MONTHLY1862598,/items/MONTHLY1862598,combined_graded.xlsx,price_history.csv (2018-11-20),existing price_history.csv rate for date
-2026-07-24,Wartortle,卡咪龜,PSA,9,PSA 9,81,2616,32.3,Fanatics,Fanatics,,81,$81.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2026-02-20,Wartortle,卡咪龜,CGC,10,CGC 10,430,13889,32.3,Fanatics,Fanatics,,430,$430.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-10-13,Wartortle,卡咪龜,CGC,9,CGC 9,64.5,2083,32.3,Fanatics,Fanatics,,64.5,$64.50,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-09-27,Wartortle,卡咪龜,PSA,10,PSA 10,900,29070,32.3,Fanatics,Fanatics,,900,$900.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-09-20,Wartortle,卡咪龜,PSA,9,PSA 9,74.99,2422,32.3,Fanatics,Fanatics,,74.99,$74.99,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-09-08,Wartortle,卡咪龜,CGC,9,CGC 9,41,1324,32.3,Fanatics,Fanatics,,41,$41.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,21.01,679,32.3,Fanatics,Fanatics,,21.01,$21.01,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,23.01,743,32.3,Fanatics,Fanatics,,23.01,$23.01,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,11.38,368,32.3,Fanatics,Fanatics,,11.38,$11.38,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,7.5,242,32.3,Fanatics,Fanatics,,7.5,$7.50,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-07-07,Wartortle,卡咪龜,PSA,8,PSA 8,40,1292,32.3,Fanatics,Fanatics,,40,$40.00,,,,,user_screenshot,,existing price_history.csv rate for date
-2025-04-26,Wartortle,卡咪龜,PSA,9,PSA 9,74.99,2422,32.3,Fanatics,Fanatics,,74.99,$74.99,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-07-24,Wartortle,卡咪龜,PSA,9,PSA 9,81,2616,32.3,eBay,eBay,,81,$81.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2026-02-20,Wartortle,卡咪龜,CGC,10,CGC 10,430,13889,32.3,eBay,eBay,,430,$430.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-10-13,Wartortle,卡咪龜,CGC,9,CGC 9,64.5,2083,32.3,eBay,eBay,,64.5,$64.50,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-09-27,Wartortle,卡咪龜,PSA,10,PSA 10,900,29070,32.3,eBay,eBay,,900,$900.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-09-20,Wartortle,卡咪龜,PSA,9,PSA 9,74.99,2422,32.3,eBay,eBay,,74.99,$74.99,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-09-08,Wartortle,卡咪龜,CGC,9,CGC 9,41,1324,32.3,eBay,eBay,,41,$41.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,21.01,679,32.3,eBay,eBay,,21.01,$21.01,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,23.01,743,32.3,eBay,eBay,,23.01,$23.01,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,11.38,368,32.3,eBay,eBay,,11.38,$11.38,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-08-18,Wartortle,卡咪龜,RAW,RAW,RAW,7.5,242,32.3,eBay,eBay,,7.5,$7.50,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-07-07,Wartortle,卡咪龜,PSA,8,PSA 8,40,1292,32.3,eBay,eBay,,40,$40.00,,,,,user_screenshot,,existing price_history.csv rate for date
+2025-04-26,Wartortle,卡咪龜,PSA,9,PSA 9,74.99,2422,32.3,eBay,eBay,,74.99,$74.99,,,,,user_screenshot,,existing price_history.csv rate for date
 2026-06-24,Pikachu,皮卡丘,PSA,9,PSA 9,553,17862,32.3,eBay,eBay Research,,553,$553.00,Auction,,,https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+pikachu&dayRange=1095&tabName=SOLD,user_chrome_research,,existing price_history.csv rate for date
 2026-06-12,Pikachu,皮卡丘,PSA,8,PSA 8,270,8721,32.3,eBay,eBay Research,,270,$270.00,Fixed Price,,,https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+pikachu&dayRange=1095&tabName=SOLD,user_chrome_research,,existing price_history.csv rate for date
 2026-04-28,Pikachu,皮卡丘,RAW,RAW,RAW,725,23417,32.3,eBay,eBay Research,,725,$725.00,Fixed Price,,,https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+pikachu&dayRange=1095&tabName=SOLD,user_chrome_research,,existing price_history.csv rate for date
