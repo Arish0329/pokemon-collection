@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 781,
+  "recordCount": 862,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3131,6 +3131,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-25",
+          "psa": "RAW",
+          "usd": 63.51,
+          "twd": 2051,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 63.51,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2026-07-19",
           "psa": 9,
           "usd": 98,
@@ -3155,6 +3167,42 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2026-06-30",
+          "psa": "CGC 9",
+          "usd": 94.5,
+          "twd": 3052,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 94.5,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-06-18",
+          "psa": "RAW",
+          "usd": 99.99,
+          "twd": 3230,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 99.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-03-24",
+          "psa": "RAW",
+          "usd": 19.95,
+          "twd": 644,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 19.95,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2026-03-20",
           "psa": 9,
           "usd": 85,
@@ -3165,6 +3213,42 @@
           "listed": null,
           "saleType": "",
           "origin": "price_history.csv"
+        },
+        {
+          "date": "2026-03-14",
+          "psa": "CGC 8.5",
+          "usd": 47.5,
+          "twd": 1534,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 47.5,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-03-13",
+          "psa": "CGC 10",
+          "usd": 127,
+          "twd": 4102,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 127,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-02-20",
+          "psa": "CGC 9",
+          "usd": 94.5,
+          "twd": 3052,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 94.5,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2025-11-30",
@@ -3189,6 +3273,78 @@
           "listed": 64.8,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-10-25",
+          "psa": "RAW",
+          "usd": 21.5,
+          "twd": 694,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 21.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-10-20",
+          "psa": "CGC 10",
+          "usd": 149.99,
+          "twd": 4845,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 149.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-09-08",
+          "psa": "CGC 9",
+          "usd": 41.25,
+          "twd": 1332,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 41.25,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-19",
+          "psa": "CGC 10",
+          "usd": 69.99,
+          "twd": 2261,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 69.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-12",
+          "psa": "RAW",
+          "usd": 21.5,
+          "twd": 694,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 21.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-12",
+          "psa": "RAW",
+          "usd": 22.5,
+          "twd": 727,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 22.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2024-11-29",
@@ -3239,6 +3395,18 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2023-12-08",
+          "psa": "CGC 9",
+          "usd": 25,
+          "twd": 788,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 25,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2023-11-06",
           "psa": 9,
           "usd": 20,
@@ -3249,6 +3417,18 @@
           "listed": null,
           "saleType": "",
           "origin": "price_history.csv"
+        },
+        {
+          "date": "2023-11-06",
+          "psa": "PSA 9",
+          "usd": 19.5,
+          "twd": 614,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+bulbasaur&dayRange=1095&tabName=SOLD",
+          "listed": 19.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2022-11-27",
@@ -8288,6 +8468,54 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-25",
+          "psa": "RAW",
+          "usd": 102.5,
+          "twd": 3311,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 102.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-07-24",
+          "psa": "PSA 9",
+          "usd": 173.5,
+          "twd": 5604,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 173.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-06-25",
+          "psa": "RAW",
+          "usd": 40.46,
+          "twd": 1307,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 40.46,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-06-23",
+          "psa": "RAW",
+          "usd": 124.5,
+          "twd": 4021,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 124.5,
+          "saleType": "Fixed Price (2 sold)",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2026-06-07",
           "psa": "RAW",
           "usd": 49.7,
@@ -8372,6 +8600,66 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2025-10-29",
+          "psa": "CGC 9",
+          "usd": 87.5,
+          "twd": 2826,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 87.5,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-10-02",
+          "psa": "CGC 10",
+          "usd": 250,
+          "twd": 8075,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 250,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 50,
+          "twd": 1615,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 50,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 36.51,
+          "twd": 1179,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 36.51,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-12",
+          "psa": "RAW",
+          "usd": 46,
+          "twd": 1486,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 46,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2025-07-28",
           "psa": 10,
           "usd": 750,
@@ -8384,6 +8672,30 @@
           "origin": "price_history.csv"
         },
         {
+          "date": "2025-07-27",
+          "psa": "RAW",
+          "usd": 39.99,
+          "twd": 1292,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 39.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-06-15",
+          "psa": "RAW",
+          "usd": 35,
+          "twd": 1131,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 35,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2025-05-11",
           "psa": 10,
           "usd": 288,
@@ -8394,6 +8706,30 @@
           "listed": 288,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-02-25",
+          "psa": "CGC 9",
+          "usd": 76.76,
+          "twd": 2479,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 76.76,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-02-01",
+          "psa": "PSA 10",
+          "usd": 350,
+          "twd": 11305,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 350,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2024-01-14",
@@ -8430,6 +8766,42 @@
           "listed": null,
           "saleType": "",
           "origin": "price_history.csv"
+        },
+        {
+          "date": "2023-10-16",
+          "psa": "CGC 8.5",
+          "usd": 10.03,
+          "twd": 316,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 10.03,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2023-10-16",
+          "psa": "CGC 8.5",
+          "usd": 8.52,
+          "twd": 268,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 8.52,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2023-08-20",
+          "psa": "CGC 9",
+          "usd": 79.99,
+          "twd": 2520,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+squirtle&dayRange=1095&tabName=SOLD",
+          "listed": 79.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2022-12-25",
@@ -8896,6 +9268,42 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-25",
+          "psa": "RAW",
+          "usd": 76,
+          "twd": 2455,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 76,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-06-10",
+          "psa": "RAW",
+          "usd": 77.77,
+          "twd": 2512,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 77.77,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2026-06-10",
+          "psa": "RAW",
+          "usd": 80,
+          "twd": 2584,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 80,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2026-02-23",
           "psa": 10,
           "usd": 1500,
@@ -8944,6 +9352,18 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2025-11-18",
+          "psa": "RAW",
+          "usd": 35,
+          "twd": 1131,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 35,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2025-10-26",
           "psa": 8,
           "usd": 40,
@@ -8980,6 +9400,18 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2025-10-25",
+          "psa": "RAW",
+          "usd": 35,
+          "twd": 1131,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 35,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2025-10-14",
           "psa": 10,
           "usd": 1200,
@@ -8990,6 +9422,18 @@
           "listed": null,
           "saleType": "",
           "origin": "price_history.csv"
+        },
+        {
+          "date": "2025-10-14",
+          "psa": "PSA 10",
+          "usd": 1199.99,
+          "twd": 38760,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 1199.99,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2025-10-06",
@@ -9014,6 +9458,66 @@
           "listed": 62.4,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-08-29",
+          "psa": "CGC 9.5",
+          "usd": 99.99,
+          "twd": 3230,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 99.99,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 20.5,
+          "twd": 662,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 20.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 15.5,
+          "twd": 501,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 15.5,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-08-12",
+          "psa": "RAW",
+          "usd": 27.51,
+          "twd": 889,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 27.51,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2025-05-31",
+          "psa": "RAW",
+          "usd": 60,
+          "twd": 1938,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 60,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2025-05-18",
@@ -9088,6 +9592,18 @@
           "origin": "price_history.csv"
         },
         {
+          "date": "2024-07-16",
+          "psa": "PSA 9",
+          "usd": 39.95,
+          "twd": 1290,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 39.95,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2024-07-14",
           "psa": 8.5,
           "usd": 15.6,
@@ -9148,6 +9664,30 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2023-11-29",
+          "psa": "RAW",
+          "usd": 20,
+          "twd": 630,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 20,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
+          "date": "2023-11-25",
+          "psa": "CGC 10",
+          "usd": 289.5,
+          "twd": 9119,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 289.5,
+          "saleType": "Fixed Price",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2023-11-23",
           "psa": 10,
           "usd": 600,
@@ -9160,6 +9700,18 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2023-11-09",
+          "psa": "RAW",
+          "usd": 12,
+          "twd": 378,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 12,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
+        },
+        {
           "date": "2023-10-22",
           "psa": 9,
           "usd": 55,
@@ -9170,6 +9722,18 @@
           "listed": null,
           "saleType": "",
           "origin": "price_history.csv"
+        },
+        {
+          "date": "2023-10-22",
+          "psa": "PSA 9",
+          "usd": 55.11,
+          "twd": 1736,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+charmander&dayRange=1095&tabName=SOLD",
+          "listed": 55.11,
+          "saleType": "Auction",
+          "origin": "user_chrome_research"
         },
         {
           "date": "2022-12-25",
@@ -9397,6 +9961,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-24",
+          "psa": "PSA 9",
+          "usd": 81,
+          "twd": 2616,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 81,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-05-02",
           "psa": 9,
           "usd": 64.5,
@@ -9409,6 +9985,18 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2026-02-20",
+          "psa": "CGC 10",
+          "usd": 430,
+          "twd": 13889,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 430,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2025-11-30",
           "psa": 9,
           "usd": 64.8,
@@ -9419,6 +10007,126 @@
           "listed": 64.8,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-10-13",
+          "psa": "CGC 9",
+          "usd": 64.5,
+          "twd": 2083,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 64.5,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-09-27",
+          "psa": "PSA 10",
+          "usd": 900,
+          "twd": 29070,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 900,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-09-20",
+          "psa": "PSA 9",
+          "usd": 74.99,
+          "twd": 2422,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 74.99,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-09-08",
+          "psa": "CGC 9",
+          "usd": 41,
+          "twd": 1324,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 41,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 21.01,
+          "twd": 679,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 21.01,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 23.01,
+          "twd": 743,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 23.01,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 11.38,
+          "twd": 368,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 11.38,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 7.5,
+          "twd": 242,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 7.5,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-07-07",
+          "psa": "PSA 8",
+          "usd": 40,
+          "twd": 1292,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 40,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-06-07",
+          "psa": "PSA 10",
+          "usd": 175.5,
+          "twd": 5669,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 175.5,
+          "saleType": "",
+          "origin": "user_screenshot"
         },
         {
           "date": "2025-05-11",
@@ -9443,6 +10151,30 @@
           "listed": 168,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-04-26",
+          "psa": "PSA 9",
+          "usd": 74.99,
+          "twd": 2422,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 74.99,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-04-25",
+          "psa": "PSA 10",
+          "usd": 113.48,
+          "twd": 3688,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 113.48,
+          "saleType": "",
+          "origin": "user_screenshot"
         },
         {
           "date": "2024-05-19",
@@ -9563,6 +10295,42 @@
           "origin": "combined_graded.xlsx"
         },
         {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 22.5,
+          "twd": 727,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 22.5,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 18.01,
+          "twd": 582,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 18.01,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 15,
+          "twd": 485,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 15,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2025-05-11",
           "psa": 10,
           "usd": 210,
@@ -9633,6 +10401,126 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-24",
+          "psa": "PSA 8",
+          "usd": 61,
+          "twd": 1970,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 61,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-07-23",
+          "psa": "PSA 8",
+          "usd": 51,
+          "twd": 1647,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 51,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-06-10",
+          "psa": "RAW",
+          "usd": 67.88,
+          "twd": 2193,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 67.88,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-02-25",
+          "psa": "PSA 10",
+          "usd": 399,
+          "twd": 12888,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 399,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-01-24",
+          "psa": "PSA 9",
+          "usd": 78,
+          "twd": 2519,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 78,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-29",
+          "psa": "CGC 9",
+          "usd": 69.99,
+          "twd": 2261,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 69.99,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-19",
+          "psa": "CGC 9",
+          "usd": 50,
+          "twd": 1615,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 50,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 45.51,
+          "twd": 1470,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 45.51,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 41.54,
+          "twd": 1342,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 41.54,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-08-18",
+          "psa": "RAW",
+          "usd": 23.01,
+          "twd": 743,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 23.01,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2025-07-27",
           "psa": 10,
           "usd": 396,
@@ -9643,6 +10531,90 @@
           "listed": 396,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
+        },
+        {
+          "date": "2025-07-15",
+          "psa": "CGC 9",
+          "usd": 21.5,
+          "twd": 694,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 21.5,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2025-07-01",
+          "psa": "PSA 8",
+          "usd": 40,
+          "twd": 1292,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 40,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2024-08-25",
+          "psa": "PSA 10",
+          "usd": 100,
+          "twd": 3230,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 100,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2024-07-15",
+          "psa": "PSA 10",
+          "usd": 124.5,
+          "twd": 4021,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 124.5,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2024-03-02",
+          "psa": "RAW",
+          "usd": 33,
+          "twd": 1066,
+          "company": "RAW",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 33,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2024-01-06",
+          "psa": "CGC 9",
+          "usd": 45,
+          "twd": 1453,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 45,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2023-10-08",
+          "psa": "CGC 10",
+          "usd": 180,
+          "twd": 5814,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 180,
+          "saleType": "",
+          "origin": "user_screenshot"
         },
         {
           "date": "2022-08-07",
