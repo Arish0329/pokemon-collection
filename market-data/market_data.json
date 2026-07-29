@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 837,
+  "recordCount": 841,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -9539,11 +9539,59 @@
       "dex": 500,
       "icon": "images/lm-gengar.png",
       "accent": "#c9a227",
-      "glow": "rgba(201,162,39,0.12)",
-      "series": "Legend Maker",
-      "records": [
-        {
-          "date": "2026-07-05",
+    "glow": "rgba(201,162,39,0.12)",
+    "series": "Legend Maker",
+    "records": [
+      {
+        "date": "2026-07-04",
+        "psa": 9,
+        "usd": 301,
+        "twd": 9722,
+        "company": "CGC",
+        "source": "eBay",
+        "url": "",
+        "listed": 301,
+        "saleType": "Auction",
+        "origin": "user_screenshot"
+      },
+      {
+        "date": "2026-06-26",
+        "psa": 9,
+        "usd": 269,
+        "twd": 8689,
+        "company": "PSA",
+        "source": "eBay",
+        "url": "",
+        "listed": 269,
+        "saleType": "Auction",
+        "origin": "user_screenshot"
+      },
+      {
+        "date": "2026-06-20",
+        "psa": "PRI",
+        "usd": 2403,
+        "twd": 77617,
+        "company": "CGC",
+        "source": "eBay",
+        "url": "",
+        "listed": 2403,
+        "saleType": "Auction",
+        "origin": "user_screenshot"
+      },
+      {
+        "date": "2026-05-29",
+        "psa": 8,
+        "usd": 400,
+        "twd": 12920,
+        "company": "PSA",
+        "source": "eBay",
+        "url": "",
+        "listed": 400,
+        "saleType": "Best Offer",
+        "origin": "user_screenshot"
+      },
+      {
+        "date": "2026-07-05",
           "psa": 9,
           "usd": 301,
           "twd": 9722,
