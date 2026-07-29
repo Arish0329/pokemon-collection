@@ -1307,7 +1307,8 @@ const gradesRAW = ['RAW'];
 const colorsRAW = { 'RAW': { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' } };
 
 // CGC 評級（含半級）— 完整沿用 BGS 色階；特殊標記使用中性紫灰色
-const gradesCGC = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1, 'AUTH', 'PRI'];
+// PRI（黑金／Pristine）高於 CGC 10，統計卡與圖表皆固定排在最左側
+const gradesCGC = ['PRI', 10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5, 4, 3, 2, 1, 'AUTH'];
 const colorsCGC = {
   ...colorsBGS,
   AUTH: { line: '#a0a0b8', fill: 'rgba(160,160,184,0.07)' },
