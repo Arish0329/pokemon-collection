@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 841,
+  "recordCount": 851,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -2068,6 +2068,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-02",
+          "psa": 8,
+          "usd": 511,
+          "twd": 16505,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 511,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-25",
           "psa": 8,
           "usd": 610,
@@ -3309,6 +3321,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-02",
+          "psa": 10,
+          "usd": 7101,
+          "twd": 229362,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 7101,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-11",
           "psa": 7,
           "usd": 250,
@@ -4253,6 +4277,30 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-02",
+          "psa": 8,
+          "usd": 390,
+          "twd": 12597,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 390,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-08-02",
+          "psa": 8.5,
+          "usd": 280,
+          "twd": 9044,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 280,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-06-20",
           "psa": 7,
@@ -6822,6 +6870,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-02",
+          "psa": 8.5,
+          "usd": 1025,
+          "twd": 33108,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 1025,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-06-07",
           "psa": 9,
           "usd": 1364,
@@ -8122,6 +8182,30 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-02",
+          "psa": 8,
+          "usd": 290,
+          "twd": 9367,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 290,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-08-02",
+          "psa": 8,
+          "usd": 346,
+          "twd": 11176,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 346,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-06-07",
           "psa": 9,
           "usd": 919,
@@ -8802,6 +8886,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-02",
+          "psa": 8,
+          "usd": 615,
+          "twd": 19865,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 615,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-03-23",
           "psa": 9,
           "usd": 577.44,
@@ -9159,6 +9255,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-07-30",
+          "psa": 9,
+          "usd": 200,
+          "twd": 6460,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 200,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-02-23",
           "psa": 10,
@@ -10148,6 +10256,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-02",
+          "psa": 9,
+          "usd": 81,
+          "twd": 2616,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 81,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-07-24",
           "psa": 8,
