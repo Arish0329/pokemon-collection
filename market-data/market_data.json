@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 851,
+  "recordCount": 852,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3329,6 +3329,18 @@
           "source": "eBay",
           "url": "",
           "listed": 7101,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-08-02",
+          "psa": 10,
+          "usd": 3400,
+          "twd": 109820,
+          "company": "PSA",
+          "source": "Fanatics Collect",
+          "url": "",
+          "listed": 3400,
           "saleType": "Auction",
           "origin": "user_screenshot"
         },
