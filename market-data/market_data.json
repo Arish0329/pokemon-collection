@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 852,
+  "recordCount": 858,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3143,6 +3143,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-28",
+          "psa": 9,
+          "usd": 30,
+          "twd": 969,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 30,
+          "saleType": "Buy Now",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-19",
           "psa": 9,
           "usd": 98,
@@ -3335,12 +3347,12 @@
         {
           "date": "2026-08-02",
           "psa": 10,
-          "usd": 3400,
-          "twd": 109820,
+          "usd": 4080,
+          "twd": 131784,
           "company": "PSA",
           "source": "Fanatics Collect",
           "url": "",
-          "listed": 3400,
+          "listed": 4080,
           "saleType": "Auction",
           "origin": "user_screenshot"
         },
@@ -4719,6 +4731,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-08",
+          "psa": "RAW",
+          "usd": 3746,
+          "twd": 121000,
+          "company": "RAW",
+          "source": "社團",
+          "url": "",
+          "listed": 121000,
+          "saleType": "",
+          "origin": "user_input"
+        },
         {
           "date": "2026-06-18",
           "psa": 9,
@@ -6452,6 +6476,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-27",
+          "psa": 8.5,
+          "usd": 650,
+          "twd": 20995,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 650,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-06-07",
           "psa": 8,
           "usd": 648,
@@ -7860,6 +7896,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-07-28",
+          "psa": 8.5,
+          "usd": 340,
+          "twd": 10982,
+          "company": "CGC",
+          "source": "Fanatics Collect",
+          "url": "",
+          "listed": 340,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-04",
           "psa": 8,
           "usd": 550,
@@ -8193,6 +8241,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-02",
+          "psa": 9,
+          "usd": 70,
+          "twd": 2261,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 70,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-02",
           "psa": 8,
@@ -8897,6 +8957,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-07-30",
+          "psa": 7,
+          "usd": 600,
+          "twd": 19380,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 600,
+          "saleType": "Buy Now",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-02",
           "psa": 8,
