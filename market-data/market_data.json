@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 858,
+  "recordCount": 859,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -7895,6 +7895,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-07-27",
+          "psa": 7,
+          "usd": 475,
+          "twd": 15343,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 475,
+          "saleType": "",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-07-28",
           "psa": 8.5,
