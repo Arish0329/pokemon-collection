@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 860,
+  "recordCount": 861,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -4731,6 +4731,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-16",
+          "psa": 5,
+          "usd": 4080,
+          "twd": 131784,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 4080,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-13",
           "psa": 7,
