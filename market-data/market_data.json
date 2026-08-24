@@ -633,11 +633,11 @@
         },
         {
           "date": "2026-08-14",
-          "psa": 9,
+          "psa": 10,
           "usd": 641,
           "twd": 20704,
           "company": "PSA",
-          "source": "Fanatics",
+          "source": "eBay",
           "url": "",
           "listed": 641,
           "saleType": "Buy Now",
