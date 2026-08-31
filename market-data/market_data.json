@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 879,
+  "recordCount": 881,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -6680,6 +6680,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-31",
+          "psa": 8,
+          "usd": 600,
+          "twd": 19380,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 600,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-27",
           "psa": 8.5,
           "usd": 650,
@@ -9555,6 +9567,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-31",
+          "psa": 10,
+          "usd": 2520,
+          "twd": 81396,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 2520,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-31",
           "psa": 7,
