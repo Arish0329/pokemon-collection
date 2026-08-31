@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 873,
+  "recordCount": 878,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -1722,6 +1722,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-08-16",
+          "psa": 9,
+          "usd": 4250,
+          "twd": 137275,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 4250,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-07-25",
           "psa": 8,
           "usd": 1713,
@@ -2199,6 +2211,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-15",
+          "psa": 9,
+          "usd": 1400,
+          "twd": 45220,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 1400,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-02",
           "psa": 8,
@@ -3464,6 +3488,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-15",
+          "psa": "RAW",
+          "usd": 399.99,
+          "twd": 12920,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "",
+          "listed": 399.99,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-02",
           "psa": 10,
@@ -9507,6 +9543,30 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-08-31",
+          "psa": 7,
+          "usd": 102.5,
+          "twd": 3311,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 102.5,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-08-26",
+          "psa": 8,
+          "usd": 250,
+          "twd": 8075,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 250,
+          "saleType": "Buy Now",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-07-30",
           "psa": 9,
