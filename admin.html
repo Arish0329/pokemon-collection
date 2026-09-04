@@ -496,7 +496,7 @@ const CARDS = [
   { id:67, name:'霹靂電球(雷電球)',      cat:'pokemon', holo:false },
   { id:68, name:'六尾',          cat:'pokemon', holo:false },
   { id:69, name:'獨角蟲',        cat:'pokemon', holo:false },
-  { id:70, name:'皮皮玩偶',      cat:'pokemon', holo:false },
+  { id:70, name:'皮皮玩偶',      cat:'trainer', holo:false },
   { id:71, name:'電腦通信',      cat:'trainer', holo:false },
   { id:72, name:'退化噴霧劑',    cat:'trainer', holo:false },
   { id:73, name:'冒牌的大木博士',cat:'trainer', holo:false },
@@ -538,7 +538,7 @@ let filterMode = 'all';
 let removeTarget = null;
 
 const imgId = id => `pokemon-collection/images/${String(id).padStart(3,'0')}.jpg?t=${Date.now()}`; // 後台縮圖永遠抓最新圖（防快取）
-const typeLabel = { holo:'HOLO 閃卡', pokemon:'寶可夢', trainer:'訓練師／道具', energy:'能量' };
+const typeLabel = { holo:'閃卡寶可夢', pokemon:'普卡寶可夢', trainer:'訓練師／道具', energy:'能量' };
 const typeClass  = { holo:'type-holo', pokemon:'type-pokemon', trainer:'type-trainer', energy:'type-energy' };
 
 // ── Load ──

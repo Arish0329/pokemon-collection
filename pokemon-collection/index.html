@@ -524,8 +524,8 @@
 
 <div class="filters-wrap">
   <button class="filter-btn active" data-filter="all">全部</button>
-  <button class="filter-btn" data-filter="holo">閃卡 HOLO</button>
-  <button class="filter-btn" data-filter="pokemon">寶可夢</button>
+  <button class="filter-btn" data-filter="holo">閃卡寶可夢</button>
+  <button class="filter-btn" data-filter="pokemon">普卡寶可夢</button>
   <button class="filter-btn" data-filter="trainer">訓練師／道具</button>
   <button class="filter-btn" data-filter="energy">能量</button>
   <button class="filter-btn" data-filter="collected">已收藏</button>
@@ -581,7 +581,7 @@ const CARDS = [
   { id:14, name:'雷丘',        cat:'holo',    holo:true  },
   { id:15, name:'妙蛙花',      cat:'holo',    holo:true  },
   { id:16, name:'閃電鳥',      cat:'holo',    holo:true  },
-  // ─── 寶可夢 (No.17–70) ───
+  // ─── 普卡寶可夢 (No.17–69) ───
   { id:17, name:'大針蜂',      cat:'pokemon', holo:false },
   { id:18, name:'哈克龍',      cat:'pokemon', holo:false },
   { id:19, name:'三地鼠',      cat:'pokemon', holo:false },
@@ -635,8 +635,8 @@ const CARDS = [
   { id:67, name:'霹靂電球(雷電球)',    cat:'pokemon', holo:false },
   { id:68, name:'六尾',        cat:'pokemon', holo:false },
   { id:69, name:'獨角蟲',      cat:'pokemon', holo:false },
-  { id:70, name:'皮皮玩偶',    cat:'pokemon', holo:false },
-  // ─── 訓練師 (No.71–95) ───
+  { id:70, name:'皮皮玩偶',    cat:'trainer', holo:false },
+  // ─── 訓練師／道具 (No.70–95) ───
   { id:71, name:'電腦通信',      cat:'trainer', holo:false },
   { id:72, name:'退化噴霧劑',    cat:'trainer', holo:false },
   { id:73, name:'冒牌的大木博士',cat:'trainer', holo:false },
@@ -893,7 +893,7 @@ function closeLightbox() {
 }
 
 function catLabel(cat) {
-  return { pokemon:'寶可夢卡', trainer:'訓練師／道具卡', energy:'能量卡', holo:'閃卡' }[cat] || '';
+  return { pokemon:'普卡寶可夢卡', trainer:'訓練師／道具卡', energy:'能量卡', holo:'閃卡寶可夢' }[cat] || '';
 }
 
 document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
