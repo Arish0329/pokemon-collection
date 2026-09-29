@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-27T09:37:01.161Z",
-  "recordCount": 888,
+  "generatedAt": "2026-09-22T09:00:00.000Z",
+  "recordCount": 894,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -4494,6 +4494,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-09-26",
+          "psa": 8,
+          "usd": 525,
+          "twd": 16958,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 525,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-08-02",
           "psa": 8,
           "usd": 390,
@@ -5916,6 +5928,30 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-09-27",
+          "psa": 8,
+          "usd": 1275,
+          "twd": 41183,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 1275,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-09-26",
+          "psa": 7,
+          "usd": 752,
+          "twd": 24290,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 752,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-06-11",
           "psa": 8,
           "usd": 895,
@@ -6285,6 +6321,30 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-09-20",
+          "psa": 9,
+          "usd": 2400,
+          "twd": 77520,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 2400,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-09-17",
+          "psa": 9,
+          "usd": 4999,
+          "twd": 161468,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 4999,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-06-08",
           "psa": 9,
@@ -7181,6 +7241,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-09-25",
+          "psa": 8,
+          "usd": 950,
+          "twd": 30685,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 950,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-08-02",
           "psa": 8.5,
