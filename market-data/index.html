@@ -354,6 +354,15 @@
   .legend-check { font-size: 11px; color: var(--c); opacity: 0; transition: opacity 0.15s; }
   .chart-container { position: relative; height: 380px; }
   canvas { display: block; }
+  .chart-fallback {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    border: 1px dashed var(--border-hi);
+    border-radius: 12px;
+  }
 
   /* ── Stats Grid ── */
   .stats-grid {
@@ -1554,7 +1563,9 @@ function buildDatasets(records) {
   }).filter(d => d.data.length > 0);
 }
 
-chartInstance = new Chart(document.getElementById('trendChart'), {
+try {
+  if (!window.Chart) throw new Error('Chart.js failed to load');
+  chartInstance = new Chart(document.getElementById('trendChart'), {
   type: 'line',
   data: { datasets: buildDatasets(pokemonDB.charizard.records) },
   options: {
@@ -1601,7 +1612,15 @@ chartInstance = new Chart(document.getElementById('trendChart'), {
       }
     }
   }
-});
+  });
+} catch (error) {
+  console.warn('Chart unavailable; keeping market table usable.', error);
+  const chartContainer = document.querySelector('.chart-container');
+  if (chartContainer) {
+    chartContainer.innerHTML = '<div class="chart-fallback">圖表暫時無法載入，成交資料仍可正常瀏覽。</div>';
+  }
+  chartInstance = null;
+}
 
 // ── Legend ──
 function renderLegend(datasets) {
@@ -1614,6 +1633,7 @@ function renderLegend(datasets) {
     item.style.setProperty('--c', c);
     item.innerHTML = `<span class="legend-swatch"></span><span>${ds.label}</span><span class="legend-check">✓</span>`;
     item.addEventListener('click', () => {
+      if (!chartInstance) return;
       const meta = chartInstance.getDatasetMeta(i);
       meta.hidden = !meta.hidden;
       item.classList.toggle('active', !meta.hidden);
@@ -1753,8 +1773,10 @@ function renderAll() {
 
   if (hasData) {
     const datasets = buildDatasets(poke.records);
-    chartInstance.data.datasets = datasets;
-    chartInstance.update();
+    if (chartInstance) {
+      chartInstance.data.datasets = datasets;
+      chartInstance.update();
+    }
     renderLegend(datasets);
     renderStats(poke.records);
     renderTable(poke.records, currentSort);
