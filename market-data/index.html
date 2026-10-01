@@ -7,8 +7,6 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -353,16 +351,11 @@
   .legend-swatch { width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
   .legend-check { font-size: 11px; color: var(--c); opacity: 0; transition: opacity 0.15s; }
   .chart-container { position: relative; height: 380px; }
-  canvas { display: block; }
-  .chart-fallback {
-    height: 100%;
-    display: grid;
-    place-items: center;
-    color: var(--text-muted);
-    font-size: 14px;
-    border: 1px dashed var(--border-hi);
-    border-radius: 12px;
-  }
+  .trend-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .trend-grid { stroke: #1a1a28; stroke-width: 1; }
+  .trend-axis-label { fill: #77778f; font: 12px 'Noto Sans TC', sans-serif; }
+  .trend-line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .trend-point { stroke: #0f0f1a; stroke-width: 2; cursor: pointer; }
 
   /* ── Stats Grid ── */
   .stats-grid {
@@ -1563,64 +1556,93 @@ function buildDatasets(records) {
   }).filter(d => d.data.length > 0);
 }
 
-try {
-  if (!window.Chart) throw new Error('Chart.js failed to load');
-  chartInstance = new Chart(document.getElementById('trendChart'), {
-  type: 'line',
-  data: { datasets: buildDatasets(pokemonDB.charizard.records) },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode: 'nearest', intersect: true },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        backgroundColor: '#13131f',
-        borderColor: '#2a2a3e',
-        borderWidth: 1,
-        titleColor: '#888',
-        bodyColor: '#eee',
-        padding: 10,
-        callbacks: {
-          title: ctx => {
-            if (!ctx.length) return '';
-            return ctx[0].raw.x.toLocaleDateString('zh-TW', { year:'numeric', month:'2-digit', day:'2-digit' });
-          },
-          label: ctx => {
-            const r = ctx.raw._record;
-            if (!r) return ` ${ctx.dataset.label}  $${ctx.parsed.y.toLocaleString()} USD`;
-            const gLabel = recordGradeLabel(r);
-            return [
-              ` ${gLabel}`,
-              ` $${r.usd.toLocaleString()} USD  ·  NT$${r.twd.toLocaleString()}`,
-              ` ${r.source}`,
-            ];
-          }
-        }
-      }
+function createTrendChart(canvas, datasets) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const hidden = new Set();
+  const chart = {
+    data: { datasets },
+    getDatasetMeta(index) {
+      return { get hidden() { return hidden.has(index); }, set hidden(value) {
+        if (value) hidden.add(index); else hidden.delete(index);
+      }};
     },
-    scales: {
-      x: {
-        type: 'time',
-        time: { unit: 'month', displayFormats: { month: 'yyyy/MM' } },
-        grid: { color: '#1a1a28' },
-        ticks: { color: '#555', font: { size: 11 }, maxTicksLimit: 12, autoSkip: true }
-      },
-      y: {
-        grid: { color: '#1a1a28' },
-        ticks: { color: '#555', font: { size: 11 }, callback: v => '$' + v.toLocaleString() }
+    update() {
+      const width = 960, height = 360;
+      const pad = { top: 16, right: 22, bottom: 42, left: 76 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const active = chart.data.datasets
+        .map((dataset, index) => ({ dataset, index }))
+        .filter(item => !hidden.has(item.index) && item.dataset.data.length);
+      const points = active.flatMap(item => item.dataset.data);
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('class', 'trend-svg');
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', '依日期顯示各分級成交價格的趨勢圖');
+
+      if (!points.length) {
+        const message = document.createElementNS(ns, 'text');
+        message.setAttribute('x', width / 2); message.setAttribute('y', height / 2);
+        message.setAttribute('text-anchor', 'middle'); message.setAttribute('class', 'trend-axis-label');
+        message.textContent = '目前沒有可顯示的成交資料'; svg.appendChild(message);
+      } else {
+        const xs = points.map(point => point.x.getTime());
+        const ys = points.map(point => point.y);
+        let minX = Math.min(...xs), maxX = Math.max(...xs);
+        let minY = Math.min(...ys), maxY = Math.max(...ys);
+        if (minX === maxX) { minX -= 86400000 * 30; maxX += 86400000 * 30; }
+        if (minY === maxY) { minY *= 0.9; maxY *= 1.1; }
+        const yPad = (maxY - minY) * 0.08;
+        minY = Math.max(0, minY - yPad); maxY += yPad;
+        const x = value => pad.left + (value - minX) / (maxX - minX) * plotW;
+        const y = value => pad.top + (maxY - value) / (maxY - minY) * plotH;
+        const append = (tag, attrs, parent = svg) => {
+          const element = document.createElementNS(ns, tag);
+          Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+          parent.appendChild(element); return element;
+        };
+        for (let i = 0; i <= 4; i++) {
+          const value = maxY - (maxY - minY) * i / 4;
+          const py = y(value);
+          append('line', { x1: pad.left, x2: width - pad.right, y1: py, y2: py, class: 'trend-grid' });
+          const label = append('text', { x: pad.left - 10, y: py + 4, 'text-anchor': 'end', class: 'trend-axis-label' });
+          label.textContent = '$' + Math.round(value).toLocaleString();
+        }
+        const firstYear = new Date(minX).getFullYear(), lastYear = new Date(maxX).getFullYear();
+        const yearStep = Math.max(1, Math.ceil((lastYear - firstYear) / 6));
+        for (let year = firstYear; year <= lastYear; year += yearStep) {
+          const tick = new Date(year, 0, 1).getTime();
+          const px = x(Math.min(maxX, Math.max(minX, tick)));
+          const label = append('text', { x: px, y: height - 12, 'text-anchor': 'middle', class: 'trend-axis-label' });
+          label.textContent = String(year);
+        }
+        active.forEach(({ dataset }) => {
+          const ordered = [...dataset.data].sort((a, b) => a.x - b.x);
+          if (ordered.length > 1) append('polyline', {
+            points: ordered.map(point => `${x(point.x.getTime())},${y(point.y)}`).join(' '),
+            class: 'trend-line', stroke: dataset.borderColor
+          });
+          ordered.forEach(point => {
+            const record = point._record;
+            const circle = append('circle', {
+              cx: x(point.x.getTime()), cy: y(point.y), r: 5,
+              class: 'trend-point', fill: dataset.pointBackgroundColor
+            });
+            const dateText = point.x.toLocaleDateString('zh-TW', {year:'numeric',month:'2-digit',day:'2-digit'});
+            const title = append('title', {} , circle);
+            title.textContent = `${dateText} · ${recordGradeLabel(record)} · $${record.usd.toLocaleString()} USD · NT$${record.twd.toLocaleString()} · ${record.source}`;
+          });
+        });
       }
+      canvas.replaceChildren(svg);
     }
-  }
-  });
-} catch (error) {
-  console.warn('Chart unavailable; keeping market table usable.', error);
-  const chartContainer = document.querySelector('.chart-container');
-  if (chartContainer) {
-    chartContainer.innerHTML = '<div class="chart-fallback">圖表暫時無法載入，成交資料仍可正常瀏覽。</div>';
-  }
-  chartInstance = null;
+  };
+  chart.update();
+  return chart;
 }
+
+chartInstance = createTrendChart(document.getElementById('trendChart'), buildDatasets(pokemonDB.charizard.records));
 
 // ── Legend ──
 function renderLegend(datasets) {
