@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-22T09:00:00.000Z",
-  "recordCount": 895,
+  "generatedAt": "2026-10-05T00:00:00.000Z",
+  "recordCount": 898,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -9067,6 +9067,42 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-09-27",
+          "psa": "RAW",
+          "usd": 139.99,
+          "twd": 4522,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "",
+          "listed": 139.99,
+          "saleType": "Buy It Now",
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-07-25",
+          "psa": "RAW",
+          "usd": 102.5,
+          "twd": 3311,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "",
+          "listed": 102.5,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-07-24",
+          "psa": 9,
+          "usd": 173.5,
+          "twd": 5604,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 173.5,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-06-07",
           "psa": "RAW",
