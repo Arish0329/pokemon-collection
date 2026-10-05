@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-05T00:00:00.000Z",
-  "recordCount": 900,
+  "recordCount": 901,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -5927,6 +5927,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-09-26",
+          "psa": "RAW",
+          "usd": 890,
+          "twd": 28747,
+          "company": "RAW",
+          "source": "eBay",
+          "url": "",
+          "listed": 890,
+          "saleType": "Best Offer",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-30",
           "psa": 8,
