@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-05T00:00:00.000Z",
-  "recordCount": 898,
+  "recordCount": 900,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -5927,6 +5927,30 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-09-30",
+          "psa": 8,
+          "usd": 2850,
+          "twd": 92055,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 2850,
+          "saleType": "Best Offer",
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-09-30",
+          "psa": 6,
+          "usd": 800,
+          "twd": 25840,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 800,
+          "saleType": "Best Offer",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-27",
           "psa": 8,
