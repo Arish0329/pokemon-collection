@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T00:00:00.000Z",
-  "recordCount": 903,
+  "generatedAt": "2026-10-13T00:00:00.000Z",
+  "recordCount": 918,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -10,6 +10,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 2562,
+          "twd": 82753,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 2562,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-07-26",
           "psa": 8,
@@ -1734,6 +1746,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 10980,
+          "twd": 354654,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 10980,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-10-05",
           "psa": 8,
           "usd": 2247,
@@ -2235,6 +2259,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 3056,
+          "twd": 98709,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 3056,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-08-15",
           "psa": 9,
@@ -2892,6 +2928,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 5612,
+          "twd": 181268,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 5612,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-07-24",
           "psa": 9,
@@ -4518,6 +4566,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 3050,
+          "twd": 98515,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 3050,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-09-26",
           "psa": 8,
           "usd": 525,
@@ -4959,6 +5019,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 8.5,
+          "usd": 26840,
+          "twd": 866932,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 26840,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-16",
           "psa": 4,
@@ -5952,6 +6024,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 3664,
+          "twd": 118347,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 3664,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-09-26",
           "psa": "RAW",
           "usd": 890,
@@ -6381,6 +6465,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 3965,
+          "twd": 128069,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 3965,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-20",
           "psa": 9,
@@ -6848,6 +6944,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 8,
+          "usd": 763,
+          "twd": 24645,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 763,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-08-31",
           "psa": 8,
           "usd": 600,
@@ -7302,6 +7410,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 2684,
+          "twd": 86693,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 2684,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-09-25",
           "psa": 8,
           "usd": 950,
@@ -7671,6 +7791,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 885,
+          "twd": 28585,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 885,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-06-07",
           "psa": 9,
@@ -8114,6 +8246,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 3538,
+          "twd": 114277,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 3538,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-06-07",
           "psa": 8,
           "usd": 436,
@@ -8291,6 +8435,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 5002,
+          "twd": 161565,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 5002,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-07-27",
           "psa": 7,
@@ -8649,6 +8805,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 4270,
+          "twd": 137921,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 4270,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-08",
           "psa": 8,
@@ -9413,6 +9581,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 4575,
+          "twd": 147773,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 4575,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-07-30",
           "psa": 7,
