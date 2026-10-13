@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-13T00:00:00.000Z",
-  "recordCount": 918,
+  "recordCount": 922,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3560,6 +3560,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 305,
+          "twd": 9852,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 305,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-09-05",
           "psa": 8.5,
@@ -9296,6 +9308,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 177,
+          "twd": 5717,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 177,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-09-27",
           "psa": "RAW",
           "usd": 139.99,
@@ -9975,6 +9999,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9.5,
+          "usd": 171,
+          "twd": 5523,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 171,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-08-30",
           "psa": 7,
@@ -11036,6 +11072,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 9,
+          "usd": 92,
+          "twd": 2972,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 92,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-08-20",
           "psa": "RAW",
