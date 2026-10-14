@@ -227,13 +227,11 @@
     }
     .card.collected { cursor: pointer; }
     .card.collected:hover { transform: translateY(-4px); }
-    /* 閃卡靜止時與普卡相同（靠 HOLO 標籤辨識）；滑過時金框浮現＋多層金色光芒。
+    /* 閃卡靜止時與普卡相同（靠 HOLO 標籤辨識）；滑過時只有金色光暈向外擴散（不加金框）。
        :active 讓手機（沒有 hover）點按時也有短暫發光回饋 */
     .card.holo.collected:hover,
     .card.holo.collected:active {
-      border-color: var(--border-holo);
       box-shadow:
-        0 0 0 1px rgba(201,162,39,0.35),
         0 0 18px rgba(201,162,39,0.45),
         0 0 40px rgba(201,162,39,0.2),
         0 8px 24px rgba(0,0,0,0.6);
