@@ -226,7 +226,7 @@
     }
     .card.collected { cursor: pointer; }
     .card.collected:hover { transform: translateY(-4px); }
-    /* 閃卡靜止時與普卡相同（靠 HOLO 標籤辨識）；滑過時只有金色光暈向外擴散（不加金框）。
+    /* 閃卡靜止時與普卡相同（靠卡殼標籤、篩選與放大檢視辨識）；滑過時只有金色光暈向外擴散（不加金框）。
        :active 讓手機（沒有 hover）點按時也有短暫發光回饋 */
     .card.holo.collected:hover,
     .card.holo.collected:active {
@@ -329,20 +329,8 @@
       text-overflow: ellipsis;
       margin-top: 3px;
     }
-    /* 閃卡文字與普卡同色：金色只留給外框、光暈與 HOLO 標籤，避免金色過多搶走卡名可讀性 */
+    /* 閃卡文字與普卡同色：金色只留給滑過時的光暈，避免金色過多搶走卡名可讀性 */
 
-    /* HOLO badge */
-    .badge-holo-tag {
-      position: absolute;
-      top: 6px; right: 6px;
-      font-size: 0.5rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: linear-gradient(135deg, #c9a227, #f0d060);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
 
 
     /* Grade badge（直式評級章：小字機構名 + 大數字分數，仿 PSA 標籤；
@@ -879,12 +867,6 @@ function render() {
       imgWrap.appendChild(ph);
     }
 
-    if (card.holo) {
-      const badge = document.createElement('span');
-      badge.className = 'badge-holo-tag';
-      badge.textContent = 'HOLO';
-      imgWrap.appendChild(badge);
-    }
 
     const info = document.createElement('div');
     info.className = 'card-info';
