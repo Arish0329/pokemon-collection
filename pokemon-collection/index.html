@@ -291,19 +291,28 @@
     .card-num {
       font-size: 0.62rem;
       color: var(--text-dim);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
+    /* 卡名是資訊列主角：0.78rem(12.5px) → 0.95rem(15.2px) */
     .card-name {
-      font-size: 0.78rem;
+      font-size: 0.95rem;
+      line-height: 1.35;
       font-weight: 700;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       color: var(--text);
     }
-    .card.holo .card-num  { color: var(--gold); }
-    .card.holo .card-num  { opacity: 0.8; }
-    .card.holo .card-name { color: var(--gold-light); }
+    /* 括號舊名是補充資訊：縮小、降彩度；長名被截斷時優先截掉這段，現代名保持完整 */
+    .card-name-old {
+      font-size: 0.66rem;
+      font-weight: 500;
+      color: #8c8ca8;
+      margin-left: 2px;
+    }
+    @media (max-width: 600px) {
+      .card-name { font-size: 0.88rem; }   /* 手機卡片較窄：14.1px，仍比原本大約 13% */
+    }
     .card-en {
       font-size: 0.66rem;
       color: #8c8ca8;
@@ -311,9 +320,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-top: 2px;
+      margin-top: 3px;
     }
-    .card.holo .card-en { color: var(--gold); opacity: 0.85; }
+    /* 閃卡文字與普卡同色：金色只留給外框、光暈與 HOLO 標籤，避免金色過多搶走卡名可讀性 */
 
     /* HOLO badge */
     .badge-holo-tag {
@@ -807,6 +816,12 @@ function gradeBadge(id) {
   return el;
 }
 
+// 「現代名(舊名)」拆成兩段：現代名大字，括號舊名小字（樣式見 .card-name-old）
+function nameHtml(name) {
+  const m = name.match(/^(.*?)(\(.*\))$/);
+  return m ? `${m[1]}<span class="card-name-old">${m[2]}</span>` : name;
+}
+
 function matchSearch(card) {
   const q = searchQ.trim().toLowerCase();
   if (!q) return true;
@@ -885,7 +900,7 @@ function render() {
     info.className = 'card-info';
     info.innerHTML = `<div class="card-text">
         <div class="card-num">No.${card.id}</div>
-        <div class="card-name">${card.name}</div>
+        <div class="card-name" title="${card.name}">${nameHtml(card.name)}</div>
         <div class="card-en">${EN_NAMES[card.id] || ''}</div>
       </div>`;
 
