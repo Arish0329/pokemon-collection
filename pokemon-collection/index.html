@@ -21,7 +21,6 @@
       --text-dim: #5a5a7a;
       --gold: #c9a227;
       --gold-light: #f0d060;
-      --blue: #4a8fff;
 
       /* 評級徽章（冷色亮度階梯：越高分越亮；刻意不用金色，避免與閃卡混淆） */
       --grade10-bg: #d6eeff;  --grade10-fg: #0b3a5c;
@@ -232,13 +231,19 @@
     .card.holo.collected:hover,
     .card.holo.collected:active {
       box-shadow:
-        0 0 18px rgba(201,162,39,0.45),
-        0 0 40px rgba(201,162,39,0.2),
+        0 0 22px rgba(201,162,39,0.34),
+        0 0 48px rgba(201,162,39,0.14),
         0 8px 24px rgba(0,0,0,0.6);
     }
-    .card.common.collected:hover {
-      border-color: #3a5a9f;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+
+    /* 普卡滑過：與閃卡同邏輯（不變框、只發光），用銀色光暈（兩層：近處較亮、遠處擴散）。
+       強度與閃卡金光相同（0.34 / 0.14），兩者只靠顏色區分：金＝閃卡、銀＝普卡 */
+    .card.common.collected:hover,
+    .card.common.collected:active {
+      box-shadow:
+        0 0 22px rgba(170, 180, 220, 0.34),
+        0 0 48px rgba(170, 180, 220, 0.14),
+        0 8px 24px rgba(0,0,0,0.5);
     }
     .card.hidden { display: none; }
 
@@ -339,16 +344,6 @@
       border-radius: 4px;
     }
 
-    /* Collected tick */
-    .tick-badge {
-      position: absolute;
-      top: 6px; left: 6px;
-      width: 18px; height: 18px;
-      background: rgba(74,143,255,0.85);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tick-badge svg { width: 10px; height: 10px; }
 
     /* Grade badge（直式評級章：小字機構名 + 大數字分數，仿 PSA 標籤；
        放在資訊列右欄、與左側三行文字垂直置中，大數字與大卡名左右呼應） */
@@ -870,13 +865,6 @@ function render() {
       img.loading = 'lazy';
       imgWrap.appendChild(img);
 
-      const tick = document.createElement('div');
-      tick.className = 'tick-badge';
-      tick.innerHTML = `<svg viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.5">
-        <polyline points="1.5,5 4,7.5 8.5,2.5"/>
-      </svg>`;
-      imgWrap.appendChild(tick);
-
       el.addEventListener('click', () => openLightbox(card));
     } else {
       const ph = document.createElement('div');
@@ -1047,7 +1035,7 @@ function updateSearchCount(n) {
   document.getElementById('search-count').textContent = searchQ ? `找到 ${n} 張` : '';
 }
 
-// iOS Safari 需要頁面上有 touchstart 監聽，CSS 的 :active（手機點按閃卡發光）才會生效
+// iOS Safari 需要頁面上有 touchstart 監聽，CSS 的 :active（手機點按卡片發光）才會生效
 document.addEventListener('touchstart', () => {}, { passive: true });
 
 loadData();
