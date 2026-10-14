@@ -15,6 +15,7 @@
       --bg-card: #0d0d1e;
       --bg-card-hover: #131328;
       --border: #1e1e3a;
+      --border-card: #34345a;   /* 卡片外框專用：比 --border 亮，讓卡片邊緣在深色背景上更清楚 */
       --border-holo: #c9a227;
       --glow-holo: rgba(201,162,39,0.4);
       --text: #d8d8ea;
@@ -205,10 +206,12 @@
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      /* 上下間距比左右大：每排卡片之間有呼吸空間，滑過時的光暈也不會擠到下一排 */
+      row-gap: 28px;
+      column-gap: 14px;
     }
     @media (max-width: 600px) {
-      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); row-gap: 20px; column-gap: 10px; }
       .grid-wrap, .filters-wrap, .stats-wrap { padding-left: 14px; padding-right: 14px; }
     }
     @media (min-width: 601px) and (max-width: 820px) {
@@ -218,7 +221,7 @@
     /* ── Card ── */
     .card {
       border-radius: 10px;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid var(--border-card);
       background: var(--bg-card);
       overflow: hidden;
       position: relative;
