@@ -22,6 +22,12 @@
       --gold: #c9a227;
       --gold-light: #f0d060;
       --blue: #4a8fff;
+
+      /* 評級徽章（冷色亮度階梯：越高分越亮；刻意不用金色，避免與閃卡混淆） */
+      --grade10-bg: #d6eeff;  --grade10-fg: #0b3a5c;
+      --grade9-bg:  #d8d8ea;  --grade9-fg:  #1a1a2e;
+      --grade8-bg:  #4e5678;  --grade8-fg:  #f0f2ff;  --grade8-border: #7a84aa;
+      --grade7-bg:  #2e3350;  --grade7-fg:  #c8cce0;  --grade7-border: #4e5678;
     }
 
     body {
@@ -274,6 +280,14 @@
     .card-info {
       padding: 8px 10px 9px;
     }
+    /* 有評級時：左欄三行文字、右欄評級章（垂直置中），左右份量對等 */
+    .card-info.has-grade {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 8px;
+      align-items: center;
+    }
+    .card-text { min-width: 0; }   /* 讓長卡名能正常顯示省略號 */
     .card-num {
       font-size: 0.62rem;
       color: var(--text-dim);
@@ -287,7 +301,8 @@
       text-overflow: ellipsis;
       color: var(--text);
     }
-    .card.holo .card-num  { color: var(--gold); opacity: 0.8; }
+    .card.holo .card-num  { color: var(--gold); }
+    .card.holo .card-num  { opacity: 0.8; }
     .card.holo .card-name { color: var(--gold-light); }
     .card-en {
       font-size: 0.66rem;
@@ -323,6 +338,39 @@
       display: flex; align-items: center; justify-content: center;
     }
     .tick-badge svg { width: 10px; height: 10px; }
+
+    /* Grade badge（直式評級章：小字機構名 + 大數字分數，仿 PSA 標籤；
+       放在資訊列右欄、與左側三行文字垂直置中，大數字與大卡名左右呼應） */
+    .grade-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-width: 38px;
+      padding: 5px 7px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      line-height: 1;
+      transition: filter 0.2s ease;
+    }
+    .grade-co {
+      display: inline-flex; align-items: center; gap: 2px;
+      font-size: 0.48rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+    }
+    .grade-score {
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+    .grade-badge svg { width: 8px; height: 8px; }
+    .card.collected:hover .grade-badge { filter: brightness(1.12); }
+    .grade-10 { background: var(--grade10-bg); color: var(--grade10-fg); }
+    .grade-9  { background: var(--grade9-bg);  color: var(--grade9-fg); }
+    .grade-8  { background: var(--grade8-bg);  color: var(--grade8-fg); border-color: var(--grade8-border); }
+    .grade-7  { background: var(--grade7-bg);  color: var(--grade7-fg); border-color: var(--grade7-border); }
 
     /* ── Lightbox ── */
     .lightbox {
@@ -694,27 +742,69 @@ const EN_NAMES = {
   101:'Psychic Energy',102:'Water Energy'
 };
 
-// 鑑定證書（co 機構 + cert 證書號）；裸卡不列入。逐張依卡圖標籤核對。
-const CERTS = {
-  1:{co:'PSA',cert:'70713696'}, 2:{co:'PSA',cert:'85177123'}, 3:{co:'PSA',cert:'70713697'}, 4:{co:'PSA',cert:'65440073'},
-  5:{co:'PSA',cert:'123438093'}, 6:{co:'PSA',cert:'66311566'}, 7:{co:'PSA',cert:'116094582'}, 8:{co:'PSA',cert:'123438096'},
-  9:{co:'PSA',cert:'25808003'}, 10:{co:'PSA',cert:'123438098'}, 11:{co:'PSA',cert:'129714826'}, 12:{co:'PSA',cert:'124678412'},
-  13:{co:'PSA',cert:'116094601'}, 14:{co:'PSA',cert:'124678416'}, 15:{co:'PSA',cert:'91277882'}, 16:{co:'PSA',cert:'101778370'},
-  18:{co:'PSA',cert:'77534762'}, 19:{co:'PSA',cert:'24132725'}, 20:{co:'PSA',cert:'58634834'}, 22:{co:'PSA',cert:'58634833'},
-  24:{co:'PSA',cert:'74617059'}, 26:{co:'PSA',cert:'74436732'}, 27:{co:'PSA',cert:'74436733'}, 28:{co:'PSA',cert:'74436731'},
-  29:{co:'PSA',cert:'129410713'}, 30:{co:'PSA',cert:'58634780'}, 33:{co:'PSA',cert:'58634850'}, 36:{co:'PSA',cert:'129410730'},
-  37:{co:'PSA',cert:'74436730'}, 38:{co:'PSA',cert:'63187816'}, 41:{co:'CGC',cert:'6151335040'}, 42:{co:'PSA',cert:'129410657'},
-  43:{co:'PSA',cert:'58634810'}, 44:{co:'PSA',cert:'129410659'}, 45:{co:'PSA',cert:'129410660'}, 46:{co:'PSA',cert:'65856622'},
-  47:{co:'PSA',cert:'137886346'}, 48:{co:'PSA',cert:'129410665'}, 49:{co:'PSA',cert:'137886345'}, 50:{co:'PSA',cert:'58634839'},
-  57:{co:'PSA',cert:'129410649'}, 58:{co:'PSA',cert:'90846867'}, 60:{co:'PSA',cert:'126950194'}, 63:{co:'PSA',cert:'65856624'},
-  64:{co:'PSA',cert:'58634855'}, 66:{co:'PSA',cert:'58634858'}, 67:{co:'PSA',cert:'63187839'}, 69:{co:'PSA',cert:'116928104'},
-  70:{co:'PSA',cert:'129410655'}, 73:{co:'PSA',cert:'70951490'}, 75:{co:'PSA',cert:'63187843'}, 76:{co:'PSA',cert:'148613222'},
-  78:{co:'PSA',cert:'129410758'}, 79:{co:'PSA',cert:'129410757'}, 81:{co:'PSA',cert:'129410755'}, 94:{co:'PSA',cert:'129410772'}
+// 卡殼資料：co 鑑定機構、score 評級分數、cert 證書號（null = 卡殼照片上看不到證書號，不顯示查驗按鈕）
+// 依目前卡圖標籤逐張核對（OCR 雙輪比對 + 人工確認）；裸卡不列入：87
+const SLABS = {
+  1:{co:'PSA',score:8,cert:'70713696'}, 2:{co:'PSA',score:8,cert:'85177123'}, 3:{co:'PSA',score:8,cert:'70713697'},
+  4:{co:'PSA',score:9,cert:'65440073'}, 5:{co:'PSA',score:8,cert:'123438093'}, 6:{co:'PSA',score:8,cert:'66311566'},
+  7:{co:'PSA',score:8,cert:'116094582'}, 8:{co:'PSA',score:8,cert:'123438096'}, 9:{co:'PSA',score:8,cert:'87089389'},
+  10:{co:'PSA',score:8,cert:'123438098'}, 11:{co:'PSA',score:8,cert:'129714826'}, 12:{co:'PSA',score:8,cert:'124678412'},
+  13:{co:'PSA',score:8,cert:'116094601'}, 14:{co:'PSA',score:8,cert:'124678416'}, 15:{co:'PSA',score:8,cert:'91277882'},
+  16:{co:'PSA',score:8,cert:'101778370'}, 17:{co:'PSA',score:8,cert:'169027393'}, 19:{co:'PSA',score:9,cert:'169027331'},
+  20:{co:'PSA',score:8,cert:'58634834'}, 21:{co:'PSA',score:8,cert:'131952323'}, 22:{co:'PSA',score:8,cert:'58634833'},
+  23:{co:'PSA',score:8,cert:'164010775'}, 24:{co:'PSA',score:8,cert:'74617059'}, 25:{co:'PSA',score:8,cert:'76862672'},
+  26:{co:'PSA',score:8,cert:'74436732'}, 27:{co:'PSA',score:8,cert:'74436733'}, 28:{co:'PSA',score:8,cert:'74436731'},
+  29:{co:'PSA',score:8,cert:'169027409'}, 30:{co:'PSA',score:10,cert:'72779803'}, 31:{co:'PSA',score:9,cert:'74709677'},
+  32:{co:'PSA',score:8,cert:'74709827'}, 33:{co:'PSA',score:8,cert:'58634850'}, 34:{co:'PSA',score:9,cert:'169027410'},
+  35:{co:'PSA',score:9,cert:'77907640'}, 36:{co:'PSA',score:8,cert:'129410730'}, 37:{co:'PSA',score:8,cert:'74436730'},
+  38:{co:'PSA',score:9,cert:'63187816'}, 40:{co:'PSA',score:8,cert:'169027385'}, 41:{co:'PSA',score:9,cert:'169027392'},
+  42:{co:'PSA',score:10,cert:'62099564'}, 43:{co:'PSA',score:8,cert:'58634810'}, 44:{co:'PSA',score:9,cert:'129410659'},
+  45:{co:'PSA',score:9,cert:'129410660'}, 46:{co:'PSA',score:9,cert:'77907606'}, 47:{co:'PSA',score:8,cert:'137886346'},
+  48:{co:'PSA',score:9,cert:'129410665'}, 49:{co:'PSA',score:9,cert:'137886345'}, 50:{co:'PSA',score:9,cert:'58634839'},
+  51:{co:'PSA',score:8,cert:'169027386'}, 52:{co:'PSA',score:8,cert:'68068732'}, 53:{co:'PSA',score:8,cert:'76862679'},
+  54:{co:'PSA',score:9,cert:'74709822'}, 55:{co:'PSA',score:8,cert:'169027383'}, 56:{co:'PSA',score:8,cert:'169027370'},
+  57:{co:'PSA',score:8,cert:'129410649'}, 58:{co:'PSA',score:8,cert:'90846867'}, 59:{co:'PSA',score:8,cert:'76862703'},
+  60:{co:'PSA',score:9,cert:'126950194'}, 61:{co:'PSA',score:8,cert:'76862731'}, 62:{co:'PSA',score:9,cert:'169027360'},
+  63:{co:'PSA',score:10,cert:'65856624'}, 64:{co:'PSA',score:8,cert:'58634855'}, 65:{co:'PSA',score:9,cert:'169027368'},
+  66:{co:'PSA',score:8,cert:'72057964'}, 67:{co:'PSA',score:8,cert:'169027333'}, 68:{co:'PSA',score:9,cert:'76092803'},
+  69:{co:'PSA',score:9,cert:'116928104'}, 70:{co:'PSA',score:8,cert:'129410655'}, 71:{co:'PSA',score:9,cert:'148613231'},
+  72:{co:'PSA',score:9,cert:'148613223'}, 73:{co:'PSA',score:8,cert:'70951490'}, 74:{co:'PSA',score:9,cert:'148613236'},
+  75:{co:'PSA',score:9,cert:'148613228'}, 76:{co:'PSA',score:8,cert:'131952328'}, 78:{co:'PSA',score:8,cert:'129410758'},
+  79:{co:'PSA',score:8,cert:'129410757'}, 80:{co:'PSA',score:8,cert:'148613245'}, 81:{co:'PSA',score:8,cert:'129410755'},
+  82:{co:'CGC',score:9,cert:null}, 83:{co:'PSA',score:9,cert:'148613257'}, 84:{co:'PSA',score:9,cert:'159325688'},
+  85:{co:'PSA',score:8,cert:'145938619'}, 86:{co:'PSA',score:8,cert:'148613225'}, 88:{co:'PSA',score:9,cert:'148613226'},
+  89:{co:'PSA',score:9,cert:'148613242'}, 90:{co:'PSA',score:8,cert:'145938620'}, 91:{co:'PSA',score:9,cert:'148613224'},
+  92:{co:'PSA',score:8,cert:'68068765'}, 94:{co:'PSA',score:9,cert:'129410772'}, 95:{co:'PSA',score:9,cert:'159325699'},
+  96:{co:'PSA',score:8,cert:'148613233'}
 };
-function certUrl(c) {
-  return c.co === 'CGC'
-    ? `https://www.cgccards.com/certlookup/${c.cert}`
-    : `https://www.psacard.com/cert/${c.cert}/psa`;
+const GRADE_LABEL = { 10:'GEM MT', 9:'MINT', 8:'NM-MT', 7:'NM' };
+
+function certUrl(s) {
+  return s.co === 'CGC'
+    ? `https://www.cgccards.com/certlookup/${s.cert}`
+    : `https://www.psacard.com/cert/${s.cert}/psa`;
+}
+
+function gradeText(id) {
+  const s = SLABS[id];
+  if (!s) return '';
+  return `${s.co} ${s.score}${GRADE_LABEL[s.score] ? ' ' + GRADE_LABEL[s.score] : ''}`;
+}
+
+function gradeBadge(id) {
+  const s = SLABS[id];
+  if (!s) return null;
+  const tier = s.score >= 10 ? 10 : s.score >= 9 ? 9 : s.score >= 8 ? 8 : 7;
+  const el = document.createElement('div');
+  el.className = `grade-badge grade-${tier}`;
+  el.title = gradeText(id);
+  el.setAttribute('aria-label', `評級 ${gradeText(id)}`);
+  const diamond = tier === 10
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12l4 6-10 11L2 10z"/></svg>'
+    : '';
+  el.innerHTML = `<span class="grade-co" aria-hidden="true">${diamond}${s.co}</span>`
+               + `<span class="grade-score" aria-hidden="true">${s.score}</span>`;
+  return el;
 }
 
 function matchSearch(card) {
@@ -793,9 +883,19 @@ function render() {
 
     const info = document.createElement('div');
     info.className = 'card-info';
-    info.innerHTML = `<div class="card-num">No.${card.id}</div>
-      <div class="card-name">${card.name}</div>
-      <div class="card-en">${EN_NAMES[card.id] || ''}</div>`;
+    info.innerHTML = `<div class="card-text">
+        <div class="card-num">No.${card.id}</div>
+        <div class="card-name">${card.name}</div>
+        <div class="card-en">${EN_NAMES[card.id] || ''}</div>
+      </div>`;
+
+    if (isCollected) {
+      const grade = gradeBadge(card.id);
+      if (grade) {
+        info.classList.add('has-grade');
+        info.appendChild(grade);
+      }
+    }
 
     el.appendChild(imgWrap);
     el.appendChild(info);
@@ -874,10 +974,11 @@ function showLightboxAt(i) {
   document.getElementById('lightbox-name').textContent = `No.${card.id} ${card.name}`;
   document.getElementById('lightbox-en').textContent = EN_NAMES[card.id] || '';
   document.getElementById('lightbox-sub').textContent =
-    (card.holo ? '閃卡 HOLO' : catLabel(card.cat)) + ' · 初代首刷 · 繁體中文';
-  const cert = CERTS[card.id];
+    [card.holo ? '閃卡 HOLO' : catLabel(card.cat), gradeText(card.id), '初代首刷 · 繁體中文']
+      .filter(Boolean).join(' · ');
+  const slab = SLABS[card.id];
   const certBtn = document.getElementById('lightbox-cert');
-  if (cert) { certBtn.href = certUrl(cert); certBtn.style.display = 'inline-flex'; }
+  if (slab && slab.cert) { certBtn.href = certUrl(slab); certBtn.style.display = 'inline-flex'; }
   else { certBtn.style.display = 'none'; }
   document.getElementById('lightbox-prev').disabled = (i <= 0);
   document.getElementById('lightbox-next').disabled = (i >= lbList.length - 1);
