@@ -838,3 +838,86 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2023-09-03,Pikachu,皮卡丘,PSA,9,PSA 9,89.89,2832,31.5,eBay,eBay Research,,89.89,$89.89,Auction,,,https://www.ebay.com/sh/research?marketplace=EBAY-US&keywords=Pokemon+CHINESE+2000+1st+edition+pikachu&dayRange=1095&tabName=SOLD,user_chrome_research,,existing price_history.csv rate for date
 2026-09-20,Venusaur,妙蛙花,PSA,9,PSA 9,2400,77520,32.3,eBay,eBay,2400,2400,"$2,400.00 USD",Best Offer,,,,user_screenshot,,user screenshot rate for date
 2026-09-17,Venusaur,妙蛙花,PSA,9,PSA 9,4999,161468,32.3,Fanatics,Fanatics,4999,4999,"$4,999.00 USD",Best Offer,,,,user_screenshot,,user screenshot rate for date
+2026-10-12,Ninetales,九尾,PSA,9,PSA 9,2562,82753,32.3002,Goldin,Goldin,2562,2562,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-07,Magikarp,鯉魚王,RAW,RAW,RAW,129.5,4183,32.3012,eBay,eBay,129.5,129.5,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-23,Magikarp,鯉魚王,PSA,8,PSA 8,200.38,6472,32.2986,eBay,eBay,200.38,200.38,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-16,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,710,22933,32.3000,eBay,eBay,710,710,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-15,Pikachu (Jungle),2000叢林皮卡丘,PSA,9,PSA 9,100,3230,32.3000,eBay,eBay,100,100,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-15,Pikachu (Jungle),2000叢林皮卡丘,CGC,8,CGC 8,80,2584,32.3000,eBay,eBay,80,80,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-14,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,641,20704,32.2995,eBay,eBay,641,641,,Buy Now,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-09,Pikachu (Jungle),2000叢林皮卡丘,CGC,9,CGC 9,37,1195,32.2973,Fanatics,Fanatics,37,37,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-06,Pikachu (Jungle),2000叢林皮卡丘,CGC,10,CGC 10,688,22222,32.2994,eBay,eBay,688,688,,Buy Now,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-03,Pikachu (Jungle),2000叢林皮卡丘,PSA,8,PSA 8,90,2907,32.3000,eBay,eBay,90,90,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Pikachu (Jungle),2000叢林皮卡丘,BGS,9,BGS 9,117,3779,32.2991,eBay,eBay,117,117,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-26,Pikachu (Jungle),2000叢林皮卡丘,CGC,8,CGC 8,28,904,32.2857,Fanatics,Fanatics,28,28,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-26,Pikachu (Jungle),2000叢林皮卡丘,CGC,10,CGC 10,630,20349,32.3000,Fanatics,Fanatics,630,630,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Blastoise,水箭龜,PSA,9,PSA 9,10980,354654,32.3000,Goldin,Goldin,10980,10980,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-05,Blastoise,水箭龜,PSA,8,PSA 8,2247,72578,32.3000,eBay,eBay,2247,2247,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-16,Blastoise,水箭龜,PSA,9,PSA 9,4250,137275,32.3000,eBay,eBay,4250,4250,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Zapdos,閃電鳥,PSA,9,PSA 9,3056,98709,32.3001,Goldin,Goldin,3056,3056,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-15,Zapdos,閃電鳥,PSA,9,PSA 9,1400,45220,32.3000,Fanatics,Fanatics,1400,1400,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Zapdos,閃電鳥,PSA,8,PSA 8,511,16505,32.2994,eBay,eBay,511,511,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Mewtwo,超夢,PSA,9,PSA 9,5612,181268,32.3001,Goldin,Goldin,5612,5612,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-28,Bulbasaur,妙蛙種子,CGC,9,CGC 9,30,969,32.3000,eBay,eBay,30,30,,Buy Now,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Pikachu,皮卡丘,CGC,9,CGC 9,305,9852,32.3016,Goldin,Goldin,305,305,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-05,Pikachu,皮卡丘,CGC,8.5,CGC 8.5,306,9884,32.3007,eBay,eBay,306,306,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-04,Pikachu,皮卡丘,PSA,10,PSA 10,7150,230945,32.3000,eBay,eBay,7150,7150,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-15,Pikachu,皮卡丘,RAW,RAW,RAW,399.99,12920,32.3008,eBay,eBay,399.99,399.99,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Pikachu,皮卡丘,PSA,10,PSA 10,7101,229362,32.3000,eBay,eBay,7101,7101,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Pikachu,皮卡丘,PSA,10,PSA 10,4080,131784,32.3000,Fanatics Collect,Fanatics Collect,4080,4080,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Magneton,三合一磁怪,PSA,9,PSA 9,3050,98515,32.3000,Goldin,Goldin,3050,3050,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-26,Magneton,三合一磁怪,PSA,8,PSA 8,525,16958,32.3010,eBay,eBay,525,525,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Magneton,三合一磁怪,PSA,8,PSA 8,390,12597,32.3000,eBay,eBay,390,390,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Magneton,三合一磁怪,CGC,8.5,CGC 8.5,280,9044,32.3000,eBay,eBay,280,280,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Charizard,噴火龍,PSA,8.5,PSA 8.5,26840,866932,32.3000,Goldin,Goldin,26840,26840,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-16,Charizard,噴火龍,PSA,4,PSA 4,3500,113050,32.3000,eBay,eBay,3799.99,3500,,Best Offer Accepted,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-09,Charizard,噴火龍,PSA,7,PSA 7,7500,242250,32.3000,eBay,eBay,7500,7500,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-08,Charizard,噴火龍,PSA,9,PSA 9,20000,646000,32.3000,Fanatics,Fanatics,20000,20000,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-16,Charizard,噴火龍,PSA,5,PSA 5,4080,131784,32.3000,Fanatics,Fanatics,4080,4080,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-13,Charizard,噴火龍,PSA,7,PSA 7,11499.99,371450,32.3000,eBay,eBay,11499.99,11499.99,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-08,Charizard,噴火龍,RAW,RAW,RAW,3746,121000,32.3011,社團,社團,121000,3746,,,,,,user_input,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Alakazam,胡地,PSA,9,PSA 9,3664,118347,32.2999,Goldin,Goldin,3664,3664,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-26,Alakazam,胡地,RAW,RAW,RAW,890,28747,32.3000,eBay,eBay,890,890,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-30,Alakazam,胡地,PSA,8,PSA 8,2850,92055,32.3000,eBay,eBay,2850,2850,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-30,Alakazam,胡地,PSA,6,PSA 6,800,25840,32.3000,eBay,eBay,800,800,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-27,Alakazam,胡地,PSA,8,PSA 8,1275,41183,32.3004,eBay,eBay,1275,1275,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-26,Alakazam,胡地,PSA,7,PSA 7,752,24290,32.3005,eBay,eBay,752,752,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Venusaur,妙蛙花,PSA,9,PSA 9,3965,128069,32.2999,Goldin,Goldin,3965,3965,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Chansey,吉利蛋,PSA,8,PSA 8,763,24645,32.3001,Goldin,Goldin,763,763,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-31,Chansey,吉利蛋,PSA,8,PSA 8,600,19380,32.3000,Fanatics,Fanatics,600,600,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-27,Chansey,吉利蛋,CGC,8.5,CGC 8.5,650,20995,32.3000,eBay,eBay,650,650,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Nidoking,尼多王,PSA,9,PSA 9,2684,86693,32.2999,Goldin,Goldin,2684,2684,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-25,Nidoking,尼多王,PSA,8,PSA 8,950,30685,32.3000,eBay,eBay,950,950,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Nidoking,尼多王,PSA,8.5,PSA 8.5,1025,33108,32.3005,eBay,eBay,1025,1025,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Raichu,雷丘,CGC,9,CGC 9,885,28585,32.2994,Goldin,Goldin,885,885,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Clefairy,皮皮,PSA,9,PSA 9,3538,114277,32.2999,Goldin,Goldin,3538,3538,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Hitmonchan,快拳郎(艾比郎),PSA,9,PSA 9,5002,161565,32.3001,Goldin,Goldin,5002,5002,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-27,Hitmonchan,快拳郎(艾比郎),PSA,7,PSA 7,475,15343,32.3011,eBay,eBay,475,475,,,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-28,Hitmonchan,快拳郎(艾比郎),CGC,8.5,CGC 8.5,340,10982,32.3000,Fanatics Collect,Fanatics Collect,340,340,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Poliwrath,蚊香泳士(快泳蛙),PSA,9,PSA 9,4270,137921,32.3000,Goldin,Goldin,4270,4270,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-08,Poliwrath,蚊香泳士(快泳蛙),PSA,8,PSA 8,450,14535,32.3000,Fanatics,Fanatics,450,450,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Poliwrath,蚊香泳士(快泳蛙),CGC,9,CGC 9,70,2261,32.3000,eBay,eBay,70,70,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Poliwrath,蚊香泳士(快泳蛙),CGC,8,CGC 8,290,9367,32.3000,eBay,eBay,290,290,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Poliwrath,蚊香泳士(快泳蛙),PSA,8,PSA 8,346,11176,32.3006,eBay,eBay,346,346,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Squirtle,傑尼龜,CGC,9,CGC 9,177,5717,32.2994,Goldin,Goldin,177,177,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-27,Squirtle,傑尼龜,RAW,RAW,RAW,139.99,4522,32.3023,eBay,eBay,139.99,139.99,,Buy It Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-25,Squirtle,傑尼龜,RAW,RAW,RAW,102.5,3311,32.3024,eBay,eBay,102.5,102.5,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-24,Squirtle,傑尼龜,PSA,9,PSA 9,173.5,5604,32.2997,eBay,eBay,173.5,173.5,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Gyarados,暴鯉龍,PSA,9,PSA 9,4575,147773,32.3001,Goldin,Goldin,4575,4575,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-30,Gyarados,暴鯉龍,PSA,7,PSA 7,600,19380,32.3000,eBay,eBay,600,600,,Buy Now,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Gyarados,暴鯉龍,PSA,8,PSA 8,615,19865,32.3008,eBay,eBay,615,615,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Charmander,小火龍,CGC,9.5,CGC 9.5,171,5523,32.2982,Goldin,Goldin,171,171,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-30,Charmander,小火龍,PSA,7,PSA 7,103,3327,32.3010,eBay,eBay,103,103,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-31,Charmander,小火龍,PSA,10,PSA 10,2520,81396,32.3000,Fanatics,Fanatics,2520,2520,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-31,Charmander,小火龍,PSA,7,PSA 7,102.5,3311,32.3024,eBay,eBay,102.5,102.5,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-26,Charmander,小火龍,PSA,8,PSA 8,250,8075,32.3000,eBay,eBay,250,250,,Buy Now,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-30,Charmander,小火龍,CGC,9,CGC 9,200,6460,32.3000,eBay,eBay,200,200,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-07-04,Gengar,2006 傳說締造者 耿鬼,CGC,9,CGC 9,301,9722,32.2990,eBay,eBay,301,301,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-06-26,Gengar,2006 傳說締造者 耿鬼,PSA,9,PSA 9,269,8689,32.3011,eBay,eBay,269,269,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-06-20,Gengar,2006 傳說締造者 耿鬼,CGC,PRI,CGC PRI,2403,77617,32.3000,eBay,eBay,2403,2403,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-05-29,Gengar,2006 傳說締造者 耿鬼,PSA,8,PSA 8,400,12920,32.3000,eBay,eBay,400,400,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-09-07,Wartortle,卡咪龜,PSA,10,PSA 10,960,31008,32.3000,Fanatics,Fanatics,960,960,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Ivysaur,妙蛙草,CGC,9,CGC 9,92,2972,32.3043,Goldin,Goldin,92,92,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-20,Ivysaur,妙蛙草,RAW,RAW,RAW,123,3973,32.3008,eBay,eBay,123,123,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-23,Ivysaur,妙蛙草,PSA,9,PSA 9,315.1,10178,32.3009,eBay,eBay,315.1,315.1,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-08-02,Ivysaur,妙蛙草,CGC,9,CGC 9,81,2616,32.2963,eBay,eBay,81,81,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
