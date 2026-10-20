@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-13T00:00:00.000Z",
-  "recordCount": 922,
+  "generatedAt": "2026-10-20T00:00:00.000Z",
+  "recordCount": 925,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3560,6 +3560,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-19",
+          "psa": 10,
+          "usd": 9300,
+          "twd": 300390,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 9300,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,
@@ -8259,6 +8271,18 @@
       "records": [
         {
           "date": "2026-10-12",
+          "psa": 8,
+          "usd": 516,
+          "twd": 16667,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 516,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-12",
           "psa": 9,
           "usd": 3538,
           "twd": 114277,
@@ -8447,6 +8471,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-12",
+          "psa": 8.5,
+          "usd": 312,
+          "twd": 10078,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 312,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,

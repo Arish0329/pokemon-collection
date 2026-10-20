@@ -921,3 +921,6 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-08-20,Ivysaur,妙蛙草,RAW,RAW,RAW,123,3973,32.3008,eBay,eBay,123,123,,Best Offer,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
 2026-08-23,Ivysaur,妙蛙草,PSA,9,PSA 9,315.1,10178,32.3009,eBay,eBay,315.1,315.1,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
 2026-08-02,Ivysaur,妙蛙草,CGC,9,CGC 9,81,2616,32.2963,eBay,eBay,81,81,,Auction,,,,user_screenshot,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-19,Pikachu,皮卡丘,PSA,10,PSA 10,9300,300390,32.3000,Fanatics,Fanatics,9300,9300,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Clefairy,皮皮,PSA,8,PSA 8,516,16667,32.3004,Fanatics,Fanatics,516,516,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-12,Hitmonchan,快拳郎(艾比郎),CGC,8.5,CGC 8.5,312,10078,32.3013,Fanatics,Fanatics,312,312,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
