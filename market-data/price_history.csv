@@ -926,3 +926,5 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-12,Hitmonchan,快拳郎(艾比郎),CGC,8.5,CGC 8.5,312,10078,32.3013,Fanatics,Fanatics,312,312,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-21,Nidoking,尼多王,CGC,6.5,CGC 6.5,399,12888,32.3008,eBay,eBay,399,399,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-18,Pikachu,皮卡丘,PSA,10,PSA 10,9300,300390,32.3000,Fanatics,Fanatics,9300,9300,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-13,Hitmonchan,快拳郎(艾比郎),PSA,7,PSA 7,700,22610,32.3000,eBay,eBay,700,700,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-13,Poliwrath,蚊香泳士(快泳蛙),PSA,8,PSA 8,650,20995,32.3000,eBay,eBay,650,650,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
