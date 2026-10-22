@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-22T00:00:00.000Z",
-  "recordCount": 932,
+  "recordCount": 942,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -619,6 +619,126 @@
       "glow": "rgba(201,162,39,0.12)",
       "series": "Jungle Pikachu",
       "records": [
+        {
+          "date": "2026-10-06",
+          "psa": 9,
+          "usd": 225,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Auction",
+          "twd": 7267,
+          "url": "",
+          "listed": 225,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-07",
+          "psa": 8,
+          "usd": 46,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Auction",
+          "twd": 1486,
+          "url": "",
+          "listed": 46,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-11",
+          "psa": 8.5,
+          "usd": 70,
+          "company": "CGC",
+          "source": "eBay",
+          "saleType": "Buy Now",
+          "twd": 2261,
+          "url": "",
+          "listed": 70,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-11",
+          "psa": 9,
+          "usd": 203,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Auction",
+          "twd": 6557,
+          "url": "",
+          "listed": 203,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-11",
+          "psa": 9,
+          "usd": 184,
+          "company": "PSA",
+          "source": "Goldin",
+          "saleType": "Auction",
+          "twd": 5943,
+          "url": "",
+          "listed": 184,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-11",
+          "psa": 8,
+          "usd": 99,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Best Offer",
+          "twd": 3198,
+          "url": "",
+          "listed": 99,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-15",
+          "psa": 2,
+          "usd": 45,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Best Offer",
+          "twd": 1453,
+          "url": "",
+          "listed": 45,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-15",
+          "psa": 9,
+          "usd": 152,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Buy Now",
+          "twd": 4910,
+          "url": "",
+          "listed": 152,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-18",
+          "psa": 9,
+          "usd": 134,
+          "company": "PSA",
+          "source": "eBay",
+          "saleType": "Auction",
+          "twd": 4328,
+          "url": "",
+          "listed": 134,
+          "origin": "user_provided"
+        },
+        {
+          "date": "2026-10-18",
+          "psa": 10,
+          "usd": 204,
+          "company": "CGC",
+          "source": "Fanatics",
+          "saleType": "Auction",
+          "twd": 6589,
+          "url": "",
+          "listed": 204,
+          "origin": "user_provided"
+        },
         {
           "date": "2026-08-16",
           "psa": 10,
