@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-20T00:00:00.000Z",
-  "recordCount": 925,
+  "generatedAt": "2026-10-22T00:00:00.000Z",
+  "recordCount": 927,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3560,6 +3560,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-18",
+          "psa": 10,
+          "usd": 9300,
+          "twd": 300390,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 9300,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-19",
           "psa": 10,
@@ -7433,6 +7445,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-21",
+          "psa": 6.5,
+          "usd": 399,
+          "twd": 12888,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 399,
+          "saleType": "Buy Now",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,
