@@ -941,3 +941,7 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-11,Pikachu (Jungle),2000叢林皮卡丘,CGC,8.5,CGC 8.5,70,2261,32.3000,eBay,eBay,70,70,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-07,Pikachu (Jungle),2000叢林皮卡丘,PSA,8,PSA 8,46,1486,32.3043,eBay,eBay,46,46,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-06,Pikachu (Jungle),2000叢林皮卡丘,PSA,9,PSA 9,225,7267,32.2978,eBay,eBay,225,225,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-22,Pikachu,皮卡丘,PSA,9,PSA 9,500,16150,32.3000,eBay,eBay,500,500,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-22,Raichu,雷丘,PSA,8,PSA 8,749.99,24225,32.3004,eBay,eBay,749.99,749.99,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-24,Squirtle,傑尼龜,CGC,PRI,CGC Pristine 10,1500,48450,32.3000,eBay,eBay,1500,1500,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-24,Magikarp,鯉魚王,CGC,10,CGC Gem Mint 10,399,12888,32.3008,eBay,eBay,399,399,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate

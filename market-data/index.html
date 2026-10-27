@@ -1414,11 +1414,18 @@ function activeColors() {
 function recordGradeLabel(record) {
   if (record.company === 'RAW') return '裸卡';
   const company = record.company || currentCompany || 'PSA';
+  if (company === 'CGC' && record.psa === 'PRI') return 'CGC Pristine 10';
+  if (company === 'CGC' && record.psa === 10) return 'CGC Gem Mint 10';
   if (typeof record.psa === 'string' && /^(PSA|BGS|CGC)\s+/.test(record.psa)) return record.psa;
   return `${company} ${record.psa}`;
 }
 
-function gradeLabel(g) { return currentCompany === 'RAW' ? '裸卡' : `${currentCompany} ${g}`; }
+function gradeLabel(g) {
+  if (currentCompany === 'RAW') return '裸卡';
+  if (currentCompany === 'CGC' && g === 'PRI') return 'CGC Pristine 10';
+  if (currentCompany === 'CGC' && g === 10) return 'CGC Gem Mint 10';
+  return `${currentCompany} ${g}`;
+}
 
 // ══════════════════════════════════════════════
 // ── Build Pokémon Selector ──
@@ -1710,7 +1717,7 @@ const sorters = {
   'date-asc':   (a,b) => new Date(a.date) - new Date(b.date),
   'price-desc': (a,b) => b.usd - a.usd,
   'price-asc':  (a,b) => a.usd - b.usd,
-  'psa-desc':   (a,b) => b.psa - a.psa,
+  'psa-desc':   (a,b) => (b.psa === 'PRI' ? 10.1 : Number(b.psa)) - (a.psa === 'PRI' ? 10.1 : Number(a.psa)),
 };
 
 function renderTable(records, sortKey) {

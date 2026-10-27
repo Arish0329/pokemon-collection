@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-22T00:00:00.000Z",
-  "recordCount": 942,
+  "generatedAt": "2026-10-27T00:00:00.000Z",
+  "recordCount": 946,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -380,6 +380,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-24",
+          "psa": 10,
+          "usd": 399,
+          "company": "CGC",
+          "saleType": "Buy Now",
+          "twd": 12888,
+          "source": "eBay",
+          "url": "",
+          "listed": 399,
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-07",
           "psa": "RAW",
@@ -3692,6 +3704,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-22",
+          "psa": 9,
+          "usd": 500,
+          "company": "PSA",
+          "saleType": "Best Offer",
+          "twd": 16150,
+          "source": "eBay",
+          "url": "",
+          "listed": 500,
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-18",
           "psa": 10,
@@ -7984,6 +8008,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-10-22",
+          "psa": 8,
+          "usd": 749.99,
+          "company": "PSA",
+          "saleType": "Best Offer",
+          "twd": 24225,
+          "source": "eBay",
+          "url": "",
+          "listed": 749.99,
+          "origin": "user_provided"
+        },
+        {
           "date": "2026-10-12",
           "psa": 9,
           "usd": 885,
@@ -9547,6 +9583,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-24",
+          "psa": "PRI",
+          "usd": 1500,
+          "company": "CGC",
+          "saleType": "Buy Now",
+          "twd": 48450,
+          "source": "eBay",
+          "url": "",
+          "listed": 1500,
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,
