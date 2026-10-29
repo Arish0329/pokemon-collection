@@ -717,7 +717,7 @@ const CARDS = [
   { id:102, name:'水能量',       cat:'energy', holo:false },
 ];
 
-const ASSET_VERSION = 15;  // 換圖後把這個數字 +1，舊圖快取就會失效（讓訪客重新下載新圖）
+const ASSET_VERSION = 16;  // 換圖後把這個數字 +1，舊圖快取就會失效（讓訪客重新下載新圖）
 const imgId = id => `images/${String(id).padStart(3,'0')}.jpg?v=${ASSET_VERSION}`;
 
 let collected = new Set();
@@ -749,7 +749,7 @@ const SLABS = {
   13:{co:'PSA',score:8,cert:'116094601'}, 14:{co:'PSA',score:8,cert:'124678416'}, 15:{co:'PSA',score:8,cert:'91277882'},
   16:{co:'PSA',score:8,cert:'101778370'}, 17:{co:'PSA',score:8,cert:'169027393'}, 19:{co:'PSA',score:9,cert:'169027331'},
   20:{co:'PSA',score:8,cert:'58634834'}, 21:{co:'PSA',score:8,cert:'131952323'}, 22:{co:'PSA',score:8,cert:'58634833'},
-  23:{co:'PSA',score:8,cert:'164010775'}, 24:{co:'PSA',score:8,cert:'74617059'}, 25:{co:'PSA',score:8,cert:'76862672'},
+  23:{co:'PSA',score:8,cert:'164010775'}, 24:{co:'PSA',score:9,cert:'74617059'}, 25:{co:'PSA',score:8,cert:'76862672'},
   26:{co:'PSA',score:8,cert:'74436732'}, 27:{co:'PSA',score:8,cert:'74436733'}, 28:{co:'PSA',score:8,cert:'74436731'},
   29:{co:'PSA',score:8,cert:'169027409'}, 30:{co:'PSA',score:10,cert:'72779803'}, 31:{co:'PSA',score:9,cert:'74709677'},
   32:{co:'PSA',score:8,cert:'74709827'}, 33:{co:'PSA',score:8,cert:'58634850'}, 34:{co:'PSA',score:9,cert:'169027410'},
