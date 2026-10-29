@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-29T00:00:00.000Z",
-  "recordCount": 947,
+  "recordCount": 948,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -11254,6 +11254,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-24",
+          "psa": "PRI",
+          "usd": 999,
+          "twd": 32268,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 999,
+          "saleType": "Buy Now",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-02-22",
           "psa": 9,

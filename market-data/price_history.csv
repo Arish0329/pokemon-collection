@@ -946,3 +946,4 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-24,Squirtle,傑尼龜,CGC,PRI,CGC Pristine 10,1500,48450,32.3000,eBay,eBay,1500,1500,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-24,Magikarp,鯉魚王,CGC,10,CGC Gem Mint 10,399,12888,32.3008,eBay,eBay,399,399,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-25,Bulbasaur,妙蛙種子,CGC,8,CGC 8,150,4845,32.3000,eBay,eBay,150,150,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-24,Charmeleon,火恐龍,CGC,PRI,CGC Pristine 10,999,32268,32.3003,eBay,eBay,999,999,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
