@@ -949,3 +949,4 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-24,Charmeleon,火恐龍,CGC,PRI,CGC Pristine 10,999,32268,32.3003,eBay,eBay,999,999,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-11-01,Venusaur,妙蛙花,BGS,9,BGS 9,1950,62985,32.3000,Fanatics,Fanatics,1950,1950,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-28,Mewtwo,超夢,CGC,8.5,CGC 8.5,2450,79135,32.3000,Fanatics,Fanatics,2450,2450,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-11-02,Charizard,噴火龍,BGS,9,BGS 9,30600,988380,32.3000,Fanatics,Fanatics,30600,30600,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
