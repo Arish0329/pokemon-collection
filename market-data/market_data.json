@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-02T00:00:00.000Z",
-  "recordCount": 949,
+  "recordCount": 950,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -3060,6 +3060,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-10-28",
+          "psa": 8.5,
+          "usd": 2450,
+          "twd": 79135,
+          "company": "CGC",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 2450,
+          "saleType": "Buy Now",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-21",
           "psa": 6.5,
