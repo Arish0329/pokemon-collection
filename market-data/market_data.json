@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-29T00:00:00.000Z",
-  "recordCount": 948,
+  "generatedAt": "2026-11-02T00:00:00.000Z",
+  "recordCount": 949,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -6681,6 +6681,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-01",
+          "psa": 9,
+          "usd": 1950,
+          "twd": 62985,
+          "company": "BGS",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 1950,
+          "saleType": "Auction",
+          "origin": "user_provided"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,
