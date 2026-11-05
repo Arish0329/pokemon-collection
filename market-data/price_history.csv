@@ -951,3 +951,4 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-28,Mewtwo,超夢,CGC,8.5,CGC 8.5,2450,79135,32.3000,Fanatics,Fanatics,2450,2450,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-11-02,Charizard,噴火龍,BGS,9,BGS 9,30600,988380,32.3000,Fanatics,Fanatics,30600,30600,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-11-05,Nidoking,尼多王,PSA,8,PSA 8,883.46,28536,32.3000,eBay,eBay AU,883.46,883.46,"AU $1,253.88 (approx HK$6,890.95)",Auction,,,,user_screenshot,market_data.json,USD estimated via approximate HKD 6,890.95 divided by 7.8; TWD uses project rate 32.3
+2026-11-01,Poliwrath,蚊香泳士(快泳蛙),CGC,8,CGC 8,346,11176,32.3006,Goldin,Goldin,346,346,,Auction,,,,user_screenshot,market_data.json,TWD conversion uses project rate 32.3

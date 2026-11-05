@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-05T00:00:00.000Z",
-  "recordCount": 952,
+  "recordCount": 953,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -9132,6 +9132,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-01",
+          "psa": 8,
+          "usd": 346,
+          "twd": 11176,
+          "company": "CGC",
+          "source": "Goldin",
+          "url": "",
+          "listed": 346,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-10-21",
           "psa": 8,
