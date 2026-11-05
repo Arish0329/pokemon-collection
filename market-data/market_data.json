@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-02T00:00:00.000Z",
-  "recordCount": 951,
+  "generatedAt": "2026-11-05T00:00:00.000Z",
+  "recordCount": 952,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -7661,6 +7661,21 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-05",
+          "psa": 8,
+          "usd": 883.46,
+          "twd": 28536,
+          "company": "PSA",
+          "source": "eBay",
+          "url": "",
+          "listed": 883.46,
+          "saleType": "Auction",
+          "origin": "user_screenshot",
+          "originalPrice": 1253.88,
+          "originalCurrency": "AUD",
+          "conversionNote": "USD estimated from screenshot's approximate HKD 6,890.95 using HKD/USD 7.8; TWD uses project rate 32.3"
+        },
         {
           "date": "2026-10-21",
           "psa": 6.5,
