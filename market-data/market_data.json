@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-05T00:00:00.000Z",
-  "recordCount": 953,
+  "generatedAt": "2026-11-09T00:00:00.000Z",
+  "recordCount": 955,
   "cards": {
     "ninetales": {
       "zh": "九尾",
@@ -10,6 +10,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-08",
+          "psa": 9,
+          "usd": 2070,
+          "twd": 66861,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 2070,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-10-12",
           "psa": 9,
@@ -7195,6 +7207,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-01",
+          "psa": 9,
+          "usd": 6100,
+          "twd": 197030,
+          "company": "PSA",
+          "source": "Goldin",
+          "url": "",
+          "listed": 6100,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-10-12",
           "psa": 8,
