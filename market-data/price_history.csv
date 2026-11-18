@@ -954,3 +954,9 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-11-01,Poliwrath,蚊香泳士(快泳蛙),CGC,8,CGC 8,346,11176,32.3006,Goldin,Goldin,346,346,,Auction,,,,user_screenshot,market_data.json,TWD conversion uses project rate 32.3
 2026-11-08,Ninetales,九尾,PSA,9,PSA 9,2070,66861,32.3000,Fanatics,Fanatics,2070,2070,,Auction,,,,user_screenshot,market_data.json,TWD conversion uses project rate 32.3
 2026-11-01,Chansey,吉利蛋,PSA,9,PSA 9,6100,197030,32.3000,Goldin,Goldin,6100,6100,,Auction,,,,user_screenshot,market_data.json,TWD conversion uses project rate 32.3
+2026-11-17,Wartortle,卡咪龜,PSA,10,PSA 10,1025,33108,32.3000,eBay,eBay,1025,1025,,,,,,user_screenshot,market_data.json,TWD conversion uses project rate 32.3
+2026-11-15,Charmander,小火龍,CGC,9.5,CGC 9.5,113,3711,32.8380,Goldin,Goldin,113,113,,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-13 (prior trading day); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-15,Venusaur,妙蛙花,BGS,9,BGS 9,1350,44331,32.8380,Fanatics,Fanatics,1350,1350,,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-13 (prior trading day); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-13,Pikachu,皮卡丘,PSA,9,PSA 9,650,21345,32.8380,eBay,eBay,650,650,,Best Offer,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-13; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-10,Alakazam,胡地,CGC,7,CGC 7,650,21362,32.8650,eBay,eBay,650,650,,Best Offer,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-10; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-09,Chansey,吉利蛋,PSA,8,PSA 8,1250,41103,32.8820,eBay,eBay,1250,1250,,Best Offer,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-09; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
