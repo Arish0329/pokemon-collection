@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-23T00:00:00.000Z",
-  "recordCount": 1029,
+  "recordCount": 1025,
   "cards": {
     "beedrill": {
       "zh": "大針蜂",
@@ -1128,18 +1128,6 @@
           "usd": 24.5,
           "twd": 791,
           "company": "PSA",
-          "source": "eBay",
-          "url": "",
-          "listed": null,
-          "saleType": "",
-          "origin": "price_history.csv"
-        },
-        {
-          "date": "2025-08-18",
-          "psa": "RAW",
-          "usd": 51,
-          "twd": 1647,
-          "company": "RAW",
           "source": "eBay",
           "url": "",
           "listed": null,
@@ -2310,18 +2298,6 @@
           "origin": "price_history.csv"
         },
         {
-          "date": "2021-06-27",
-          "psa": 9,
-          "usd": 104,
-          "twd": 2912,
-          "company": "PSA",
-          "source": "Fanatics",
-          "url": "",
-          "listed": null,
-          "saleType": "",
-          "origin": "price_history.csv"
-        },
-        {
           "date": "2021-05-28",
           "psa": 10,
           "usd": 335,
@@ -2350,18 +2326,6 @@
           "psa": 9,
           "usd": 215.5,
           "twd": 6034,
-          "company": "PSA",
-          "source": "Fanatics",
-          "url": "",
-          "listed": null,
-          "saleType": "",
-          "origin": "price_history.csv"
-        },
-        {
-          "date": "2020-09-28",
-          "psa": 10,
-          "usd": 152.5,
-          "twd": 4499,
           "company": "PSA",
           "source": "Fanatics",
           "url": "",
@@ -3682,18 +3646,6 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
-        {
-          "date": "2026-11-23",
-          "psa": 9,
-          "usd": 23400,
-          "twd": 770702,
-          "company": "PSA",
-          "source": "Fanatics",
-          "url": "",
-          "listed": 23400,
-          "saleType": "Auction",
-          "origin": "user_screenshot"
-        },
         {
           "date": "2026-10-28",
           "psa": 8.5,
@@ -5919,6 +5871,18 @@
       "glow": "rgba(201,162,39,0.12)",
       "records": [
         {
+          "date": "2026-11-23",
+          "psa": 9,
+          "usd": 23400,
+          "twd": 770702,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 23400,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
+        {
           "date": "2026-11-02",
           "psa": 9,
           "usd": 30600,
@@ -6061,18 +6025,6 @@
           "listed": 9600,
           "saleType": "Auction",
           "origin": "combined_graded.xlsx"
-        },
-        {
-          "date": "2026-05-23",
-          "psa": 8,
-          "usd": 7740,
-          "twd": 250002,
-          "company": "PSA",
-          "source": "社團",
-          "url": "",
-          "listed": null,
-          "saleType": "",
-          "origin": "price_history.csv"
         },
         {
           "date": "2026-05-23",

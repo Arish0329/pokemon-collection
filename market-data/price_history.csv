@@ -78,7 +78,6 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-05-26,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,975,31492,32.3,eBay,eBay,,975,,,,,,price_history.csv,,existing price_history.csv rate for date
 2026-05-24,Clefairy,皮皮,PSA,7,PSA 7,500,16150,32.3,eBay,eBay,,500,,,,,,price_history.csv,,existing price_history.csv rate for date
 2026-05-23,Charizard,噴火龍,PSA,8,PSA 8,7740,250002,32.3,社團,社團,,7740,,,,,,price_history.csv,,existing price_history.csv rate for date
-2026-05-23,Charizard,噴火龍,PSA,8,PSA 8,7740,250002,32.3,社團,社團,,7740,,,,,,price_history.csv,,existing price_history.csv rate for date
 2026-05-22,Raichu,雷丘,PSA,8,PSA 8,604,19509,32.3,eBay,eBay,,604,,,,,,price_history.csv,,existing price_history.csv rate for date
 2026-05-22,Pikachu (Jungle),2000叢林皮卡丘,PSA,8,PSA 8,80,2584,32.3,eBay,eBay,,80,,,,,,price_history.csv,,existing price_history.csv rate for date
 2026-05-19,Pikachu (Jungle),2000叢林皮卡丘,PSA,8,PSA 8,83,2681,32.3,eBay,eBay,,83,,,,,,price_history.csv,,existing price_history.csv rate for date
@@ -224,7 +223,6 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2025-09-01,Mewtwo,超夢,PSA,7,PSA 7,200,6460,32.3,eBay,eBay,,200,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-27,Zapdos,閃電鳥,PSA,8,PSA 8,250,8075,32.3,eBay,eBay,,250,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-22,Pikachu,皮卡丘,PSA,10,PSA 10,870,28101,32.3,eBay,eBay,,870,,,,,,price_history.csv,,existing price_history.csv rate for date
-2025-08-18,Magikarp,鯉魚王,RAW,RAW,裸卡,51,1647,32.3,eBay,eBay,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-18,Magikarp,鯉魚王,RAW,RAW,裸卡,51,1647,32.3,eBay,eBay,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
 2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,22.5,727,32.3,eBay,eBay,,22.5,$22.50,,,,,user_screenshot,,existing price_history.csv rate for date
 2025-08-18,Charmeleon,火恐龍,RAW,RAW,RAW,18.01,582,32.3,eBay,eBay,,18.01,$18.01,,,,,user_screenshot,,existing price_history.csv rate for date
@@ -498,7 +496,6 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2021-06-27,Pikachu (Jungle),2000叢林皮卡丘,PSA,8.5,PSA 8.5,51,1428,28,Fanatics,Fanatics,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
 2021-06-27,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,425,11900,28,Fanatics,Fanatics,,425,,,,,,price_history.csv,,existing price_history.csv rate for date
 2021-06-27,Pikachu (Jungle),2000叢林皮卡丘,PSA,9,PSA 9,104,2912,28,Fanatics,Fanatics,,104,,,,,,price_history.csv,,existing price_history.csv rate for date
-2021-06-27,Pikachu (Jungle),2000叢林皮卡丘,PSA,9,PSA 9,104,2912,28,Fanatics,Fanatics,,104,,,,,,price_history.csv,,existing price_history.csv rate for date
 2021-05-30,Hitmonchan,快拳郎(艾比郎),BGS,8.5,BGS 8.5,185,5180,28,Fanatics,Fanatics,,185,,,,,,price_history.csv,,existing price_history.csv rate for date
 2021-05-28,Charizard,噴火龍,PSA,8,PSA 8,4005,112140,28,Fanatics,Fanatics,4005,4005,"$4,005",Auction,Auction,https://www.fanaticscollect.com/monthly/0575df60-6f23-11ed-977f-0a58a9feac02,https://www.fanaticscollect.com/monthly/0575df60-6f23-11ed-977f-0a58a9feac02,combined_graded.xlsx,price_history.csv (2021-05-28),existing price_history.csv rate for date
 2021-05-28,Charizard,噴火龍,PSA,8,PSA 8,3450,96600,28,Fanatics,Fanatics,3450,3450,"$3,450",Auction,Auction,https://www.fanaticscollect.com/monthly/07951f9a-6f23-11ed-a39d-0a58a9feac02,https://www.fanaticscollect.com/monthly/07951f9a-6f23-11ed-a39d-0a58a9feac02,combined_graded.xlsx,price_history.csv (2021-05-28),existing price_history.csv rate for date
@@ -535,7 +532,6 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2020-09-28,Squirtle,傑尼龜,PSA,7,PSA 7,51,1505,29.5,PWCC,PWCC,,51,,,,,,price_history.csv,,existing price_history.csv rate for date
 2020-09-28,Squirtle,傑尼龜,PSA,6,PSA 6,26,767,29.5,PWCC,PWCC,,26,,,,,,price_history.csv,,existing price_history.csv rate for date
 2020-09-28,Magikarp,鯉魚王,PSA,9,PSA 9,102.5,3024,29.5,Fanatics,Fanatics,,102.5,,,,,,price_history.csv,,existing price_history.csv rate for date
-2020-09-28,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,152.5,4499,29.5,Fanatics,Fanatics,,152.5,,,,,,price_history.csv,,existing price_history.csv rate for date
 2020-09-28,Pikachu (Jungle),2000叢林皮卡丘,PSA,10,PSA 10,152.5,4499,29.5,Fanatics,Fanatics,,152.5,,,,,,price_history.csv,,existing price_history.csv rate for date
 2020-08-31,Ninetales,九尾,PSA,9,PSA 9,279,8231,29.5,PWCC,PWCC,,279,,,,,,price_history.csv,,existing price_history.csv rate for date
 2020-07-27,Blastoise,水箭龜,PSA,9,PSA 9,1913,56434,29.5,PWCC,PWCC,,1913,,,,,,price_history.csv,,existing price_history.csv rate for date
@@ -1027,4 +1023,4 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-11-19,Pokemon Breeder,寶可夢飼養員,CGC,10,CGC 10,360,11859,32.9420,ALT,ALT,360,360,$360.00,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-19; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
 2026-11-19,Pokemon Trader,寶可夢交換員,CGC,9.5,CGC 9.5,361,11892,32.9420,ALT,ALT,361,361,$361.00,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-19; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
 2026-11-19,Dewgong,白海獅,CGC,10,CGC 10,166,5468,32.9420,ALT,ALT,166,166,$166.00,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-19; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
-2026-11-23,Mewtwo,超夢,PSA,9,PSA 9,23400,770702,32.9360,Fanatics,Fanatics,23400,23400,$23400.00 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-23,Charizard,噴火龍,PSA,9,PSA 9,23400,770702,32.9360,Fanatics,Fanatics,23400,23400,$23400.00 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
