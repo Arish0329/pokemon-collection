@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-23T00:00:00.000Z",
-  "recordCount": 1024,
+  "recordCount": 1028,
   "cards": {
     "beedrill": {
       "zh": "大針蜂",
@@ -12504,14 +12504,60 @@
         }
       ]
     },
+    "dewgong": {
+      "zh": "白海獅",
+      "en": "Dewgong",
+      "dex": 25,
+      "icon": "images/card-placeholder.svg",
+      "accent": "#c9a227",
+      "glow": "rgba(201,162,39,0.12)",
+      "records": [
+        {
+          "date": "2026-11-19",
+          "psa": 10,
+          "usd": 166,
+          "twd": 5468,
+          "company": "CGC",
+          "source": "ALT",
+          "url": "",
+          "listed": 166,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        }
+      ]
+    },
     "pokemon_breeder": {
-      "zh": "神奇寶貝飼育家",
+      "zh": "寶可夢飼養員",
       "en": "Pokemon Breeder",
       "dex": 76,
       "icon": "images/076.jpg",
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-20",
+          "psa": 8,
+          "usd": 75,
+          "twd": 2470,
+          "company": "CGC",
+          "source": "eBay",
+          "url": "",
+          "listed": 75,
+          "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-11-19",
+          "psa": 10,
+          "usd": 360,
+          "twd": 11859,
+          "company": "CGC",
+          "source": "ALT",
+          "url": "",
+          "listed": 360,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-10-05",
           "psa": 8.5,
@@ -12575,7 +12621,7 @@
       ]
     },
     "pokemon_trader": {
-      "zh": "神奇寶貝交換員",
+      "zh": "寶可夢交換員",
       "en": "Pokemon Trader",
       "dex": 77,
       "icon": "images/077.jpg",
@@ -12616,6 +12662,18 @@
           "url": "",
           "listed": 150,
           "saleType": "Best Offer",
+          "origin": "user_screenshot"
+        },
+        {
+          "date": "2026-11-19",
+          "psa": 9.5,
+          "usd": 361,
+          "twd": 11892,
+          "company": "CGC",
+          "source": "ALT",
+          "url": "",
+          "listed": 361,
+          "saleType": "Auction",
           "origin": "user_screenshot"
         },
         {
