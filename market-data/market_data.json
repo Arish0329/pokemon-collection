@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-23T00:00:00.000Z",
-  "recordCount": 1028,
+  "recordCount": 1029,
   "cards": {
     "beedrill": {
       "zh": "大針蜂",
@@ -3682,6 +3682,18 @@
       "accent": "#c9a227",
       "glow": "rgba(201,162,39,0.12)",
       "records": [
+        {
+          "date": "2026-11-23",
+          "psa": 9,
+          "usd": 23400,
+          "twd": 770702,
+          "company": "PSA",
+          "source": "Fanatics",
+          "url": "",
+          "listed": 23400,
+          "saleType": "Auction",
+          "origin": "user_screenshot"
+        },
         {
           "date": "2026-10-28",
           "psa": 8.5,
