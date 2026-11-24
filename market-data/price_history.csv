@@ -941,6 +941,8 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-10-22,Raichu,雷丘,PSA,8,PSA 8,749.99,24225,32.3004,eBay,eBay,749.99,749.99,,Best Offer,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-24,Squirtle,傑尼龜,CGC,PRI,CGC Pristine 10,1500,48450,32.3000,eBay,eBay,1500,1500,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-24,Magikarp,鯉魚王,CGC,10,CGC Gem Mint 10,399,12888,32.3008,eBay,eBay,399,399,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
+2026-10-25,Magikarp,鯉魚王,CGC,10,CGC 10,399,12971,32.5080,eBay,eBay,399,399,$399.00 USD,Buy Now,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-10-22; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-10-22,Magikarp,鯉魚王,RAW,RAW,RAW,132.5,4307,32.5080,eBay,eBay,132.5,132.5,$132.50 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-10-22; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
 2026-10-25,Bulbasaur,妙蛙種子,CGC,8,CGC 8,150,4845,32.3000,eBay,eBay,150,150,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-10-24,Charmeleon,火恐龍,CGC,PRI,CGC Pristine 10,999,32268,32.3003,eBay,eBay,999,999,,Buy Now,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
 2026-11-01,Venusaur,妙蛙花,BGS,9,BGS 9,1950,62985,32.3000,Fanatics,Fanatics,1950,1950,,Auction,,,,user_provided,market_data.json,TWD retained from market_data.json; implied rate
@@ -1024,3 +1026,7 @@ date,card_en,card_zh,grading_company,grade,psa_grade,price_usd,price_twd,exchang
 2026-11-19,Pokemon Trader,寶可夢交換員,CGC,9.5,CGC 9.5,361,11892,32.9420,ALT,ALT,361,361,$361.00,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-19; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
 2026-11-19,Dewgong,白海獅,CGC,10,CGC 10,166,5468,32.9420,ALT,ALT,166,166,$166.00,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-19; https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
 2026-11-23,Charizard,噴火龍,PSA,9,PSA 9,23400,770702,32.9360,Fanatics,Fanatics,23400,23400,$23400.00 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-23,Charmander,小火龍,PSA,9,PSA 9,260.45,8578,32.9360,eBay,eBay,260.45,260.45,$260.45 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-23,Wartortle,卡咪龜,PSA,9,PSA 9,211.38,6962,32.9360,eBay,eBay,211.38,211.38,$211.38 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-23,Blastoise,水箭龜,CGC,6.5,CGC 6.5,1250,41170,32.9360,eBay,eBay,1250,1250,$1250.00 USD,Best Offer,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
+2026-11-23,Bulbasaur,妙蛙種子,PSA,9,PSA 9,290,9551,32.9360,eBay,eBay,290,290,$290.00 USD,Auction,,,,user_screenshot,market_data.json,CBC USD/TWD interbank close 2026-11-20 (latest available before sale); https://www.cbc.gov.tw/tw/lp-645-1-1-60.html
